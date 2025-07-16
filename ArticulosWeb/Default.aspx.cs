@@ -26,5 +26,12 @@ namespace ArticulosWeb
 
             }
         }
+        public string ObtenerUrlImagen(object imagen)
+        {
+            string url = imagen?.ToString();
+            if (string.IsNullOrEmpty(url) || !url.StartsWith("https"))
+                return "Img/NoDisponible.jpg";
+            return url;
+        }
     }
 }
