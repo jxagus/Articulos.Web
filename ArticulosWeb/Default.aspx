@@ -43,6 +43,7 @@
     </div>
     <br />
     <!--tailwind-->
+    <h2>Otros de nuestros productos</h2>
     <div class="flex flex-wrap gap-6 justify-start">
         <asp:Repeater ID="RepExplorar" runat="server">
             <ItemTemplate>
@@ -62,7 +63,7 @@
         </asp:Repeater>
     </div>
     <!-- Nuestros productos destacados -->
-    <h2>Otros de nuestros productos</h2>
+<%--    <h2>Otros de nuestros productos</h2>
     <div class="col-6">
         <div class="mb-3">
         </div>
@@ -93,5 +94,5 @@
             </div>
         </div>
         <% } %>
-    </div>
+    </div>--%>
 </asp:Content>

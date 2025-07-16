@@ -22,8 +22,13 @@ namespace ArticulosWeb
                 Negocio negocio = new Negocio();
                 ListaArticulos = negocio.listarConSP();
                 ListaCelulares = negocio.ListarCelulares(); 
-                ListaSinCelulares = negocio.ListarSinCelulares(); 
+                ListaSinCelulares = negocio.ListarSinCelulares();
 
+                Negocio Articulos = new Negocio();
+                ListaArticulos = Articulos.listarConSP();
+                Session.Add("ListaArticulos", Articulos.listarConSP());
+                RepExplorar.DataSource = Session["ListaArticulos"];
+                RepExplorar.DataBind();
             }
         }
         public string ObtenerUrlImagen(object imagen)
