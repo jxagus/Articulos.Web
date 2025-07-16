@@ -10,7 +10,6 @@
             </div>
         </div>
     </div>
-    <!-- test explorar -->
 
     <!-- Ofertas unicas en Iphones -->
     <h2 class="text-2xl font-bold mb-4">Nuestros celulares</h2>
@@ -37,9 +36,9 @@
         </div>
         <% } %>
     </div>
+    <br />
     <!-- Nuestros productos destacados -->
-    <!--tailwind-->
-    <h2>Otros de nuestros productos</h2>
+    <h2 class="text-2xl font-bold mb-4">Otros de nuestros productos</h2>
     <div class="flex flex-wrap gap-6 justify-start">
         <asp:Repeater ID="RepExplorar" runat="server">
             <ItemTemplate>
@@ -58,36 +57,5 @@
             </ItemTemplate>
         </asp:Repeater>
     </div>
-    <%--    <h2>Otros de nuestros productos</h2>
-    <div class="col-6">
-        <div class="mb-3">
-        </div>
-    </div>
-    <div class="row row-cols-1 row-cols-md-3 g-4">
-        <% foreach (Dominio.Articulo item in ListaSinCelulares)
-            { %>
-        <div class="col">
-            <div class="card">
-                <%
-                    string imagenUrl = string.IsNullOrEmpty(item.ImagenUrl) ? "Img/NoDisponible.jpg" : item.ImagenUrl;
-                    if (!imagenUrl.StartsWith("https"))
-                    {
-                        imagenUrl = "Img/NoDisponible.jpg";
-                    }
-                %>
-                <img src="<%: imagenUrl %>"
-                    class="img-thumbnail"
-                    style="height: 200px; width: 100%; object-fit: contain; background-color: #f8f9fa;"
-                    alt="Imagen del artículo">
-
-                <div class="card-body">
-                    <h5 class="card-title"><%: item.Nombre %></h5>
-                    <p class="card-text"><%: "$" + (Math.Truncate(item.Precio * 100) / 100m).ToString("F2") %></p>
-                    <a href='DetalleArticulo.aspx?id=<%: item.Id %>' class="btn btn-primary">Ver detalles</a>
-                    <!-- <a href="Carrito.aspx" class="btn btn-primary">Comprar</a> -->
-                </div>
-            </div>
-        </div>
-        <% } %>
-    </div>--%>
+ 
 </asp:Content>
