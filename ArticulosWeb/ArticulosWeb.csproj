@@ -174,6 +174,7 @@
     <Content Include="Content\bootstrap-grid.css.map" />
     <Content Include="Mi Cuenta.aspx" />
     <Content Include="App.config" />
+    <Content Include="Landing.master" />
     <None Include="Properties\PublishProfiles\TPFinalNivel3Acosta_RamonAgustin.pubxml" />
     <Content Include="ScriptDB\scriptdbArticulosWeb.ipynb" />
     <None Include="Scripts\jquery-3.7.0.intellisense.js" />
@@ -246,6 +247,13 @@
     </Compile>
     <Compile Include="Gestion.aspx.designer.cs">
       <DependentUpon>Gestion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Landing.master.cs">
+      <DependentUpon>Landing.master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Landing.master.designer.cs">
+      <DependentUpon>Landing.master</DependentUpon>
     </Compile>
     <Compile Include="Lista.aspx.cs">
       <DependentUpon>Lista.aspx</DependentUpon>
