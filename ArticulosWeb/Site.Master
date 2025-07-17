@@ -42,6 +42,7 @@
         </asp:ScriptManager>
 
         <!-- Contenido principal -->
+
         <div class="main-content" style="flex: 1;">
             <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark">
                 <div class="container">
@@ -51,8 +52,15 @@
                         aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
+
                     <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
+                            <!-- test del buscadorcito -->
+                            <div class="d-flex align-items-center" style="gap: 10px;">
+                                <asp:TextBox ID="txtBuscarNav" runat="server" CssClass="form-control" placeholder="Buscar..." />
+                                <asp:Button ID="btnBuscarNav" runat="server" Text="Buscar" CssClass="btn btn-outline-light"   />
+                            </div>
                         <ul class="navbar-nav flex-grow-1">
+                            <!-- Navegación -->
                             <li class="nav-item"><a class="nav-link" runat="server" href="~/">Inicio</a></li>
                             <li class="nav-item"><a class="nav-link" runat="server" href="~/Explorar">Explorar</a></li>
                             <li class="nav-item"><a class="nav-link" runat="server" href="~/Preguntas">Preguntas</a></li>
