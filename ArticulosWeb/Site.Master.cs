@@ -52,6 +52,11 @@ namespace ArticulosWeb
             Response.Redirect("Login.aspx");
         }
 
- 
+        protected void btnBuscarNav_Click(object sender, EventArgs e)
+        {
+            string busqueda = txtBuscarNav.Text.Trim();
+            Response.Redirect("Explorar.aspx?buscar=" + Server.UrlEncode(busqueda));
+        }
+
     }
 }

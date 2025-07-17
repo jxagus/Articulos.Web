@@ -12,17 +12,28 @@ namespace ArticulosWeb
     public partial class Explorar : Page
     {
         public List<Articulo> ListaArticulos { get; set; }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
                 Negocio Articulos = new Negocio();
                 ListaArticulos = Articulos.listarConSP();
-                Session.Add("ListaArticulos", Articulos.listarConSP());
-                RepExplorar.DataSource = Session["ListaArticulos"];
+
+                string filtro = Request.QueryString["buscar"];
+                if (!string.IsNullOrEmpty(filtro))
+                {
+                    ListaArticulos = ListaArticulos
+                        .Where(a => a.Nombre.ToLower().Contains(filtro.ToLower()))
+                        .ToList();
+                }
+
+                Session["ListaArticulos"] = ListaArticulos;
+                RepExplorar.DataSource = ListaArticulos;
                 RepExplorar.DataBind();
             }
         }
+
         protected void Filtro_TextChanged(object sender, EventArgs e)
         {
             List<Articulo> lista = (List<Articulo>)Session["ListaArticulos"];
