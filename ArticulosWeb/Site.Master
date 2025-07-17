@@ -58,7 +58,9 @@
                             <div class="d-flex align-items-center" style="gap: 10px;">
                                 <asp:TextBox ID="txtBuscarNav" runat="server" CssClass="form-control" placeholder="Buscar..." />
 
-                                <asp:Button ID="btnBuscarNav" runat="server" Text="Buscar" CssClass="btn btn-outline-light" onclick="btnBuscarNav_Click"  />
+                                <asp:Button ID="btnBuscarNav" runat="server" Text="Buscar" CssClass="btn btn-outline-light" onclick="btnBuscarNav_Click"
+                                    CausesValidation="false"
+                                    UseSubmitBehavior="false"  /><!-- causesvalidation y usesubmitbehavior para que no interfiera con Ingresar ;) -->
                             </div>
                         <ul class="navbar-nav flex-grow-1">
                             <!-- Navegación -->
