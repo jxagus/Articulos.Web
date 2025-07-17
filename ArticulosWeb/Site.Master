@@ -57,6 +57,7 @@
                             <!-- test del buscadorcito -->
                             <div class="d-flex align-items-center" style="gap: 10px;">
                                 <asp:TextBox ID="txtBuscarNav" runat="server" CssClass="form-control" placeholder="Buscar..." />
+
                                 <asp:Button ID="btnBuscarNav" runat="server" Text="Buscar" CssClass="btn btn-outline-light" onclick="btnBuscarNav_Click"  />
                             </div>
                         <ul class="navbar-nav flex-grow-1">

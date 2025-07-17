@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using NegocioArticulo;
 using Dominio;
+using System.Web.UI.HtmlControls;
 
 namespace ArticulosWeb
 {
@@ -17,22 +18,38 @@ namespace ArticulosWeb
         {
             if (!IsPostBack)
             {
-                Negocio Articulos = new Negocio();
-                ListaArticulos = Articulos.listarConSP();
-
-                string filtro = Request.QueryString["buscar"];
-                if (!string.IsNullOrEmpty(filtro))
+                if (Session["txtBuscar"] != null)
                 {
-                    ListaArticulos = ListaArticulos
-                        .Where(a => a.Nombre.ToLower().Contains(filtro.ToLower()))
-                        .ToList();
-                }
+                    TextBox txtBuscarNav = (TextBox)Master.FindControl("txtBuscarNav");
+                    if (txtBuscarNav != null)
+                    {
+                        txtBuscarNav.Text = Session["txtBuscar"].ToString();
+                    }
 
-                Session["ListaArticulos"] = ListaArticulos;
-                RepExplorar.DataSource = ListaArticulos;
-                RepExplorar.DataBind();
+                    string filtro = Session["txtBuscar"].ToString().ToLower();
+                    List<Articulo> lista = (List<Articulo>)Session["ListaArticulos"];
+                    List<Articulo> filtrada = lista.FindAll(a =>
+                        a.Nombre.ToLower().Contains(filtro) ||
+                        a.Marca.Descripcion.ToLower().Contains(filtro) ||
+                        a.Categoria.Descripcion.ToLower().Contains(filtro)
+                    );
+
+                    RepExplorar.DataSource = filtrada;
+                    RepExplorar.DataBind();
+                }
+                else
+                {
+                    Negocio Articulos = new Negocio();
+                    ListaArticulos = Articulos.listarConSP();
+                    Session["ListaArticulos"] = ListaArticulos;
+                    RepExplorar.DataSource = ListaArticulos;
+                    RepExplorar.DataBind();
+                }
             }
         }
+
+
+
 
         protected void Filtro_TextChanged(object sender, EventArgs e)
         {
