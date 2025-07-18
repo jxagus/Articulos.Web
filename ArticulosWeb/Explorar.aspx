@@ -5,8 +5,8 @@
     <div class="row">
         <div class="col-6">
             <div class="mb-3">
-                <asp:Label ID="Filtrar" runat="server" Text="Filtro Rapido" />
-                <asp:TextBox ID="txtFiltro" runat="server" AutoPostBack="true" OnTextChanged="Filtro_TextChanged" CssClass="form-control" />
+               <%-- <asp:Label ID="Filtrar" runat="server" Text="Filtro Rapido" />
+                <asp:TextBox ID="txtFiltro" runat="server" AutoPostBack="true" OnTextChanged="Filtro_TextChanged" CssClass="form-control" />--%>
             </div>
         </div>
     </div>
