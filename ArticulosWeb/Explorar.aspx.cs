@@ -51,15 +51,15 @@ namespace ArticulosWeb
 
 
 
-        protected void Filtro_TextChanged(object sender, EventArgs e)
-        {
-            List<Articulo> lista = (List<Articulo>)Session["ListaArticulos"];
-            List<Articulo> listaFiltrada = lista.FindAll(x => x.Nombre.ToLower().Contains(txtFiltro.Text.ToLower()) ||
-            x.Codigo.ToLower().Contains(txtFiltro.Text.ToLower()));
+        //protected void Filtro_TextChanged(object sender, EventArgs e)
+        //{
+        //    List<Articulo> lista = (List<Articulo>)Session["ListaArticulos"];
+        //    List<Articulo> listaFiltrada = lista.FindAll(x => x.Nombre.ToLower().Contains(txtFiltro.Text.ToLower()) ||
+        //    x.Codigo.ToLower().Contains(txtFiltro.Text.ToLower()));
 
-            RepExplorar.DataSource = listaFiltrada;
-            RepExplorar.DataBind();
-        }
+        //    RepExplorar.DataSource = listaFiltrada;
+        //    RepExplorar.DataBind();
+        //}
         public string ObtenerUrlImagen(object imagen)
         {
             string url = imagen?.ToString();
