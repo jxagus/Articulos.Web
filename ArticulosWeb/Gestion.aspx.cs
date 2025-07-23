@@ -15,13 +15,11 @@ namespace ArticulosWeb
         {
             if (!IsPostBack)
             {
-                UsuarioNegocio negocio = new UsuarioNegocio();
-                List<UsuarioNegocio> lista = negocio.listarConSP();
+                List<Dominio.Usuario> lista = UsuarioNegocio.ListarConSP();
                 Session["listaArticulos"] = lista;
                 dgvLista.DataSource = lista;
                 dgvLista.DataBind();
 
-                // Si el filtro avanzado esta activo, inicializamos el criterio
 
             }
         }
