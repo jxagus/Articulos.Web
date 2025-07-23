@@ -15,8 +15,9 @@ namespace ArticulosWeb
         {
             if (!IsPostBack)
             {
-                List<Dominio.Usuario> lista = UsuarioNegocio.ListarConSP();
-                Session["listaArticulos"] = lista;
+                UsuarioNegocio negocio = new UsuarioNegocio(); 
+                List<Usuario> lista = negocio.ListarConSP();   
+                Session["ListaUsuario"] = lista;
                 dgvLista.DataSource = lista;
                 dgvLista.DataBind();
 
