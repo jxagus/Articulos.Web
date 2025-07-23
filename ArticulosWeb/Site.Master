@@ -54,14 +54,14 @@
                     </button>
 
                     <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
-                            <!-- test del buscadorcito -->
-                            <div class="d-flex align-items-center" style="gap: 10px;">
-                                <asp:TextBox ID="txtBuscarNav" runat="server" CssClass="form-control" placeholder="Buscar..." />
+                        <!-- test del buscadorcito -->
+                        <div class="d-flex align-items-center" style="gap: 10px;">
+                            <asp:TextBox ID="txtBuscarNav" runat="server" CssClass="form-control" placeholder="Buscar..." />
 
-                                <asp:Button ID="btnBuscarNav" runat="server" Text="Buscar" CssClass="btn btn-outline-light" onclick="btnBuscarNav_Click"
-                                    CausesValidation="false"
-                                    UseSubmitBehavior="false"  /><!-- causesvalidation y usesubmitbehavior para que no interfiera con Ingresar ;) -->
-                            </div>
+                            <asp:Button ID="btnBuscarNav" runat="server" Text="Buscar" CssClass="btn btn-outline-light" OnClick="btnBuscarNav_Click"
+                                CausesValidation="false"
+                                UseSubmitBehavior="false" /><!-- causesvalidation y usesubmitbehavior para que no interfiera con Ingresar ;) -->
+                        </div>
                         <ul class="navbar-nav flex-grow-1">
                             <!-- Navegación -->
                             <li class="nav-item"><a class="nav-link" runat="server" href="~/">Inicio</a></li>
@@ -75,6 +75,8 @@
                             <li class="nav-item"><a class="nav-link" runat="server" href="~/Lista">Lista</a></li>
                             <% } %>
                             <!-- <li class="nav-item"><a class="nav-link" runat="server" href="~/Carrito">Carrito</a></li> -->
+                            <li class="nav-item"><a class="nav-link" runat="server" href="~/Gestion">Gestion</a></li>
+
                             <% } %>
                         </ul>
                     </div>
