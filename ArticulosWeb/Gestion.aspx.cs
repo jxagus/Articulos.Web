@@ -15,9 +15,8 @@ namespace ArticulosWeb
         {
             if (!IsPostBack)
             {
-
-                Negocio articulo = new Negocio();
-                List<Articulo> lista = articulo.listarConSP();
+                UsuarioNegocio negocio = new UsuarioNegocio();
+                List<UsuarioNegocio> lista = negocio.listarConSP();
                 Session["listaArticulos"] = lista;
                 dgvLista.DataSource = lista;
                 dgvLista.DataBind();
@@ -34,28 +33,7 @@ namespace ArticulosWeb
         protected void DgvLista_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             dgvLista.PageIndex = e.NewPageIndex;
-            if (chkAvanzado.Checked)
-            {
-                // Filtro avanzado
-                dgvLista.DataSource = Negocio.filtrar(
-                    ddlCampo.SelectedItem.ToString(),
-                    ddlCriterio.SelectedItem.ToString(),
-                    txtFiltroAvanzado.Text);
-            }
-            else if (!string.IsNullOrEmpty(txtFiltro.Text))
-            {
-                // Filtro simple
-                List<Articulo> lista = (List<Articulo>)Session["listaArticulos"];
-                List<Articulo> listaFiltrada = lista.FindAll(x => x.Nombre.ToUpper().Contains(txtFiltro.Text.ToUpper()));
-                dgvLista.DataSource = listaFiltrada;
-            }
-            else
-            {
-                // Sin filtro
-                List<Articulo> lista = (List<Articulo>)Session["listaArticulos"];
-                dgvLista.DataSource = lista;
-            }
-
+ 
             dgvLista.DataBind();
         }
     }
