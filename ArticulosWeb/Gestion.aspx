@@ -5,8 +5,61 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="FullWidthContent" runat="server">
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="MainContent" runat="server">
-    <h2>Bienvenido Admin</h2>
-    <h3>Proximadamente agregaremos un panel administrativo para usted 😋</h3>
+    <style>
+        /* dashload admin gestion*/
+        .dashboard {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin: 40px 0;
+            flex-wrap: wrap;
+        }
+
+        .card {
+            background: #ffffff;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            padding: 30px;
+            width: 250px;
+            text-align: center;
+            transition: transform 0.2s ease;
+        }
+
+            .card:hover {
+                transform: translateY(-5px);
+            }
+
+        .card-title {
+            font-size: 18px;
+            color: #555;
+            margin-bottom: 10px;
+        }
+
+        .card-value {
+            font-size: 36px;
+            font-weight: bold;
+            color: #333;
+        }
+    </style>
+    <div >
+        <h2>Bienvenido Admin</h2>
+    </div>
+
+    <div class="dashboard">
+        <div class="card">
+            <div class="card-title">👤 Usuarios registrados</div>
+            <div class="card-value">
+                <asp:Label ID="lblUsuarios" runat="server" Text="0" />
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-title">📦 Artículos publicados</div>
+            <div class="card-value">
+                <asp:Label ID="lblArticulos" runat="server" Text="0" />
+            </div>
+        </div>
+    </div>
 
     <!-- dgv -->
     <asp:GridView ID="dgvLista" runat="server" DataKeyNames="Id"
