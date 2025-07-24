@@ -13,24 +13,42 @@ namespace ArticulosWeb
     {
         public Articulo ArticuloDetalle { get; set; }
 
+        public List<Articulo> articulosRelacionados;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                // Leer el ID de la URL
                 if (Request.QueryString["id"] != null && int.TryParse(Request.QueryString["id"], out int id))
                 {
-                // Buscar el artículo en la base de datos
                     Negocio negocio = new Negocio();
-                    ArticuloDetalle = negocio.BuscarPorId(id);
+                    Articulo articulo = negocio.BuscarPorId(id);
+
+                    if (articulo != null)
+                    {
+                        ArticuloDetalle = articulo;  // Asigno el artículo para la vista
+
+                        // Artículos relacionados (máximo 4)
+                        List<Articulo> relacionados = negocio.listar()
+                            .FindAll(a => a.Categoria.Id == articulo.Categoria.Id && a.Id != articulo.Id)
+                            .Take(4)
+                            .ToList();
+
+                        rptRelacionados.DataSource = relacionados;
+                        rptRelacionados.DataBind();
+                    }
+                    else
+                    {
+                        Response.Redirect("Default.aspx");
+                    }
                 }
                 else
                 {
-                    // Mostrar mensaje de error o redirigir
-                    Response.Redirect("Default.aspx"); // o mostrar un cartel
+                    Response.Redirect("Default.aspx");
                 }
             }
         }
+
         public string ObtenerUrlImagen(object imagen)
         {
             string url = imagen?.ToString();
