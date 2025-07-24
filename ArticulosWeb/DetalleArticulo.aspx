@@ -23,7 +23,8 @@
         </div>
     </div>
     <!-- test relacionados -->
-
+    <br />
+    <h3>Articulos Relacionados</h3>
     <asp:Repeater ID="rptRelacionados" runat="server">
         <HeaderTemplate>
             <div class="grid grid-cols-4 gap-4">

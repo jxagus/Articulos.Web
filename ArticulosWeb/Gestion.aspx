@@ -41,9 +41,10 @@
             color: #333;
         }
     </style>
-    <div >
-        <h2>Bienvenido Admin</h2>
-    </div>
+    
+    <div class="container" style="max-width: 800px; margin-top: 30px;">
+        <h2 id="title" class="text-center mb-4">Bienvenido Admin</h2>
+        </div>
 
     <div class="dashboard">
         <div class="card">

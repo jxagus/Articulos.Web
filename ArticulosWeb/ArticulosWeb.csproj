@@ -104,6 +104,7 @@
     <Content Include="DetalleArticulo.aspx" />
     <Content Include="Error.aspx" />
     <Content Include="FormularioArticulo.aspx" />
+    <Content Include="FormularioUsuario.aspx" />
     <Content Include="Gestion.aspx" />
     <Content Include="Img\BackGround.png" />
     <Content Include="Img\Capturas\ScreamAgregar.png" />
@@ -240,6 +241,13 @@
     </Compile>
     <Compile Include="FormularioArticulo.aspx.designer.cs">
       <DependentUpon>FormularioArticulo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="FormularioUsuario.aspx.cs">
+      <DependentUpon>FormularioUsuario.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="FormularioUsuario.aspx.designer.cs">
+      <DependentUpon>FormularioUsuario.aspx</DependentUpon>
     </Compile>
     <Compile Include="Gestion.aspx.cs">
       <DependentUpon>Gestion.aspx</DependentUpon>
