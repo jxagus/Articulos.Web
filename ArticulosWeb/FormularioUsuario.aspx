@@ -31,6 +31,6 @@
 
             </div>
             <asp:Label ID="lblError" runat="server" ForeColor="Red" />
-
+            </div>
         </div>
 </asp:Content>
