@@ -1,6 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Gestion.aspx.cs" Inherits="ArticulosWeb.Gestion" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <!-- Script para checkbox "Seleccionar todos" -->
     <script>
         function seleccionarTodos(source) {
             var checkboxes = document.querySelectorAll('[id$=chkSeleccionado]');
@@ -9,7 +10,21 @@
             }
         }
     </script>
+
+    <!-- TinyMCE para editor visual -->
+    <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+    <script>
+        tinymce.init({
+            selector: '#<%= txtMensaje.ClientID %>',
+            height: 300,
+            menubar: false,
+            plugins: 'link image lists',
+            toolbar: 'undo redo | bold italic underline | forecolor backcolor | alignleft aligncenter alignright | bullist numlist | image link',
+            branding: false
+        });
+    </script>
 </asp:Content>
+
 
 <asp:Content ID="Content2" ContentPlaceHolderID="FullWidthContent" runat="server">
 </asp:Content>
