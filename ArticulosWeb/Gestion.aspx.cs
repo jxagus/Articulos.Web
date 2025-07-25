@@ -42,5 +42,37 @@ namespace ArticulosWeb
  
             dgvLista.DataBind();
         }
+        protected void btnEnviar_Click(object sender, EventArgs e)
+        {
+            List<string> emails = new List<string>();
+
+            foreach (GridViewRow row in dgvLista.Rows)
+            {
+                CheckBox chk = (CheckBox)row.FindControl("chkSeleccionado");
+                if (chk != null && chk.Checked)
+                {
+                    string email = row.Cells[1].Text; // Email es la segunda columna
+                    emails.Add(email);
+                }
+            }
+
+            string mensaje = txtMensaje.Text;
+
+            if (emails.Count > 0 && !string.IsNullOrWhiteSpace(mensaje))
+            {
+                // Acá podés usar tu EmailService.cs si lo tenés ya armado
+                foreach (string email in emails)
+                {
+                    // new EmailService().Enviar(email, "Mensaje del administrador", mensaje);
+                }
+
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Mensaje enviado a los usuarios seleccionados.');", true);
+            }
+            else
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Debés seleccionar al menos un usuario y escribir un mensaje.');", true);
+            }
+        }
+
     }
 }
