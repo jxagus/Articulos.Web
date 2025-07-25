@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Gestion.aspx.cs" Inherits="ArticulosWeb.Gestion" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <!-- Checkbox "Seleccionar todos" -->
+    <!-- Script para checkbox "Seleccionar todos" -->
     <script>
         function seleccionarTodos(source) {
             var checkboxes = document.querySelectorAll('[id$=chkSeleccionado]');
@@ -11,22 +11,19 @@
         }
     </script>
 
-    <!-- CKEditor full con subida de imágenes habilitada -->
-    <script src="https://cdn.ckeditor.com/4.25.1-lts/full/ckeditor.js"></script>
+    <!-- TinyMCE para editor visual -->
+    <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
     <script>
-        window.onload = function () {
-            CKEDITOR.replace('<%= txtMensaje.ClientID %>', {
-                extraPlugins: 'uploadimage,image2',
-                removePlugins: 'image',
-                height: 300,
-                filebrowserUploadUrl: 'SubirImagen.ashx',  // Handler para guardar la imagen
-                filebrowserUploadMethod: 'form'
-            });
-        };
+        tinymce.init({
+            selector: '#<%= txtMensaje.ClientID %>',
+            height: 300,
+            menubar: false,
+            plugins: 'link image lists',
+            toolbar: 'undo redo | bold italic underline | forecolor backcolor | alignleft aligncenter alignright | bullist numlist | image link',
+            branding: false
+        });
     </script>
 </asp:Content>
-
-
 
 
 <asp:Content ID="Content2" ContentPlaceHolderID="FullWidthContent" runat="server">
