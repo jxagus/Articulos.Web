@@ -27,7 +27,7 @@
                 <a href="Lista.aspx" class="btn btn-secondary ms-2">Cancelar</a>
                 <asp:Button ID="btnEliminar" runat="server" Text="Eliminar"   CssClass="btn btn-danger" />
 
-                <!-- <asp:Button ID="btnInactivar" runat="server" Text="Inactivar" CssClass="btn btn-warning" OnClick="btnInactivar_Click" /> -->
+               
 
             </div>
             <asp:Label ID="lblError" runat="server" ForeColor="Red" />
