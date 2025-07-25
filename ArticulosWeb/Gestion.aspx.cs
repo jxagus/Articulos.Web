@@ -9,8 +9,11 @@ using NegocioArticulo;
 
 namespace ArticulosWeb
 {
+    using NegocioArticulo; // Asegurate de tener este using arriba
+
     public partial class Gestion : System.Web.UI.Page
     {
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -51,26 +54,39 @@ namespace ArticulosWeb
                 CheckBox chk = (CheckBox)row.FindControl("chkSeleccionado");
                 if (chk != null && chk.Checked)
                 {
-                    string email = row.Cells[1].Text; // Email es la segunda columna
+                    string email = row.Cells[1].Text.Trim(); // Email está en la 2da columna (índice 1)
                     emails.Add(email);
                 }
             }
 
-            string mensaje = txtMensaje.Text;
+            string mensaje = txtMensaje.Text.Trim();
 
             if (emails.Count > 0 && !string.IsNullOrWhiteSpace(mensaje))
             {
-                // Acá podés usar tu EmailService.cs si lo tenés ya armado
-                foreach (string email in emails)
+                try
                 {
-                    // new EmailService().Enviar(email, "Mensaje del administrador", mensaje);
-                }
+                    foreach (string emailDestino in emails)
+                    {
+                        EmailService emailService = new EmailService();
+                        emailService.armarCorreo(
+                            emailDestino,
+                            "Mensaje del Administrador - Artículos Web",
+                            $"<p>{mensaje}</p><br><hr><small>Este mensaje fue enviado automáticamente desde el panel de administración.</small>"
+                        );
+                        emailService.enviarEmail();
+                    }
 
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Mensaje enviado a los usuarios seleccionados.');", true);
+                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Mensaje enviado correctamente.');", true);
+                    txtMensaje.Text = ""; // Limpiar mensaje
+                }
+                catch (Exception ex)
+                {
+                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", $"alert('Error al enviar emails: {ex.Message}');", true);
+                }
             }
             else
             {
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Debés seleccionar al menos un usuario y escribir un mensaje.');", true);
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Seleccioná al menos un usuario y escribí un mensaje.');", true);
             }
         }
 
