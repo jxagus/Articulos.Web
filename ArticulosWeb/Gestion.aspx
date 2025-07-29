@@ -10,31 +10,48 @@
         }
     </script>
 
-    <!-- Place the first <script> tag in your HTML's <head> -->
-    <script src="https://cdn.tiny.cloud/1/3haqc06nbbet87r9z4vz1onrrkfg1kdemtsqhr2r33dxo9zc/tinymce/8/tinymce.min.js" referrerpolicy="origin" crossorigin="anonymous"></script>
+    <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
 
     <!-- Place the following <script> and <textarea> tags your HTML's <body> -->
     <script>
         tinymce.init({
             selector: 'textarea',
-            plugins: [
-                // Core editing features
-                'anchor', 'autolink', 'charmap', 'codesample', 'emoticons', 'image', 'link', 'lists', 'media', 'searchreplace', 'table', 'visualblocks', 'wordcount',
-                // Your account includes a free trial of TinyMCE premium features
-                // Try the most popular premium features until Aug 8, 2025:
-                'checklist', 'mediaembed', 'casechange', 'formatpainter', 'pageembed', 'a11ychecker', 'tinymcespellchecker', 'permanentpen', 'powerpaste', 'advtable', 'advcode', 'editimage', 'advtemplate', 'ai', 'mentions', 'tinycomments', 'tableofcontents', 'footnotes', 'mergetags', 'autocorrect', 'typography', 'inlinecss', 'markdown', 'importword', 'exportword', 'exportpdf'
-            ],
-            toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
-            tinycomments_mode: 'embedded',
-            tinycomments_author: 'Author name',
-            fixed_toolbar_container: 'body',
-            mergetags_list: [
-                { value: 'First.Name', title: 'First Name' },
-                { value: 'Email', title: 'Email' },
-            ],
-            ai_request: (request, respondWith) => respondWith.string(() => Promise.reject('See docs to implement AI Assistant')),
+            plugins: 'image link lists table code',
+            toolbar: 'undo redo | styles | bold italic underline | alignleft aligncenter alignright alignjustify | bullist numlist | link image | code',
+            menubar: false,
+            height: 400,
+
+            // Subida personalizada
+            images_upload_url: 'SubirImagen.ashx',
+            automatic_uploads: true,
+            images_upload_handler: function (blobInfo, success, failure) {
+                var xhr = new XMLHttpRequest();
+                xhr.withCredentials = false;
+                xhr.open('POST', 'SubirImagen.ashx');
+
+                xhr.onload = function () {
+                    if (xhr.status != 200) {
+                        failure('Error al subir imagen: ' + xhr.status);
+                        return;
+                    }
+
+                    var json = JSON.parse(xhr.responseText);
+
+                    if (!json || typeof json.url != 'string') {
+                        failure('Respuesta inválida del servidor');
+                        return;
+                    }
+
+                    success(json.url);
+                };
+
+                var formData = new FormData();
+                formData.append('upload', blobInfo.blob(), blobInfo.filename());
+                xhr.send(formData);
+            }
         });
     </script>
+
 </asp:Content>
 
 
