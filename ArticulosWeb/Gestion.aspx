@@ -11,12 +11,19 @@
     </script>
 
     <!-- CKEditor CDN sin clave -->
-    <script src="https://cdn.ckeditor.com/4.22.1/standard/ckeditor.js"></script>
+    <script src="https://cdn.ckeditor.com/4.25.1-lts/full/ckeditor.js"></script>
     <script>
         window.onload = function () {
-            CKEDITOR.replace('<%= txtMensaje.ClientID %>');
+            CKEDITOR.replace('<%= txtMensaje.ClientID %>', {
+                extraPlugins: 'uploadimage,image2',
+                removePlugins: 'image',
+                height: 300,
+                filebrowserUploadUrl: 'SubirImagen.ashx',
+                filebrowserUploadMethod: 'form'
+            });
         };
     </script>
+
 </asp:Content>
 
 
@@ -45,9 +52,9 @@
             transition: transform 0.2s ease;
         }
 
-        .card:hover {
-            transform: translateY(-5px);
-        }
+            .card:hover {
+                transform: translateY(-5px);
+            }
 
         .card-title {
             font-size: 18px;
@@ -97,7 +104,7 @@
         PagerStyle-HorizontalAlign="Center"
         OnSelectedIndexChanged="DgvLista_SelectedIndexChanged"
         OnPageIndexChanging="DgvLista_PageIndexChanging">
-         <Columns>
+        <Columns>
             <asp:TemplateField HeaderText='<input type="checkbox" onclick="seleccionarTodos(this)" />'>
                 <ItemTemplate>
                     <asp:CheckBox ID="chkSeleccionado" runat="server" />

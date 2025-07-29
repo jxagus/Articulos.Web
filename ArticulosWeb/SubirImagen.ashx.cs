@@ -2,31 +2,35 @@
 using System.Web;
 using System.IO;
 
-public class SubirImagen : IHttpHandler
+namespace ArticulosWeb
 {
-    public void ProcessRequest(HttpContext context)
+    public class SubirImagen : IHttpHandler
     {
-        context.Response.ContentType = "application/json";
-
-        var file = context.Request.Files["upload"];
-        if (file != null && file.ContentLength > 0)
+        public void ProcessRequest(HttpContext context)
         {
-            string nombreArchivo = Path.GetFileName(file.FileName);
-            string rutaRelativa = "~/ImagenesUploads/" + nombreArchivo;
-            string rutaFisica = context.Server.MapPath(rutaRelativa);
+            context.Response.ContentType = "application/json";
 
-            Directory.CreateDirectory(Path.GetDirectoryName(rutaFisica));
-            file.SaveAs(rutaFisica);
+            var file = context.Request.Files["upload"];
+            if (file != null && file.ContentLength > 0)
+            {
+                string nombreArchivo = Path.GetFileName(file.FileName);
+                string carpetaRelativa = "~/ImagenesUploads/";
+                string rutaRelativa = carpetaRelativa + nombreArchivo;
+                string rutaFisica = context.Server.MapPath(rutaRelativa);
 
-            string urlImagen = context.Request.Url.GetLeftPart(UriPartial.Authority) + context.Request.ApplicationPath.TrimEnd('/') + "/ImagenesUploads/" + nombreArchivo;
+                Directory.CreateDirectory(context.Server.MapPath(carpetaRelativa));
+                file.SaveAs(rutaFisica);
 
-            context.Response.Write("{ \"uploaded\": 1, \"fileName\": \"" + nombreArchivo + "\", \"url\": \"" + urlImagen + "\" }");
+                string urlImagen = $"{context.Request.Url.GetLeftPart(UriPartial.Authority)}{context.Request.ApplicationPath.TrimEnd('/')}/ImagenesUploads/{nombreArchivo}";
+
+                context.Response.Write("{ \"uploaded\": 1, \"fileName\": \"" + nombreArchivo + "\", \"url\": \"" + urlImagen + "\" }");
+            }
+            else
+            {
+                context.Response.Write("{ \"uploaded\": 0, \"error\": { \"message\": \"No se recibió imagen\" } }");
+            }
         }
-        else
-        {
-            context.Response.Write("{ \"uploaded\": 0, \"error\": { \"message\": \"No se recibió imagen\" } }");
-        }
+
+        public bool IsReusable => false;
     }
-
-    public bool IsReusable => false;
 }
