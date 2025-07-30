@@ -1,5 +1,4 @@
 ﻿<%@ Page Title="Home Page" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="ArticulosWeb.Default" %>
-<%--<%@ Page Language="C#" MasterPageFile="~/Landing.master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="ArticulosWeb.Default" %>--%>
    
 
 <asp:Content ID="ContenidoFuera" ContentPlaceHolderID="OutsideContainer" runat="server">
@@ -132,6 +131,4 @@
  
 </asp:Content>
 
-<%--<asp:Content ID="ContenidoFuera" ContentPlaceHolderID="OutsideContainer" runat="server">
-
-</asp:Content>--%>
+ 
