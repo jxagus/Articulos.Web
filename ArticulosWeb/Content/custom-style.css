@@ -115,3 +115,9 @@ body.home footer {
     margin: 0;
     padding: 10px 0;
 }
+.outside-default-wrapper {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    z-index: 0;
+}
