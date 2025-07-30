@@ -2,8 +2,9 @@
     background-color: #fcfbfa !important;
     color: #2c1d12 !important;
 }
-
+ 
 .navbar {
+
     background-color: #5a3e2b !important;
 }
 
@@ -115,9 +116,4 @@ body.home footer {
     margin: 0;
     padding: 10px 0;
 }
-.outside-default-wrapper {
-    width: 100%;
-    overflow: hidden;
-    position: relative;
-    z-index: 0;
-}
+

@@ -12,6 +12,7 @@
 
     <!-- Bootstrap core CSS -->
     <link href="Content/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
 
     <!-- Additional CSS Files -->
     <link rel="stylesheet" href="Content/assets/css/fontawesome.css" />
