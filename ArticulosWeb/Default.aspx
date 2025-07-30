@@ -12,12 +12,13 @@
             <div class="row">
               <div class="col-lg-8">
                 <div class="header-text">
-                  <h2>Get <em>ready</em> for your business<br>&amp; upgrade <em>all aspects</em></h2>
+                  <h2>Descubrí el nuevo <em>iPhone 16</em><br>&amp; potencia <em>sin límites</em></h2>
+
                   <div class="div-dec"></div>
-                  <p>Mexant HTML5 Template is provided for free of charge...</p>
+                  <p>Innovación, diseño y rendimiento al alcance de tu mano. Disponible ahora.</p>
                   <div class="buttons">
-                    <div class="green-button"><a href="#">Discover More</a></div>
-                    <div class="orange-button"><a href="#">Contact Us</a></div>
+<%--                    <div class="green-button"><a href="Explorar.aspx">Explorar</a></div>--%>
+                   <div class="orange-button"><a href="Explorar.aspx">Explorar</a></div>
                   </div>
                 </div>
               </div>
@@ -31,12 +32,13 @@
             <div class="row">
               <div class="col-lg-8">
                 <div class="header-text">
-                  <h2><em>Digital</em> Currency for you <br>&amp; Best <em>Crypto</em> Tips</h2>
+                  <h2>Registrate ahora <em>gratis</em><br>&amp; recibí <em>ofertas imperdibles</em></h2>
+
                   <div class="div-dec"></div>
-                  <p>You will see a bunch of free CSS templates...</p>
+                  <p>No te pierdas los mejores precios antes que nadie. ¡Solo para clientes!</p>
                   <div class="buttons">
-                    <div class="green-button"><a href="#">Discover More</a></div>
-                    <div class="orange-button"><a href="#">Contact Us</a></div>
+                    <div class="green-button"><a href="Login.aspx">Ingresar</a></div>
+<%--                    <div class="orange-button"><a href="#">Contact Us</a></div>--%>
                   </div>
                 </div>
               </div>
@@ -50,9 +52,10 @@
             <div class="row">
               <div class="col-lg-8">
                 <div class="header-text">
-                  <h2>Best One in Town<br>&amp; Crypto <em>Services</em></h2>
+                  <h2>Comprá con <em>garantía oficial</em><br>&amp; cuotas <em>sin interés</em></h2>
+
                   <div class="div-dec"></div>
-                  <p>When you browse through different tags on TemplateMo...</p>
+                  <p>Elegí con confianza: todos nuestros productos están garantizados y en 6 cuotas sin recargo.</p>
                   <div class="buttons">
                     <div class="green-button"><a href="#">Discover More</a></div>
                     <div class="orange-button"><a href="#">Contact Us</a></div>
