@@ -8,8 +8,18 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <link href="Content/custom-style.css" rel="stylesheet" />
     <!--Estilos personalizados-->
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" href="assets/css/fontawesome.css" />
+    <link rel="stylesheet" href="assets/css/templatemo-574-mexant.css" />
+    <link rel="stylesheet" href="assets/css/owl.css" />
+    <link rel="stylesheet" href="assets/css/animate.css" />
+    <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
+
+    <!--tailwind -->
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <!--test tailwind -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title><%: Page.Title %> - Articles</title>
@@ -104,7 +114,7 @@
                     </div>
                 </div>
             </nav>
-            <!-- ✅ Nuevo bloque fuera del container (solo usado si se quiere ancho completo) -->
+            <!--  Nuevo bloque fuera del container -->
             <asp:ContentPlaceHolder ID="OutsideContainer" runat="server" />
 
             <!-- Placeholders -->
@@ -124,5 +134,26 @@
             <%: Scripts.Render("~/Scripts/bootstrap.js") %>
         </asp:PlaceHolder>
     </form>
+   <!-- Scripts para el default.aspx -->
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/js/owl-carousel.js"></script>
+    <script src="assets/js/animation.js"></script>
+    <script src="assets/js/imagesloaded.js"></script>
+    <script src="assets/js/custom.js"></script>
+    <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
+    <script>
+        var swiper = new Swiper(".swiper-container", {
+            autoplay: {
+                delay: 5000,
+                disableOnInteraction: false
+            },
+            loop: true,
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev"
+            }
+        });
+    </script>
+
 </body>
 </html>
