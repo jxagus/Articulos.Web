@@ -3,68 +3,22 @@
    
 
 <asp:Content ID="ContenidoFuera" ContentPlaceHolderID="OutsideContainer" runat="server">
-<%--    <div class="hero-home text-center p-5 text-white" style="background-color: #007bff;">
-        <h1>Bienvenido a la página principal</h1>
-        <p>Este contenido está fuera del `.container`, ideal para banners o portadas</p>
-    </div>--%>
-
-  <!-- ***** Header Area Start ***** -->
-  <header class="header-area header-sticky">
-      <div class="container">
-          <div class="row">
-              <div class="col-12">
-                  <nav class="main-nav">
-                      <!-- ***** Logo Start ***** -->
-                      <a href="index.html" class="logo">
-                          <img src="assets/images/logo.png" alt="">
-                      </a>
-                      <!-- ***** Logo End ***** -->
-                      <!-- ***** Menu Start ***** -->
-                      <ul class="nav">
-                          <li class="scroll-to-section"><a href="#top" class="active">Home</a></li>
-                          <li class="scroll-to-section"><a href="#services">Services</a></li>
-                          <li class="scroll-to-section"><a href="#about">About</a></li>
-                          <li class="has-sub">
-                              <a href="javascript:void(0)">Pages</a>
-                              <ul class="sub-menu">
-                                  <li><a href="about-us.html">About Us</a></li>
-                                  <li><a href="our-services.html">Our Services</a></li>
-                                  <li><a href="contact-us.html">Contact Us</a></li>
-                              </ul>
-                          </li>
-                          <li class="scroll-to-section"><a href="#testimonials">Testimonials</a></li>
-                          <li><a href="contact-us.html">Contact Support</a></li> 
-                      </ul>        
-                      <a class='menu-trigger'>
-                          <span>Menu</span>
-                      </a>
-                      <!-- ***** Menu End ***** -->
-                  </nav>
-              </div>
-          </div>
-      </div>
-  </header>
-  <!-- ***** Header Area End ***** -->
 
   <!-- ***** Main Banner Area Start ***** -->
   <div class="swiper-container" id="top">
     <div class="swiper-wrapper">
       <div class="swiper-slide">
-        <div class="slide-inner" style="background-image:url(assets/images/slide-01.jpg)">
+        <div class="slide-inner" style="background-image:url(Content/assets/images/slide-01.jpg)">
           <div class="container">
             <div class="row">
               <div class="col-lg-8">
                 <div class="header-text">
                   <h2>Get <em>ready</em> for your business<br>&amp; upgrade <em>all aspects</em></h2>
                   <div class="div-dec"></div>
-                  <p>Mexant HTML5 Template is provided for free of charge. This layout is based on Boostrap 5 CSS framework. Anyone can download and edit for any professional website. Thank you for visiting TemplateMo website.</p>
+                  <p>Mexant HTML5 Template is provided for free of charge...</p>
                   <div class="buttons">
-                    <div class="green-button">
-                      <a href="#">Discover More</a>
-                    </div>
-                    <div class="orange-button">
-                      <a href="#">Contact Us</a>
-                    </div>
+                    <div class="green-button"><a href="#">Discover More</a></div>
+                    <div class="orange-button"><a href="#">Contact Us</a></div>
                   </div>
                 </div>
               </div>
@@ -73,21 +27,17 @@
         </div>
       </div>
       <div class="swiper-slide">
-        <div class="slide-inner" style="background-image:url(assets/images/slide-02.jpg)">
+        <div class="slide-inner" style="background-image:url(Content/assets/images/slide-02.jpg)">
           <div class="container">
             <div class="row">
               <div class="col-lg-8">
                 <div class="header-text">
                   <h2><em>Digital</em> Currency for you <br>&amp; Best <em>Crypto</em> Tips</h2>
                   <div class="div-dec"></div>
-                  <p>You will see a bunch of free CSS templates when you search on Google. TemplateMo website is probably the best one because it is 100% free. It does not ask you anything in return. You have a total freedom to use any template for any purpose.</p>
+                  <p>You will see a bunch of free CSS templates...</p>
                   <div class="buttons">
-                    <div class="green-button">
-                      <a href="#">Discover More</a>
-                    </div>
-                    <div class="orange-button">
-                      <a href="#">Contact Us</a>
-                    </div>
+                    <div class="green-button"><a href="#">Discover More</a></div>
+                    <div class="orange-button"><a href="#">Contact Us</a></div>
                   </div>
                 </div>
               </div>
@@ -96,21 +46,17 @@
         </div>
       </div>
       <div class="swiper-slide">
-        <div class="slide-inner" style="background-image:url(assets/images/slide-03.jpg)">
+        <div class="slide-inner" style="background-image:url(Content/assets/images/slide-03.jpg)">
           <div class="container">
             <div class="row">
               <div class="col-lg-8">
                 <div class="header-text">
                   <h2>Best One in Town<br>&amp; Crypto <em>Services</em></h2>
                   <div class="div-dec"></div>
-                  <p>When you browse through different tags on TemplateMo website, you can see a variety of CSS templates which are responsive website designs for different individual needs. Please tell your friends about our website. Thank you.</p>
+                  <p>When you browse through different tags on TemplateMo...</p>
                   <div class="buttons">
-                    <div class="green-button">
-                      <a href="#">Discover More</a>
-                    </div>
-                    <div class="orange-button">
-                      <a href="#">Contact Us</a>
-                    </div>
+                    <div class="green-button"><a href="#">Discover More</a></div>
+                    <div class="orange-button"><a href="#">Contact Us</a></div>
                   </div>
                 </div>
               </div>
@@ -124,6 +70,7 @@
   </div>
 
 </asp:Content>
+
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <div class="hero-section" style="margin-top: 5px;">
