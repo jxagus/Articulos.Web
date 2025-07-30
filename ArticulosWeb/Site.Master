@@ -104,6 +104,8 @@
                     </div>
                 </div>
             </nav>
+            <!-- ✅ Nuevo bloque fuera del container (solo usado si se quiere ancho completo) -->
+            <asp:ContentPlaceHolder ID="OutsideContainer" runat="server" />
 
             <!-- Placeholders -->
             <asp:ContentPlaceHolder ID="FullWidthContent" runat="server" />

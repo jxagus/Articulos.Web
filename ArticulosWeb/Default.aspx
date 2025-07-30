@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="Home Page" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="ArticulosWeb.Default" %>
 <%--<%@ Page Language="C#" MasterPageFile="~/Landing.master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="ArticulosWeb.Default" %>--%>
    
-<!-- Aca va a ocurrir la magia neneee -->
+
 <asp:Content ID="ContenidoFuera" ContentPlaceHolderID="OutsideContainer" runat="server">
     <div class="hero-home text-center p-5 text-white" style="background-color: #007bff;">
         <h1>Bienvenido a la página principal</h1>
