@@ -56,5 +56,19 @@ namespace ArticulosWeb
                 return "Img/NoDisponible.jpg";
             return url;
         }
+        protected void btnComprar_Click(object sender, EventArgs e)
+        {
+            int id = Convert.ToInt32(Request.QueryString["id"]);
+            int cantidad = 1;
+
+            if (!int.TryParse(txtCantidad.Text, out cantidad) || cantidad < 1)
+            {
+                // Si cantidad no es válida, usar 1
+                cantidad = 1;
+            }
+
+            Response.Redirect($"micarrito.aspx?id={id}&cantidad={cantidad}");
+        }
+
     }
 }

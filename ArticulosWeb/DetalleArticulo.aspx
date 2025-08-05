@@ -19,6 +19,12 @@
                 <hr />
                 <h5 class="text-secondary">Descripción del producto</h5>
                 <p><%: ArticuloDetalle.Descripcion %></p>
+                <asp:Label ID="lblCantidad" runat="server" Text="¿Cuántos quiere llevar?" CssClass="form-label mt-3" />
+                <asp:TextBox ID="txtCantidad" runat="server" CssClass="form-control" TextMode="Number" min="1" value="1"></asp:TextBox>
+
+                <asp:Button ID="btnComprar" runat="server" CssClass="btn btn-success mt-3"
+                    Text="Comprar" OnClick="btnComprar_Click" />
+
             </div>
         </div>
     </div>
@@ -35,8 +41,7 @@
                 <h4 class="mt-2 font-semibold text-lg"><%# Eval("Nombre") %></h4>
                 <p class="text-green-600 font-bold mt-1">$<%# string.Format("{0:N2}", Eval("Precio")) %></p>
                 <a href='DetalleArticulo.aspx?id=<%# Eval("Id") %>'
-                    class="inline-block px-4 py-2 text-white bg-blue-600 rounded-lg hover:bg-blue-700 transition">
-                    Ver Detalles</a>
+                    class="inline-block px-4 py-2 text-white bg-blue-600 rounded-lg hover:bg-blue-700 transition">Ver Detalles</a>
             </div>
         </ItemTemplate>
         <FooterTemplate>
