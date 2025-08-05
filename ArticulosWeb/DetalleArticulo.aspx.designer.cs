@@ -15,13 +15,13 @@ namespace ArticulosWeb
     {
 
         /// <summary>
-        /// Control lblCantidad.
+        /// Control lblStockDisponible.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblCantidad;
+        protected global::System.Web.UI.WebControls.Label lblStockDisponible;
 
         /// <summary>
         /// Control txtCantidad.
@@ -31,15 +31,6 @@ namespace ArticulosWeb
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtCantidad;
-
-        /// <summary>
-        /// Control lblStockDisponible.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblStockDisponible;
 
         /// <summary>
         /// Control btnComprar.
