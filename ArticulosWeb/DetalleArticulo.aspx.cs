@@ -67,7 +67,7 @@ namespace ArticulosWeb
                 cantidad = 1;
             }
 
-            Response.Redirect($"micarrito.aspx?id={id}&cantidad={cantidad}");
+            Response.Redirect($"Carrito.aspx?id={id}&cantidad={cantidad}");
         }
 
     }
