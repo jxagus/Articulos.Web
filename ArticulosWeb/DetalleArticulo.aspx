@@ -21,7 +21,7 @@
                 <p><%: ArticuloDetalle.Descripcion %></p>
                 <asp:Label ID="lblCantidad" runat="server" Text="¿Cuántos quiere llevar?" CssClass="form-label mt-3" />
                 <asp:TextBox ID="txtCantidad" runat="server" CssClass="form-control" TextMode="Number" min="1" value="1"></asp:TextBox>
-
+                <asp:Label ID="lblStockDisponible" runat="server" CssClass="text-muted" />
                 <asp:Button ID="btnComprar" runat="server" CssClass="btn btn-success mt-3"
                     Text="Comprar" OnClick="btnComprar_Click" />
 
