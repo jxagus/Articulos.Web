@@ -82,7 +82,10 @@ namespace ArticulosWeb
             if (!int.TryParse(txtCantidad.Text, out cantidad) || cantidad < 1)
                 cantidad = 1;
 
+            // Crear instancia como en Page_Load
+            Negocio negocio = new Negocio();
             Articulo articulo = negocio.BuscarPorId(id);
+
             if (articulo.Stock < cantidad)
             {
                 // Mostrar error o ajustar
@@ -94,6 +97,7 @@ namespace ArticulosWeb
                 Response.Redirect($"micarrito.aspx?id={id}&cantidad={cantidad}");
             }
         }
+
 
 
     }
