@@ -28,6 +28,23 @@ namespace ArticulosWeb
                     {
                         ArticuloDetalle = articulo;  // Asigno el artículo para la vista
 
+                        // Mostrar stock disponible
+                        lblStockDisponible.Text = $"Stock disponible: {articulo.Stock}";
+
+                        if (articulo.Stock == 0)
+                        {
+                            txtCantidad.Text = "0";
+                            txtCantidad.Enabled = false;
+                            btnComprar.Enabled = false;
+                            btnComprar.Text = "Sin stock";
+                        }
+                        else
+                        {
+                            txtCantidad.Text = "1";
+                            txtCantidad.Attributes["max"] = articulo.Stock.ToString();
+                            txtCantidad.Attributes["min"] = "1";
+                        }
+
                         // Artículos relacionados (máximo 4)
                         List<Articulo> relacionados = negocio.listar()
                             .FindAll(a => a.Categoria.Id == articulo.Categoria.Id && a.Id != articulo.Id)
@@ -49,6 +66,7 @@ namespace ArticulosWeb
             }
         }
 
+
         public string ObtenerUrlImagen(object imagen)
         {
             string url = imagen?.ToString();
@@ -59,16 +77,24 @@ namespace ArticulosWeb
         protected void btnComprar_Click(object sender, EventArgs e)
         {
             int id = Convert.ToInt32(Request.QueryString["id"]);
-            int cantidad = 1;
+            int cantidad;
 
             if (!int.TryParse(txtCantidad.Text, out cantidad) || cantidad < 1)
-            {
-                // Si cantidad no es válida, usar 1
                 cantidad = 1;
+
+            Articulo articulo = negocio.BuscarPorId(id);
+            if (articulo.Stock < cantidad)
+            {
+                // Mostrar error o ajustar
+                cantidad = articulo.Stock;
             }
 
-            Response.Redirect($"Carrito.aspx?id={id}&cantidad={cantidad}");
+            if (cantidad > 0)
+            {
+                Response.Redirect($"micarrito.aspx?id={id}&cantidad={cantidad}");
+            }
         }
+
 
     }
 }
