@@ -115,37 +115,26 @@
     <div class="flex flex-wrap gap-6 justify-start">
         <asp:Repeater ID="RepExplorar" runat="server">
             <ItemTemplate>
-    <a href='DetalleArticulo.aspx?id=<%# Eval("Id") %>' class="no-underline text-black">
-        <div class="w-72 bg-white rounded-2xl shadow-md hover:shadow-lg transition transform hover:-translate-y-1 overflow-hidden cursor-pointer">
-            <img src='<%# ObtenerUrlImagen(Eval("ImagenUrl")) %>' alt="Imagen del artículo"
-                class="w-full h-48 object-contain bg-gray-100" />
-            <div class="p-4">
-                <h5 class="text-lg font-semibold text-gray-900 mb-2"><%# Eval("Nombre") %></h5>
+                <a href='DetalleArticulo.aspx?id=<%# Eval("Id") %>' class="no-underline text-black">
+                    <div class="w-72 bg-white rounded-2xl shadow-md hover:shadow-lg transition transform hover:-translate-y-1 overflow-hidden cursor-pointer">
+                        <img src='<%# ObtenerUrlImagen(Eval("ImagenUrl")) %>' alt="Imagen del artículo"
+                            class="w-full h-48 object-contain bg-gray-100" />
+                        <div class="p-4">
+                            <h5 class="text-lg font-semibold text-gray-900 mb-2"><%# Eval("Nombre") %></h5>
 
-                <%# 
-                    Eval("PrecioDescuento") != DBNull.Value 
-                    ? 
-                    @"
-                    <div class='mb-2'>
-                        <span class='text-green-600 font-bold text-sm bg-green-100 px-2 py-1 rounded'>
-                            -" + (100 - (Convert.ToDecimal(Eval("PrecioDescuento")) / Convert.ToDecimal(Eval("Precio")) * 100)).ToString("0") + @"% OFF
-                        </span>
+                            <%# 
+                        Eval("PrecioDescuento") != DBNull.Value && Eval("PrecioDescuento") != null
+                        ? $@"
+                            <span class='text-green-600 font-bold'>-{(100 - (Convert.ToDecimal(Eval("PrecioDescuento")) * 100 / Convert.ToDecimal(Eval("Precio")))).ToString("0")}%</span><br/>
+                            <span class='line-through text-gray-400 text-sm'>${Convert.ToDecimal(Eval("Precio")).ToString("F2")}</span><br/>
+                            <span class='text-black font-bold text-lg'>${Convert.ToDecimal(Eval("PrecioDescuento")).ToString("F2")}</span>
+                          "
+                        : $"<span class='text-black font-bold text-lg'>${Convert.ToDecimal(Eval("Precio")).ToString("F2")}</span>"
+                            %>
+                        </div>
                     </div>
-                    <p class='text-gray-400 text-sm line-through'>
-                        $" + (Math.Truncate(Convert.ToDecimal(Eval("Precio")) * 100) / 100m).ToString("F2") + @"
-                    </p>
-                    <p class='text-red-600 font-semibold text-lg'>
-                        $" + (Math.Truncate(Convert.ToDecimal(Eval("PrecioDescuento")) * 100) / 100m).ToString("F2") + @"
-                    </p>"
-                    :
-                    "<p class='text-gray-700 text-sm mb-4'>$" + (Math.Truncate(Convert.ToDecimal(Eval("Precio")) * 100) / 100m).ToString("F2") + "</p>"
-                %>
-
-            </div>
-        </div>
-    </a>
-</ItemTemplate>
-
+                </a>
+            </ItemTemplate>
         </asp:Repeater>
     </div>
 
