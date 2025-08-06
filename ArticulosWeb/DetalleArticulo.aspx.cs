@@ -82,7 +82,6 @@ namespace ArticulosWeb
             if (!int.TryParse(txtCantidad.Text, out cantidad) || cantidad < 1)
                 cantidad = 1;
 
-            // Crear instancia como en Page_Load
             Negocio negocio = new Negocio();
             Articulo articulo = negocio.BuscarPorId(id);
 
