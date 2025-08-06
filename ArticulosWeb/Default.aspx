@@ -76,16 +76,7 @@
 
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-<%--    <div class="hero-section" style="margin-top: 5px;">
-        <div class="hero-overlay">
-            <div class="hero-content">
-                <h1 class="display-4 fw-bold">Articles Shop</h1>
-                <p class="lead">Bienvenidos a la página número 1# de venta de artículos de la Argentina</p>
-                <a href="Explorar.aspx" class="btn btn-danger btn-lg mt-3">Ver ahora mismo</a>
-            </div>
-        </div>
-    </div>--%>
-
+ 
     <!-- Ofertas unicas en Iphones -->
     <h2 class="text-2xl font-bold mb-4">Nuestros celulares</h2>
     <div class="flex flex-wrap gap-6 justify-start">
