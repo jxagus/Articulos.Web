@@ -77,7 +77,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
  
-    <!-- Ofertas unicas en Iphones -->
+    <!-- Ofertas únicas en Iphones -->
     <h2 class="text-2xl font-bold mb-4">Nuestros celulares</h2>
     <div class="flex flex-wrap gap-6 justify-start">
         <% foreach (Dominio.Articulo item in ListaCelulares)
@@ -88,42 +88,49 @@
                     imagenUrl = "Img/NoDisponible.jpg";
                 }
         %>
-        <div class="w-72 bg-white rounded-2xl shadow-md hover:shadow-lg transition transform hover:-translate-y-1 overflow-hidden">
-            <img src="<%: imagenUrl %>" alt="Imagen del artículo"
-                class="w-full h-48 object-contain bg-gray-100" />
-
-            <div class="p-4">
-                <h5 class="text-lg font-semibold text-gray-900 mb-2"><%: item.Nombre %></h5>
-                <p class="text-gray-700 text-sm mb-4"><%: "$" + (Math.Truncate(item.Precio * 100) / 100m).ToString("F2") %></p>
-                <a href='DetalleArticulo.aspx?id=<%: item.Id %>'
-                    class="inline-block px-4 py-2 text-white bg-blue-600 rounded-lg hover:bg-blue-700 transition">Ver Detalles
-                </a>
+        <a href='DetalleArticulo.aspx?id=<%: item.Id %>' class="no-underline text-black">
+            <div class="w-72 bg-white rounded-2xl shadow-md hover:shadow-lg transition transform hover:-translate-y-1 overflow-hidden cursor-pointer">
+                <img src="<%: imagenUrl %>" alt="Imagen del artículo"
+                    class="w-full h-48 object-contain bg-gray-100" />
+                <div class="p-4">
+                    <h5 class="text-lg font-semibold text-gray-900 mb-2"><%: item.Nombre %></h5>
+                    <p class="text-gray-700 text-sm mb-4">
+                        <%: "$" + (Math.Truncate(item.Precio * 100) / 100m).ToString("F2") %>
+                    </p>
+                    <span class="inline-block px-4 py-2 text-white bg-blue-600 rounded-lg hover:bg-blue-700 transition">
+                        Ver Detalles
+                    </span>
+                </div>
             </div>
-        </div>
+        </a>
         <% } %>
     </div>
     <br />
+
     <!-- Nuestros productos destacados -->
     <h2 class="text-2xl font-bold mb-4">Otros de nuestros productos</h2>
     <div class="flex flex-wrap gap-6 justify-start">
         <asp:Repeater ID="RepExplorar" runat="server">
             <ItemTemplate>
-                <div class="w-72 bg-white rounded-2xl shadow-md hover:shadow-lg transition transform hover:-translate-y-1 overflow-hidden">
-                    <img src='<%# ObtenerUrlImagen(Eval("ImagenUrl")) %>' alt="Imagen del artículo"
-                        class="w-full h-48 object-contain bg-gray-100" />
-
-                    <div class="p-4">
-                        <h5 class="text-lg font-semibold text-gray-900 mb-2"><%# Eval("Nombre") %></h5>
-                        <p class="text-gray-700 text-sm mb-4"><%# "$" + (Math.Truncate(Convert.ToDecimal(Eval("Precio")) * 100) / 100m).ToString("F2") %></p>
-                        <a href='DetalleArticulo.aspx?id=<%# Eval("Id") %>'
-                            class="inline-block px-4 py-2 text-white bg-blue-600 rounded-lg hover:bg-blue-700 transition">Ver Detalles
-                        </a>
+                <a href='DetalleArticulo.aspx?id=<%# Eval("Id") %>' class="no-underline text-black">
+                    <div class="w-72 bg-white rounded-2xl shadow-md hover:shadow-lg transition transform hover:-translate-y-1 overflow-hidden cursor-pointer">
+                        <img src='<%# ObtenerUrlImagen(Eval("ImagenUrl")) %>' alt="Imagen del artículo"
+                            class="w-full h-48 object-contain bg-gray-100" />
+                        <div class="p-4">
+                            <h5 class="text-lg font-semibold text-gray-900 mb-2"><%# Eval("Nombre") %></h5>
+                            <p class="text-gray-700 text-sm mb-4">
+                                <%# "$" + (Math.Truncate(Convert.ToDecimal(Eval("Precio")) * 100) / 100m).ToString("F2") %>
+                            </p>
+                            <span class="inline-block px-4 py-2 text-white bg-blue-600 rounded-lg hover:bg-blue-700 transition">
+                                Ver Detalles
+                            </span>
+                        </div>
                     </div>
-                </div>
+                </a>
             </ItemTemplate>
         </asp:Repeater>
     </div>
- 
+
 </asp:Content>
 
  
