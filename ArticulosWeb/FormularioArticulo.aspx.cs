@@ -79,6 +79,8 @@ namespace ArticulosWeb
 				nuevo.Marca.Id= int.Parse(ddlMarca.SelectedValue);
 				nuevo.Categoria = new Elemento();
                 nuevo.Categoria.Id = int.Parse(ddlCategoria.SelectedValue);
+                nuevo.Precio = precio; //testear
+                nuevo.PrecioDescuento = precioDescuento;
                 if (!decimal.TryParse(txtPrecio.Text, out precio))
                 {
                     lblError.Text = "Precio inválido.";
