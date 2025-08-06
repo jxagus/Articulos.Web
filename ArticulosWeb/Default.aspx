@@ -97,9 +97,9 @@
                     <p class="text-gray-700 text-sm mb-4">
                         <%: "$" + (Math.Truncate(item.Precio * 100) / 100m).ToString("F2") %>
                     </p>
-                    <span class="inline-block px-4 py-2 text-white bg-blue-600 rounded-lg hover:bg-blue-700 transition">
+                    <%--<span class="inline-block px-4 py-2 text-white bg-blue-600 rounded-lg hover:bg-blue-700 transition">
                         Ver Detalles
-                    </span>
+                    </span>--%>
                 </div>
             </div>
         </a>
@@ -121,9 +121,9 @@
                             <p class="text-gray-700 text-sm mb-4">
                                 <%# "$" + (Math.Truncate(Convert.ToDecimal(Eval("Precio")) * 100) / 100m).ToString("F2") %>
                             </p>
-                            <span class="inline-block px-4 py-2 text-white bg-blue-600 rounded-lg hover:bg-blue-700 transition">
+                            <%--<span class="inline-block px-4 py-2 text-white bg-blue-600 rounded-lg hover:bg-blue-700 transition">
                                 Ver Detalles
-                            </span>
+                            </span>--%>
                         </div>
                     </div>
                 </a>
