@@ -16,6 +16,10 @@
             <div class="col-md-7">
                 <h2 class="fw-bold text-dark"><%: ArticuloDetalle.Nombre %></h2>
                 <h4 class="text-success mt-3">$<%: ArticuloDetalle.Precio.ToString("N2") %></h4>
+                <div class="mb-3">
+                    <label for="txtPrecioDescuento" class="form-label">Precio con descuento (opcional)</label>
+                    <asp:TextBox runat="server" ID="txtPrecioDescuento" CssClass="form-control" />
+                </div>
                 <hr />
                 <h5 class="text-secondary">Descripción del producto</h5>
                 <p><%: ArticuloDetalle.Descripcion %></p>
