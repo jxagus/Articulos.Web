@@ -214,6 +214,7 @@
     <None Include="Properties\PublishProfiles\TPFinalNivel3Acosta_RamonAgustin.pubxml" />
     <Content Include="ScriptDB\scriptdbArticulosWeb.ipynb" />
     <Content Include="ScriptDB\CATALOGO_WEB_DB_v1.ipynb" />
+    <Content Include="ScriptDB\CATALOGO_WEB_DB.ipynb" />
     <None Include="Scripts\jquery-3.7.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.7.0.js" />
     <Content Include="Scripts\jquery-3.7.0.min.js" />
