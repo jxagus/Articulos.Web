@@ -63,7 +63,9 @@ namespace ArticulosWeb
         {
             try
 			{
-				Articulo nuevo = new Articulo();
+                decimal? precioDescuento = null;
+
+                Articulo nuevo = new Articulo();
 				Negocio Articulo = new Negocio();
 
 				nuevo.Nombre = txtNombre.Text;
@@ -77,7 +79,28 @@ namespace ArticulosWeb
 				nuevo.Marca.Id= int.Parse(ddlMarca.SelectedValue);
 				nuevo.Categoria = new Elemento();
                 nuevo.Categoria.Id = int.Parse(ddlCategoria.SelectedValue);
+                if (!decimal.TryParse(txtPrecio.Text, out precio))
+                {
+                    lblError.Text = "Precio inválido.";
+                    return;
+                }
+                if (!string.IsNullOrEmpty(txtPrecioDescuento.Text))
+                {
+                    decimal tempDescuento;
+                    if (!decimal.TryParse(txtPrecioDescuento.Text, out tempDescuento))
+                    {
+                        lblError.Text = "El precio con descuento es inválido.";
+                        return;
+                    }
 
+                    if (tempDescuento >= precio)
+                    {
+                        lblError.Text = "El precio con descuento debe ser menor al precio original.";
+                        return;
+                    }
+
+                    precioDescuento = tempDescuento;
+                }
                 if (Request.QueryString["id"] != null && int.TryParse(Request.QueryString["id"], out int id))
                 {
                     nuevo.Id = id;
