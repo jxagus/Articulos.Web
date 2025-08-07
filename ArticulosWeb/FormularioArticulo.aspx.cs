@@ -65,6 +65,7 @@ namespace ArticulosWeb
             try
             {
                 decimal? precioDescuento = null;
+                var cultura = new System.Globalization.CultureInfo("es-AR");
 
                 Articulo nuevo = new Articulo();
                 Negocio Articulo = new Negocio();
@@ -73,7 +74,7 @@ namespace ArticulosWeb
                 nuevo.Codigo = txtCodigo.Text;
                 nuevo.Descripcion = txtDescripcion.Text;
 
-                if (!decimal.TryParse(txtPrecio.Text.Replace(",", "."), out decimal precio))
+                if (!decimal.TryParse(txtPrecio.Text, System.Globalization.NumberStyles.Number, cultura, out decimal precio))
                 {
                     lblError.Text = "Precio inválido.";
                     return;
@@ -89,9 +90,9 @@ namespace ArticulosWeb
                 nuevo.Categoria.Id = int.Parse(ddlCategoria.SelectedValue);
 
                 // Validar y asignar PrecioDescuento si aplica
-                if (!string.IsNullOrEmpty(txtPrecioDescuento.Text))
+                if (!string.IsNullOrWhiteSpace(txtPrecioDescuento.Text))
                 {
-                    if (!decimal.TryParse(txtPrecioDescuento.Text, out decimal tempDescuento))
+                    if (!decimal.TryParse(txtPrecioDescuento.Text, System.Globalization.NumberStyles.Number, cultura, out decimal tempDescuento))
                     {
                         lblError.Text = "El precio con descuento es inválido.";
                         return;
@@ -125,6 +126,7 @@ namespace ArticulosWeb
                 lblError.Text = "Error: " + ex.Message;
             }
         }
+
 
         protected void txtImagenUrl_TextChanged(object sender, EventArgs e)
 		{
