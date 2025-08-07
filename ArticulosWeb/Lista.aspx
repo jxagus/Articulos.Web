@@ -97,26 +97,18 @@
     OnPageIndexChanging="DgvLista_PageIndexChanging">
     <Columns>
         <asp:BoundField HeaderText="Nombre" DataField="Nombre" />
-        <asp:BoundField HeaderText="Categoria" DataField="Categoria" />
+        <asp:BoundField HeaderText="Categoria" DataField="Categoria.Descripcion" />
         <asp:BoundField HeaderText="Descripcion" DataField="Descripcion" />
-        
         <asp:TemplateField HeaderText="Precio">
             <ItemTemplate>
                 <%# "$" + (Math.Truncate(Convert.ToDecimal(Eval("Precio")) * 100) / 100m).ToString("F2") %>
             </ItemTemplate>
         </asp:TemplateField>
-
-        <asp:TemplateField HeaderText="Descuento (%)">
-            <ItemTemplate>
-                <%# Eval("PrecioDescuento") != DBNull.Value && Convert.ToDecimal(Eval("PrecioDescuento")) < Convert.ToDecimal(Eval("Precio")) ?
-                    (100 - (Convert.ToDecimal(Eval("PrecioDescuento")) * 100 / Convert.ToDecimal(Eval("Precio")))).ToString("0.##") + "%" :
-                    "null" %>
-            </ItemTemplate>
-        </asp:TemplateField>
-
-        <asp:CommandField HeaderText="Accion" ShowSelectButton="true" SelectText="✍️" />
+        <asp:BoundField HeaderText="Descuento" DataField="DescuentoPorcentaje" />
+        <asp:CommandField HeaderText="Acción" ShowSelectButton="true" SelectText="✍️" />
     </Columns>
 </asp:GridView>
+
 
 <a href="FormularioArticulo.aspx" class="btn btn-primary">Agregar</a>
 
