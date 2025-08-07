@@ -108,8 +108,7 @@
             </ItemTemplate>
         </asp:TemplateField>
 
-        <!-- Porcentaje de descuento -->
-        <asp:TemplateField HeaderText="Descuento">
+         <asp:TemplateField HeaderText="Descuento">
             <ItemTemplate>
                 <%# Eval("DescuentoPorcentaje") %>
             </ItemTemplate>
