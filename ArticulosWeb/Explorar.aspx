@@ -39,19 +39,19 @@
                                 <h5 class="text-lg font-semibold text-gray-900 mb-1"><%# Eval("Nombre") %></h5>
                                 <p class="text-gray-500 text-sm mb-2"><%# Eval("Descripcion") %></p>
 
-                                <%-- Precios --%>
-                                <div>
+                                <!-- Precios -->
+                                <div class="mt-auto">
                                     <asp:Panel runat="server" Visible='<%# Eval("PrecioDescuento") != DBNull.Value %>'>
-                                        <span class="text-sm text-red-500 line-through block">
+                                        <span class="text-sm text-gray-500 line-through block">
                                             <%# string.Format("{0:C}", Eval("Precio")) %>
                                         </span>
-                                        <span class="text-green-600 font-bold text-lg">
+                                        <span class="text-green-600 font-semibold text-base">
                                             <%# string.Format("{0:C}", Eval("PrecioDescuento")) %>
                                         </span>
                                     </asp:Panel>
 
                                     <asp:Panel runat="server" Visible='<%# Eval("PrecioDescuento") == DBNull.Value %>'>
-                                        <span class="text-gray-700 text-base">
+                                        <span class="text-gray-500 text-base">
                                             <%# string.Format("{0:C}", Eval("Precio")) %>
                                         </span>
                                     </asp:Panel>
