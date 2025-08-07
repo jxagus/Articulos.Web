@@ -100,8 +100,7 @@
         <asp:BoundField HeaderText="Categoria" DataField="Categoria.Descripcion" />
         <asp:BoundField HeaderText="Descripcion" DataField="Descripcion" />
         
-        <!-- Precio final -->
-        <asp:TemplateField HeaderText="Precio final">
+         <asp:TemplateField HeaderText="Precio final">
             <ItemTemplate>
                 <%# Eval("PrecioDescuento") != DBNull.Value && Eval("PrecioDescuento") != null
                      ? "$" + Convert.ToDecimal(Eval("PrecioDescuento")).ToString("F2")
