@@ -39,28 +39,20 @@
                                 <h5 class="text-lg font-semibold text-gray-900 mb-1"><%# Eval("Nombre") %></h5>
                                 <p class="text-gray-500 text-sm mb-2"><%# Eval("Descripcion") %></p>
 
-                                <!-- Precios -->
-                                <div class="mt-auto">
-                                    <asp:Panel runat="server" Visible='<%# Eval("PrecioDescuento") != DBNull.Value %>'>
-                                        <span class="text-sm text-gray-500 line-through block">
-                                            <%# string.Format("{0:C}", Eval("Precio")) %>
-                                        </span>
-                                        <span class="text-green-600 font-semibold text-base">
-                                            <%# string.Format("{0:C}", Eval("PrecioDescuento")) %>
-                                        </span>
-                                    </asp:Panel>
-
-                                    <asp:Panel runat="server" Visible='<%# Eval("PrecioDescuento") == DBNull.Value %>'>
-                                        <span class="text-gray-500 text-base">
-                                            <%# string.Format("{0:C}", Eval("Precio")) %>
-                                        </span>
-                                    </asp:Panel>
-                                </div>
+                                <%# 
+                            Eval("PrecioDescuento") != DBNull.Value && Eval("PrecioDescuento") != null && Convert.ToDecimal(Eval("PrecioDescuento")) 
+                            < Convert.ToDecimal(Eval("Precio")) 
+                            ? $@"<span class='text-green-600 font-bold'> -{Math.Round((1 - (Convert.ToDecimal(Eval("PrecioDescuento")) / Convert.ToDecimal(Eval("Precio")))) * 100)}%
+                                </span><br/><span class='line-through text-gray-400 text-sm'> ${Convert.ToDecimal(Eval("Precio")).ToString("F2")}
+                                </span><br/><span class='text-black font-bold text-lg'>${Convert.ToDecimal(Eval("PrecioDescuento")).ToString("F2")} </span>"
+                            : $"<span class='text-black font-bold text-lg'>${Convert.ToDecimal(Eval("Precio")).ToString("F2")}</span>" 
+                                %>
                             </div>
                         </div>
                     </a>
                 </ItemTemplate>
             </asp:Repeater>
         </div>
+
     </div>
 </asp:Content>
