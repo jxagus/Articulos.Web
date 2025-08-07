@@ -45,8 +45,10 @@ namespace ArticulosWeb
 					txtNombre.Text = seleccionado.Nombre;
 					txtCodigo.Text = seleccionado.Codigo;
 					txtImagenUrl.Text=seleccionado.ImagenUrl;
-					txtPrecio.Text = seleccionado.Precio.ToString();
-					txtDescripcion.Text = seleccionado.Descripcion;
+					//txtPrecio.Text = seleccionado.Precio.ToString(); //esto esta mal, caca, fuchi, feo
+                    txtPrecio.Text = seleccionado.Precio.ToString("N2", new System.Globalization.CultureInfo("es-AR"));
+
+                    txtDescripcion.Text = seleccionado.Descripcion;
 
 					ddlCategoria.SelectedValue = seleccionado.Categoria.Id.ToString();
 					ddlMarca.SelectedValue = seleccionado.Marca.Id.ToString();
