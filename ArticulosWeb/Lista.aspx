@@ -86,33 +86,34 @@
     </style>
 
     <!-- dgv dentro del UpdatePanel -->
-   <asp:GridView ID="dgvLista" runat="server" DataKeyNames="Id"
-    CssClass="table"
-    AutoGenerateColumns="false"
-    AllowPaging="True"
-    PageSize="5"
-    PagerStyle-CssClass="pagination"
-    PagerStyle-HorizontalAlign="Center"
-    OnSelectedIndexChanged="DgvLista_SelectedIndexChanged"
-    OnPageIndexChanging="DgvLista_PageIndexChanging">
-    <Columns>
-        <asp:BoundField HeaderText="Nombre" DataField="Nombre" />
-        <asp:BoundField HeaderText="Categoria" DataField="Categoria.Descripcion" />
-        <asp:BoundField HeaderText="Descripcion" DataField="Descripcion" />
-        <asp:TemplateField HeaderText="Precio">
+    <asp:GridView ID="dgvLista" runat="server" DataKeyNames="Id"
+        CssClass="table"
+        AutoGenerateColumns="false"
+        AllowPaging="True"
+        PageSize="5"
+        PagerStyle-CssClass="pagination"
+        PagerStyle-HorizontalAlign="Center"
+        OnSelectedIndexChanged="DgvLista_SelectedIndexChanged"
+        OnPageIndexChanging="DgvLista_PageIndexChanging">
+        <Columns>
+            <asp:BoundField HeaderText="Nombre" DataField="Nombre" />
+            <asp:BoundField HeaderText="Categoria" DataField="Categoria.Descripcion" />
+            <asp:BoundField HeaderText="Descripcion" DataField="Descripcion" />
+            <asp:TemplateField HeaderText="Precio">
                 <ItemTemplate>
-        <%# Eval("PrecioAnterior") != DBNull.Value && Convert.ToDecimal(Eval("PrecioAnterior")) > Convert.ToDecimal(Eval("Precio")) ?
+                    <%# Eval("PrecioAnterior") != DBNull.Value && Convert.ToDecimal(Eval("PrecioAnterior")) > Convert.ToDecimal(Eval("Precio")) ?
               "-" + (100 * (Convert.ToDecimal(Eval("PrecioAnterior")) - Convert.ToDecimal(Eval("Precio"))) / Convert.ToDecimal(Eval("PrecioAnterior"))).ToString("0") + "%" 
               : "" %>
-    </ItemTemplate>
-        </asp:TemplateField>
-        <asp:BoundField HeaderText="Descuento" DataField="DescuentoPorcentaje" />
-        <asp:CommandField HeaderText="Acción" ShowSelectButton="true" SelectText="✍️" />
-    </Columns>
-</asp:GridView>
+                </ItemTemplate>
+            </asp:TemplateField>
+
+            <asp:BoundField HeaderText="Descuento" DataField="DescuentoPorcentaje" />
+            <asp:CommandField HeaderText="Acción" ShowSelectButton="true" SelectText="✍️" />
+        </Columns>
+    </asp:GridView>
 
 
-<a href="FormularioArticulo.aspx" class="btn btn-primary">Agregar</a>
+    <a href="FormularioArticulo.aspx" class="btn btn-primary">Agregar</a>
 
 
 </asp:Content>
