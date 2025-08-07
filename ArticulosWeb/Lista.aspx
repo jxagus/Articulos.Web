@@ -107,10 +107,11 @@
             </asp:TemplateField>
             <asp:TemplateField HeaderText="Precio final">
                 <ItemTemplate>
-                    <%# Eval("PrecioDescuento") != DBNull.Value && Eval("PrecioDescuento") != null
-                     ? "$" + Convert.ToDecimal(Eval("PrecioDescuento")).ToString("F2")
-         
-                     : "$" + Convert.ToDecimal(Eval("Precio")).ToString("F2") %>
+                    <%# 
+            Eval("PrecioDescuento") != DBNull.Value && Eval("PrecioDescuento") != null
+            ? string.Format(System.Globalization.CultureInfo.GetCultureInfo("es-AR"), "{0:C}", Eval("PrecioDescuento"))
+            : string.Format(System.Globalization.CultureInfo.GetCultureInfo("es-AR"), "{0:C}", Eval("Precio"))
+                    %>
                 </ItemTemplate>
             </asp:TemplateField>
 
