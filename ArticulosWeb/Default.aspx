@@ -122,21 +122,11 @@
                         <div class="p-4">
                             <h5 class="text-lg font-semibold text-gray-900 mb-2"><%# Eval("Nombre") %></h5>
 
-                            <%# 
-    Eval("PrecioDescuento") != DBNull.Value 
-    && Eval("PrecioDescuento") != null 
-    && Convert.ToDecimal(Eval("PrecioDescuento")) < Convert.ToDecimal(Eval("Precio"))
-    ? $@"
-        <span class='text-green-600 font-bold'>
-            -{Math.Round(100 - (Convert.ToDecimal(Eval("PrecioDescuento")) / Convert.ToDecimal(Eval("Precio")) * 100))}%
-        </span><br/>
-        <span class='line-through text-gray-400 text-sm'>
-            ${Convert.ToDecimal(Eval("Precio")).ToString("F2")}
-        </span><br/>
-        <span class='text-black font-bold text-lg'>
-            ${Convert.ToDecimal(Eval("PrecioDescuento")).ToString("F2")}
-        </span>"
-    : $"<span class='text-black font-bold text-lg'>${Convert.ToDecimal(Eval("Precio")).ToString("F2")}</span>"
+                            <%# Eval("PrecioDescuento") != DBNull.Value && Eval("PrecioDescuento") != null && Convert.ToDecimal(Eval("PrecioDescuento")) 
+                                    < Convert.ToDecimal(Eval("Precio"))? $@"<span class='text-green-600 font-bold'> -{Math.Round((1 - (Convert.ToDecimal(Eval("PrecioDescuento")) / Convert.ToDecimal(Eval("Precio")))) * 100)}%
+                                    </span><br/><span class='line-through text-gray-400 text-sm'> ${Convert.ToDecimal(Eval("Precio")).ToString("F2")}
+                                    </span><br/><span class='text-black font-bold text-lg'>${Convert.ToDecimal(Eval("PrecioDescuento")).ToString("F2")} </span>"
+                                    : $"<span class='text-black font-bold text-lg'>${Convert.ToDecimal(Eval("Precio")).ToString("F2")}</span>"
                             %>
                         </div>
                     </div>
