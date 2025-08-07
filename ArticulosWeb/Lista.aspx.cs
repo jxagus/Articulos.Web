@@ -99,7 +99,6 @@ namespace ArticulosWeb
                 ddlCampo_SelectedIndexChanged(null, null);
             }
         }
-
         protected void ddlCampo_SelectedIndexChanged(object sender, EventArgs e)
         {
             ddlCriterio.Items.Clear();
