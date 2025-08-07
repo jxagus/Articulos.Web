@@ -13,59 +13,53 @@ namespace ArticulosWeb
 	{
         public bool ConfirmarEliminacion { get; set; }
         protected void Page_Load(object sender, EventArgs e)
-		{
-			ConfirmarEliminacion = false;
-			try
-			{   //configuracion inicial de la pantalla
-				if (!IsPostBack)
-				{
+        {
+            ConfirmarEliminacion = false;
 
-					Negocio negocio = new Negocio();
-					List<Elemento> categorias = negocio.listarElementoDesdeTabla("Categorias");
-					List<Elemento> marcas = negocio.listarElementoDesdeTabla("Marcas");
+            try
+            {
+                if (!IsPostBack)
+                {
+                    Negocio negocio = new Negocio();
 
-					ddlCategoria.DataSource = categorias;
-					ddlCategoria.DataValueField = "id";
-					ddlCategoria.DataTextField = "Descripcion"; //Lo que muestra
-					ddlCategoria.DataBind();
+                    ddlCategoria.DataSource = negocio.listarElementoDesdeTabla("Categorias");
+                    ddlCategoria.DataValueField = "id";
+                    ddlCategoria.DataTextField = "Descripcion";
+                    ddlCategoria.DataBind();
 
-					ddlMarca.DataSource = marcas;
-					ddlMarca.DataValueField = "id";
-					ddlMarca.DataTextField = "Descripcion"; //Lo que muestra
-					ddlMarca.DataBind();
-				}
-				//configuracion si estamos modificiando
-				string id = Request.QueryString["id"] != null ? Request.QueryString["id"].ToString() : "";
-                if (id != "" && !IsPostBack) //si trajo un id clickeando el modificar
-				{
-					Negocio negocio = new Negocio();
-					Articulo seleccionado = (negocio.listar(id))[0];
+                    ddlMarca.DataSource = negocio.listarElementoDesdeTabla("Marcas");
+                    ddlMarca.DataValueField = "id";
+                    ddlMarca.DataTextField = "Descripcion";
+                    ddlMarca.DataBind();
 
- 
-                    // Precargar artículo seleccionado
-                    txtNombre.Text = seleccionado.Nombre;
-                    txtCodigo.Text = seleccionado.Codigo;
-                    txtImagenUrl.Text = seleccionado.ImagenUrl;
-                    txtPrecio.Text = seleccionado.Precio.ToString("N2", new System.Globalization.CultureInfo("es-AR"));
-                    txtDescripcion.Text = seleccionado.Descripcion;
+                    string id = Request.QueryString["id"];
 
-                    if (seleccionado.PrecioDescuento.HasValue)
+                    if (!string.IsNullOrEmpty(id))
                     {
-                        txtPrecioDescuento.Text = seleccionado.PrecioDescuento.Value.ToString("N2", new System.Globalization.CultureInfo("es-AR"));
+                        Articulo seleccionado = negocio.listar(id)[0];
+
+                        txtNombre.Text = seleccionado.Nombre;
+                        txtCodigo.Text = seleccionado.Codigo;
+                        txtImagenUrl.Text = seleccionado.ImagenUrl;
+                        txtPrecio.Text = seleccionado.Precio.ToString("N2", new System.Globalization.CultureInfo("es-AR"));
+                        txtDescripcion.Text = seleccionado.Descripcion;
+
+                        if (seleccionado.PrecioDescuento.HasValue)
+                            txtPrecioDescuento.Text = seleccionado.PrecioDescuento.Value.ToString("N2", new System.Globalization.CultureInfo("es-AR"));
+
+                        ddlCategoria.SelectedValue = seleccionado.Categoria.Id.ToString();
+                        ddlMarca.SelectedValue = seleccionado.Marca.Id.ToString();
+
+                        txtImagenUrl_TextChanged(sender, e);
                     }
-
-                    ddlCategoria.SelectedValue = seleccionado.Categoria.Id.ToString();
-                    ddlMarca.SelectedValue = seleccionado.Marca.Id.ToString();
-                    txtImagenUrl_TextChanged(sender, e);
-
                 }
             }
-			catch (Exception ex)
-			{
-
-				Session.Add("Error", ex);
-			}
+            catch (Exception ex)
+            {
+                Session.Add("Error", ex);
+            }
         }
+
         protected void btnAceptar_Click(object sender, EventArgs e)
         {
             try
