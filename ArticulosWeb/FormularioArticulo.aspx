@@ -61,6 +61,7 @@
                 </asp:UpdatePanel>
             </div>
         </div>
+        <asp:Label ID="Mensaje" runat="server" Text="Si desea eliminar el descuento, deje la casilla vacia"></asp:Label>
 
         <!-- Botones -->
         <div class="mt-8 flex flex-wrap gap-4">
@@ -68,7 +69,6 @@
             <a href="Lista.aspx" class="px-6 py-2 bg-gray-400 hover:bg-gray-500 text-white rounded-md shadow">Cancelar</a>
             <asp:Button ID="btnEliminar" runat="server" Text="Eliminar" OnClick="btnEliminar_Click" CssClass="px-6 py-2 bg-red-600 hover:bg-red-700 text-white rounded-md shadow" />
         </div>
-
         <!-- Mensaje de error -->
         <div class="mt-4">
             <asp:Label ID="lblError" runat="server" ForeColor="Red" CssClass="text-red-600 text-sm font-semibold" />

@@ -41,20 +41,25 @@ namespace ArticulosWeb
 					Negocio negocio = new Negocio();
 					Articulo seleccionado = (negocio.listar(id))[0];
 
-					//Precargar articulo seleccionado
-					txtNombre.Text = seleccionado.Nombre;
-					txtCodigo.Text = seleccionado.Codigo;
-					txtImagenUrl.Text=seleccionado.ImagenUrl;
-					//txtPrecio.Text = seleccionado.Precio.ToString(); //esto esta mal, caca, fuchi, feo
+ 
+                    // Precargar artículo seleccionado
+                    txtNombre.Text = seleccionado.Nombre;
+                    txtCodigo.Text = seleccionado.Codigo;
+                    txtImagenUrl.Text = seleccionado.ImagenUrl;
                     txtPrecio.Text = seleccionado.Precio.ToString("N2", new System.Globalization.CultureInfo("es-AR"));
-
                     txtDescripcion.Text = seleccionado.Descripcion;
 
-					ddlCategoria.SelectedValue = seleccionado.Categoria.Id.ToString();
-					ddlMarca.SelectedValue = seleccionado.Marca.Id.ToString();
-					txtImagenUrl_TextChanged(sender, e);
-				} 
-			}
+                    if (seleccionado.PrecioDescuento.HasValue)
+                    {
+                        txtPrecioDescuento.Text = seleccionado.PrecioDescuento.Value.ToString("N2", new System.Globalization.CultureInfo("es-AR"));
+                    }
+
+                    ddlCategoria.SelectedValue = seleccionado.Categoria.Id.ToString();
+                    ddlMarca.SelectedValue = seleccionado.Marca.Id.ToString();
+                    txtImagenUrl_TextChanged(sender, e);
+
+                }
+            }
 			catch (Exception ex)
 			{
 
