@@ -34,9 +34,25 @@ namespace ArticulosWeb
 
                 Negocio articulo = new Negocio();
                 List<Articulo> lista = articulo.listarConSP();
+
+                // Calcular porcentaje de descuento si aplica
+                foreach (var art in lista)
+                {
+                    if (art.PrecioDescuento.HasValue && art.PrecioDescuento.Value < art.Precio)
+                    {
+                        decimal descuento = (1 - (art.PrecioDescuento.Value / art.Precio)) * 100;
+                        art.DescuentoPorcentaje = $"{Math.Round(descuento)}%";
+                    }
+                    else
+                    {
+                        art.DescuentoPorcentaje = "Sin descuento";
+                    }
+                }
+
                 Session["listaArticulos"] = lista;
                 dgvLista.DataSource = lista;
                 dgvLista.DataBind();
+
 
                 // Si el filtro avanzado esta activo, inicializamos el criterio
                 if (chkAvanzado.Checked)
