@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-6">
             <div class="mb-3">
-               <%-- <asp:Label ID="Filtrar" runat="server" Text="Filtro Rapido" />
+                <%-- <asp:Label ID="Filtrar" runat="server" Text="Filtro Rapido" />
                 <asp:TextBox ID="txtFiltro" runat="server" AutoPostBack="true" OnTextChanged="Filtro_TextChanged" CssClass="form-control" />--%>
             </div>
         </div>
@@ -22,7 +22,7 @@
                         <div class="p-4">
                             <h5 class="text-lg font-semibold text-gray-900 mb-2"><%# Eval("Nombre") %></h5>
                             <p class="text-gray-700 text-sm mb-4">
-                                <%# "$" + (Math.Truncate(Convert.ToDecimal(Eval("Precio")) * 100) / 100m).ToString("F2") %>
+                                <%# string.Format(System.Globalization.CultureInfo.GetCultureInfo("es-AR"), "{0:C}", Eval("Precio")) %>
                             </p>
                             <%--<span class="inline-block px-4 py-2 text-white bg-blue-600 rounded-lg hover:bg-blue-700 transition">
                                 Añadir al carrito
