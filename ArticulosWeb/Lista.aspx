@@ -87,36 +87,37 @@
 
     <!-- dgv dentro del UpdatePanel -->
     <asp:GridView ID="dgvLista" runat="server" DataKeyNames="Id"
-    CssClass="table"
-    AutoGenerateColumns="false"
-    AllowPaging="True"
-    PageSize="5"
-    PagerStyle-CssClass="pagination"
-    PagerStyle-HorizontalAlign="Center"
-    OnSelectedIndexChanged="DgvLista_SelectedIndexChanged"
-    OnPageIndexChanging="DgvLista_PageIndexChanging">
-    <Columns>
-        <asp:BoundField HeaderText="Nombre" DataField="Nombre" />
-        <asp:BoundField HeaderText="Categoria" DataField="Categoria.Descripcion" />
-        <asp:BoundField HeaderText="Descripcion" DataField="Descripcion" />
-        
-         <asp:TemplateField HeaderText="Precio final">
-            <ItemTemplate>
-                <%# Eval("PrecioDescuento") != DBNull.Value && Eval("PrecioDescuento") != null
+        CssClass="table"
+        AutoGenerateColumns="false"
+        AllowPaging="True"
+        PageSize="5"
+        PagerStyle-CssClass="pagination"
+        PagerStyle-HorizontalAlign="Center"
+        OnSelectedIndexChanged="DgvLista_SelectedIndexChanged"
+        OnPageIndexChanging="DgvLista_PageIndexChanging">
+        <Columns>
+            <asp:BoundField HeaderText="Nombre" DataField="Nombre" />
+            <asp:BoundField HeaderText="Categoria" DataField="Categoria.Descripcion" />
+            <asp:BoundField HeaderText="Descripcion" DataField="Descripcion" />
+            <asp:BoundField DataField="Precio" HeaderText="Precio" DataFormatString="{0:C}" />
+            <asp:TemplateField HeaderText="Descuento">
+                <ItemTemplate>
+                    <%# Eval("DescuentoPorcentaje") %>
+                </ItemTemplate>
+            </asp:TemplateField>
+            <asp:TemplateField HeaderText="Precio final">
+                <ItemTemplate>
+                    <%# Eval("PrecioDescuento") != DBNull.Value && Eval("PrecioDescuento") != null
                      ? "$" + Convert.ToDecimal(Eval("PrecioDescuento")).ToString("F2")
+         
                      : "$" + Convert.ToDecimal(Eval("Precio")).ToString("F2") %>
-            </ItemTemplate>
-        </asp:TemplateField>
+                </ItemTemplate>
+            </asp:TemplateField>
 
-         <asp:TemplateField HeaderText="Descuento">
-            <ItemTemplate>
-                <%# Eval("DescuentoPorcentaje") %>
-            </ItemTemplate>
-        </asp:TemplateField>
 
-        <asp:CommandField HeaderText="Acción" ShowSelectButton="true" SelectText="✍️" />
-    </Columns>
-</asp:GridView>
+            <asp:CommandField HeaderText="Acción" ShowSelectButton="true" SelectText="✍️" />
+        </Columns>
+    </asp:GridView>
 
 
     <a href="FormularioArticulo.aspx" class="btn btn-primary">Agregar</a>
