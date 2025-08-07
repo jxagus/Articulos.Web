@@ -20,17 +20,21 @@ namespace ArticulosWeb
             if (!IsPostBack)
             {
                 Negocio negocio = new Negocio();
+
+                // Una sola llamada a la base
                 ListaArticulos = negocio.listarConSP();
-                ListaCelulares = negocio.ListarCelulares(); 
+                ListaCelulares = negocio.ListarCelulares();
                 ListaSinCelulares = negocio.ListarSinCelulares();
 
-                Negocio Articulos = new Negocio();
-                ListaArticulos = Articulos.listarConSP();
-                Session.Add("ListaArticulos", Articulos.listarConSP());
-                RepExplorar.DataSource = Session["ListaArticulos"];
+                // Usar la lista ya obtenida
+                Session.Add("ListaArticulos", ListaArticulos);
+
+                RepExplorar.DataSource = ListaArticulos;
                 RepExplorar.DataBind();
             }
         }
+   
+ 
         public string ObtenerUrlImagen(object imagen)
         {
             string url = imagen?.ToString();
