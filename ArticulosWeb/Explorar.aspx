@@ -1,36 +1,66 @@
 ﻿<%@ Page Title="Explorar" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Explorar.aspx.cs" Inherits="ArticulosWeb.Explorar" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
-    <h1>Lista de artículos</h1>
-    <div class="row">
-        <div class="col-6">
-            <div class="mb-3">
-                <%-- <asp:Label ID="Filtrar" runat="server" Text="Filtro Rapido" />
-                <asp:TextBox ID="txtFiltro" runat="server" AutoPostBack="true" OnTextChanged="Filtro_TextChanged" CssClass="form-control" />--%>
-            </div>
+    <div class="flex justify-between items-center mb-6">
+        <h1 class="text-2xl font-bold">Todos los productos</h1>
+
+        <div class="flex items-center gap-2">
+            <label for="ddlOrdenar" class="font-medium">Ordenar por:</label>
+            <asp:DropDownList ID="ddlOrdenar" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlOrdenar_SelectedIndexChanged" CssClass="border px-2 py-1 rounded">
+                <asp:ListItem Text="Más relevantes" Value="relevante" />
+                <asp:ListItem Text="Mayor precio" Value="mayor" />
+                <asp:ListItem Text="Menor precio" Value="menor" />
+            </asp:DropDownList>
         </div>
     </div>
 
-    <!--tailwind-->
-    <div class="flex flex-wrap gap-6 justify-start">
-        <asp:Repeater ID="RepExplorar" runat="server">
-            <ItemTemplate>
-                <a href='DetalleArticulo.aspx?id=<%# Eval("Id") %>' class="no-underline text-black">
-                    <div class="w-72 bg-white rounded-2xl shadow-md hover:shadow-lg transition transform hover:-translate-y-1 overflow-hidden cursor-pointer">
-                        <img src='<%# ObtenerUrlImagen(Eval("ImagenUrl")) %>' alt="Imagen del artículo"
-                            class="w-full h-48 object-contain bg-gray-100" />
-                        <div class="p-4">
-                            <h5 class="text-lg font-semibold text-gray-900 mb-2"><%# Eval("Nombre") %></h5>
-                            <p class="text-gray-700 text-sm mb-4">
-                                <%# string.Format(System.Globalization.CultureInfo.GetCultureInfo("es-AR"), "{0:C}", Eval("Precio")) %>
-                            </p>
-                            <%--<span class="inline-block px-4 py-2 text-white bg-blue-600 rounded-lg hover:bg-blue-700 transition">
-                                Añadir al carrito
-                            </span>--%>
-                        </div>
+    <div class="flex">
+        <!-- Sidebar filtros -->
+        <div class="w-1/4 pr-6">
+            <h2 class="text-lg font-bold mb-4">Categorías</h2>
+            <asp:Repeater ID="RepCategorias" runat="server">
+                <ItemTemplate>
+                    <div class="flex justify-between text-gray-700 mb-2">
+                        <span><%# Eval("Descripcion") %></span>
+                        <span>(<%# Eval("Cantidad") %>)</span>
                     </div>
-                </a>
-            </ItemTemplate>
-        </asp:Repeater>
+                </ItemTemplate>
+            </asp:Repeater>
+        </div>
+
+        <!-- Cards productos -->
+        <div class="w-3/4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+            <asp:Repeater ID="RepExplorar" runat="server">
+                <ItemTemplate>
+                    <a href='DetalleArticulo.aspx?id=<%# Eval("Id") %>' class="no-underline text-black">
+                        <div class="bg-white rounded-2xl shadow-md hover:shadow-lg transition transform hover:-translate-y-1 overflow-hidden cursor-pointer h-full flex flex-col">
+                            <img src='<%# ObtenerUrlImagen(Eval("ImagenUrl")) %>' alt="Imagen del artículo" class="w-full h-48 object-contain bg-gray-100" />
+                            <div class="p-4 flex-grow flex flex-col justify-between">
+                                <h5 class="text-lg font-semibold text-gray-900 mb-1"><%# Eval("Nombre") %></h5>
+                                <p class="text-gray-500 text-sm mb-2"><%# Eval("Descripcion") %></p>
+
+                                <%-- Precios --%>
+                                <div>
+                                    <asp:Panel runat="server" Visible='<%# Eval("PrecioDescuento") != DBNull.Value %>'>
+                                        <span class="text-sm text-red-500 line-through block">
+                                            <%# string.Format("{0:C}", Eval("Precio")) %>
+                                        </span>
+                                        <span class="text-green-600 font-bold text-lg">
+                                            <%# string.Format("{0:C}", Eval("PrecioDescuento")) %>
+                                        </span>
+                                    </asp:Panel>
+
+                                    <asp:Panel runat="server" Visible='<%# Eval("PrecioDescuento") == DBNull.Value %>'>
+                                        <span class="text-gray-700 text-base">
+                                            <%# string.Format("{0:C}", Eval("Precio")) %>
+                                        </span>
+                                    </asp:Panel>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </ItemTemplate>
+            </asp:Repeater>
+        </div>
     </div>
 </asp:Content>
