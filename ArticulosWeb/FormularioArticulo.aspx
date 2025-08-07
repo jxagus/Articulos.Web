@@ -36,11 +36,12 @@
             </div>
             <div class="mb-3">
                 <label for="txtPrecio" class="form-label">Precio</label>
-                <asp:TextBox runat="server" ID="txtPrecio" CssClass="form-control" />
-                <div class="mb-3">
-                    <label for="txtPrecioDescuento" class="form-label">Precio con descuento (opcional)</label>
-                    <asp:TextBox runat="server" ID="txtPrecioDescuento" CssClass="form-control" />
-                </div>
+                <asp:TextBox runat="server" ID="txtPrecio" CssClass="form-control" AutoPostBack="true" OnTextChanged="txtPrecio_TextChanged" />
+            </div>
+
+            <div class="mb-3">
+                <label for="txtPrecioDescuento" class="form-label">Precio con descuento (opcional)</label>
+                <asp:TextBox runat="server" ID="txtPrecioDescuento" CssClass="form-control" AutoPostBack="true" OnTextChanged="txtPrecioDescuento_TextChanged" />
             </div>
             <div class="mb-3">
                 <asp:Button ID="btnAceptar" runat="server" Text="Aceptar" CssClass="btn btn-primary" OnClick="btnAceptar_Click" />
