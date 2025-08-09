@@ -39,14 +39,21 @@
                                 <h5 class="text-lg font-semibold text-gray-900 mb-1"><%# Eval("Nombre") %></h5>
                                 <p class="text-gray-500 text-sm mb-2"><%# Eval("Descripcion") %></p>
 
-                                <%# 
-                            Eval("PrecioDescuento") != DBNull.Value && Eval("PrecioDescuento") != null && Convert.ToDecimal(Eval("PrecioDescuento")) 
-                            < Convert.ToDecimal(Eval("Precio")) 
-                            ? $@"<span class='text-green-600 font-bold'> -{Math.Round((1 - (Convert.ToDecimal(Eval("PrecioDescuento")) / Convert.ToDecimal(Eval("Precio")))) * 100)}%
-                                </span><br/><span class='line-through text-gray-400 text-sm'> ${Convert.ToDecimal(Eval("Precio")).ToString("F2")}
-                                </span><br/><span class='text-black font-bold text-lg'>${Convert.ToDecimal(Eval("PrecioDescuento")).ToString("F2")} </span>"
-                            : $"<span class='text-black font-bold text-lg'>${Convert.ToDecimal(Eval("Precio")).ToString("F2")}</span>" 
-                                %>
+                               <%# 
+    Eval("PrecioDescuento") != DBNull.Value 
+    && Eval("PrecioDescuento") != null 
+    && Convert.ToDecimal(Eval("PrecioDescuento")) < Convert.ToDecimal(Eval("Precio")) 
+    ? "<span class='text-green-600 font-bold'> -" 
+        + Math.Round((1 - (Convert.ToDecimal(Eval("PrecioDescuento")) / Convert.ToDecimal(Eval("Precio")))) * 100) + "%</span><br/>"
+        + "<span class='line-through text-gray-400 text-sm'> $" 
+        + Convert.ToDecimal(Eval("Precio")).ToString("N2", new System.Globalization.CultureInfo("es-AR")) + "</span><br/>"
+        + "<span class='text-black font-bold text-lg'>$" 
+        + Convert.ToDecimal(Eval("PrecioDescuento")).ToString("N2", new System.Globalization.CultureInfo("es-AR")) + "</span>"
+    : "<span class='text-black font-bold text-lg'>$" 
+        + Convert.ToDecimal(Eval("Precio")).ToString("N2", new System.Globalization.CultureInfo("es-AR")) + "</span>" 
+%>
+
+
                             </div>
                         </div>
                     </a>
