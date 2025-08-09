@@ -86,39 +86,50 @@
     </style>
 
     <!-- dgv dentro del UpdatePanel -->
-    <asp:GridView ID="dgvLista" runat="server" DataKeyNames="Id"
-        CssClass="table"
-        AutoGenerateColumns="false"
-        AllowPaging="True"
-        PageSize="5"
-        PagerStyle-CssClass="pagination"
-        PagerStyle-HorizontalAlign="Center"
-        OnSelectedIndexChanged="DgvLista_SelectedIndexChanged"
-        OnPageIndexChanging="DgvLista_PageIndexChanging">
-        <Columns>
-            <asp:BoundField HeaderText="Nombre" DataField="Nombre" />
-            <asp:BoundField HeaderText="Categoria" DataField="Categoria.Descripcion" />
-            <asp:BoundField HeaderText="Descripcion" DataField="Descripcion" />
-            <asp:BoundField DataField="Precio" HeaderText="Precio" DataFormatString="{0:C}" />
-            <asp:TemplateField HeaderText="Descuento">
-                <ItemTemplate>
-                    <%# Eval("DescuentoPorcentaje") %>
-                </ItemTemplate>
-            </asp:TemplateField>
-            <asp:TemplateField HeaderText="Precio final">
-                <ItemTemplate>
-                    <%# 
-            Eval("PrecioDescuento") != DBNull.Value && Eval("PrecioDescuento") != null
-            ? string.Format(System.Globalization.CultureInfo.GetCultureInfo("es-AR"), "{0:C}", Eval("PrecioDescuento"))
-            : string.Format(System.Globalization.CultureInfo.GetCultureInfo("es-AR"), "{0:C}", Eval("Precio"))
-                    %>
-                </ItemTemplate>
-            </asp:TemplateField>
+<asp:GridView ID="dgvLista" runat="server" DataKeyNames="Id"
+    CssClass="table"
+    AutoGenerateColumns="false"
+    AllowPaging="True"
+    PageSize="5"
+    PagerStyle-CssClass="pagination"
+    PagerStyle-HorizontalAlign="Center"
+    OnSelectedIndexChanged="DgvLista_SelectedIndexChanged"
+    OnPageIndexChanging="DgvLista_PageIndexChanging">
 
+    <Columns>
+        <asp:BoundField HeaderText="Nombre" DataField="Nombre" />
+        <asp:BoundField HeaderText="Categoria" DataField="Categoria.Descripcion" />
+        <asp:BoundField HeaderText="Descripcion" DataField="Descripcion" />
 
-            <asp:CommandField HeaderText="Acción" ShowSelectButton="true" SelectText="✍️" />
-        </Columns>
-    </asp:GridView>
+         <asp:TemplateField HeaderText="Precio">
+            <ItemTemplate>
+                <%# Convert.ToDecimal(Eval("Precio")).ToString("C2", new System.Globalization.CultureInfo("es-AR")) %>
+            </ItemTemplate>
+        </asp:TemplateField>
+
+        <!-- Descuento -->
+        <asp:TemplateField HeaderText="Descuento">
+            <ItemTemplate>
+                <%# Eval("DescuentoPorcentaje") %>
+            </ItemTemplate>
+        </asp:TemplateField>
+
+        <!-- Precio final con formato es-AR -->
+        <asp:TemplateField HeaderText="Precio final">
+            <ItemTemplate>
+                <%# 
+                    Eval("PrecioDescuento") != DBNull.Value && Eval("PrecioDescuento") != null
+                    ? Convert.ToDecimal(Eval("PrecioDescuento")).ToString("C2", new System.Globalization.CultureInfo("es-AR"))
+                    : Convert.ToDecimal(Eval("Precio")).ToString("C2", new System.Globalization.CultureInfo("es-AR"))
+                %>
+            </ItemTemplate>
+        </asp:TemplateField>
+
+        <!-- Botón acción -->
+        <asp:CommandField HeaderText="Acción" ShowSelectButton="true" SelectText="✍️" />
+    </Columns>
+</asp:GridView>
+
 
 
     <a href="FormularioArticulo.aspx" class="btn btn-primary">Agregar</a>
