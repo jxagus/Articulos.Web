@@ -81,59 +81,65 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
     <!-- Ofertas únicas en Iphones -->
-    <h2 class="text-2xl font-bold mb-4">Nuestros celulares</h2>
-    <div class="flex flex-wrap gap-6 justify-start">
-        <% foreach (Dominio.Articulo item in ListaCelulares)
+<h2 class="text-2xl font-bold mb-4">Nuestros celulares</h2>
+<div class="flex flex-wrap gap-6 justify-start">
+    <% 
+        foreach (Dominio.Articulo item in ListaCelulares)
+        {
+            string imagenUrl = string.IsNullOrEmpty(item.ImagenUrl) ? "Img/NoDisponible.jpg" : item.ImagenUrl;
+            if (!imagenUrl.StartsWith("https"))
             {
-                string imagenUrl = string.IsNullOrEmpty(item.ImagenUrl) ? "Img/NoDisponible.jpg" : item.ImagenUrl;
-                if (!imagenUrl.StartsWith("https"))
-                {
-                    imagenUrl = "Img/NoDisponible.jpg";
-                }
-        %>
-        <a href='DetalleArticulo.aspx?id=<%: item.Id %>' class="no-underline text-black">
-            <div class="w-72 bg-white rounded-2xl shadow-md hover:shadow-lg transition transform hover:-translate-y-1 overflow-hidden cursor-pointer">
-                <img src="<%: imagenUrl %>" alt="Imagen del artículo"
-                    class="w-full h-48 object-contain bg-gray-100" />
-                <div class="p-4">
-                    <h5 class="text-lg font-semibold text-gray-900 mb-2"><%: item.Nombre %></h5>
-                    <p class="text-gray-700 text-sm mb-4">
-                        <%: "$" + (Math.Truncate(item.Precio * 100) / 100m).ToString("F2") %>
-                    </p>
-                    <%--<span class="inline-block px-4 py-2 text-white bg-blue-600 rounded-lg hover:bg-blue-700 transition">
-                        Ver Detalles
-                    </span>--%>
-                </div>
+                imagenUrl = "Img/NoDisponible.jpg";
+            }
+    %>
+    <a href='DetalleArticulo.aspx?id=<%: item.Id %>' class="no-underline text-black">
+        <div class="w-72 bg-white rounded-2xl shadow-md hover:shadow-lg transition transform hover:-translate-y-1 overflow-hidden cursor-pointer">
+            <img src="<%: imagenUrl %>" alt="Imagen del artículo"
+                class="w-full h-48 object-contain bg-gray-100" />
+            <div class="p-4">
+                <h5 class="text-lg font-semibold text-gray-900 mb-2"><%: item.Nombre %></h5>
+                <p class="text-gray-700 text-sm mb-4">
+                    <%: "$" + item.Precio.ToString("N2", new System.Globalization.CultureInfo("es-AR")) %>
+                </p>
             </div>
-        </a>
-        <% } %>
-    </div>
-    <br />
+        </div>
+    </a>
+    <% } %>
+</div>
+<br />
+
 
     <!-- Nuestros productos destacados -->
-    <h2 class="text-2xl font-bold mb-4">Otros de nuestros productos</h2>
-    <div class="flex flex-wrap gap-6 justify-start">
-        <asp:Repeater ID="RepExplorar" runat="server">
-            <ItemTemplate>
-                <a href='DetalleArticulo.aspx?id=<%# Eval("Id") %>' class="no-underline text-black">
-                    <div class="w-72 bg-white rounded-2xl shadow-md hover:shadow-lg transition transform hover:-translate-y-1 overflow-hidden cursor-pointer">
-                        <img src='<%# ObtenerUrlImagen(Eval("ImagenUrl")) %>' alt="Imagen del artículo"
-                            class="w-full h-48 object-contain bg-gray-100" />
-                        <div class="p-4">
-                            <h5 class="text-lg font-semibold text-gray-900 mb-2"><%# Eval("Nombre") %></h5>
+<h2 class="text-2xl font-bold mb-4">Otros de nuestros productos</h2>
+<div class="flex flex-wrap gap-6 justify-start">
+    <asp:Repeater ID="RepExplorar" runat="server">
+        <ItemTemplate>
+            <a href='DetalleArticulo.aspx?id=<%# Eval("Id") %>' class="no-underline text-black">
+                <div class="w-72 bg-white rounded-2xl shadow-md hover:shadow-lg transition transform hover:-translate-y-1 overflow-hidden cursor-pointer">
+                    <img src='<%# ObtenerUrlImagen(Eval("ImagenUrl")) %>' alt="Imagen del artículo"
+                        class="w-full h-48 object-contain bg-gray-100" />
+                    <div class="p-4">
+                        <h5 class="text-lg font-semibold text-gray-900 mb-2"><%# Eval("Nombre") %></h5>
 
-                            <%# Eval("PrecioDescuento") != DBNull.Value && Eval("PrecioDescuento") != null && Convert.ToDecimal(Eval("PrecioDescuento")) 
-                                    < Convert.ToDecimal(Eval("Precio"))? $@"<span class='text-green-600 font-bold'> -{Math.Round((1 - (Convert.ToDecimal(Eval("PrecioDescuento")) / Convert.ToDecimal(Eval("Precio")))) * 100)}%
-                                    </span><br/><span class='line-through text-gray-400 text-sm'> ${Convert.ToDecimal(Eval("Precio")).ToString("F2")}
-                                    </span><br/><span class='text-black font-bold text-lg'>${Convert.ToDecimal(Eval("PrecioDescuento")).ToString("F2")} </span>"
-                                    : $"<span class='text-black font-bold text-lg'>${Convert.ToDecimal(Eval("Precio")).ToString("F2")}</span>"
-                            %>
-                        </div>
+                        <%# 
+                            Eval("PrecioDescuento") != DBNull.Value 
+                            && Eval("PrecioDescuento") != null 
+                            && Convert.ToDecimal(Eval("PrecioDescuento")) < Convert.ToDecimal(Eval("Precio")) 
+                            ? "<span class='text-green-600 font-bold'> -" 
+                                + Math.Round((1 - (Convert.ToDecimal(Eval("PrecioDescuento")) / Convert.ToDecimal(Eval("Precio")))) * 100) + "%</span><br/>"
+                                + "<span class='line-through text-gray-400 text-sm'>$" 
+                                + Convert.ToDecimal(Eval("Precio")).ToString("N2", new System.Globalization.CultureInfo("es-AR")) + "</span><br/>"
+                                + "<span class='text-black font-bold text-lg'>$" 
+                                + Convert.ToDecimal(Eval("PrecioDescuento")).ToString("N2", new System.Globalization.CultureInfo("es-AR")) + "</span>"
+                            : "<span class='text-black font-bold text-lg'>$" 
+                                + Convert.ToDecimal(Eval("Precio")).ToString("N2", new System.Globalization.CultureInfo("es-AR")) + "</span>"
+                        %>
                     </div>
-                </a>
-            </ItemTemplate>
-        </asp:Repeater>
-    </div>
+                </div>
+            </a>
+        </ItemTemplate>
+    </asp:Repeater>
+</div>
 
 </asp:Content>
 
