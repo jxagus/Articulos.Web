@@ -107,15 +107,13 @@
             </ItemTemplate>
         </asp:TemplateField>
 
-        <!-- Descuento -->
-        <asp:TemplateField HeaderText="Descuento">
+         <asp:TemplateField HeaderText="Descuento">
             <ItemTemplate>
                 <%# Eval("DescuentoPorcentaje") %>
             </ItemTemplate>
         </asp:TemplateField>
 
-        <!-- Precio final con formato es-AR -->
-        <asp:TemplateField HeaderText="Precio final">
+         <asp:TemplateField HeaderText="Precio final">
             <ItemTemplate>
                 <%# 
                     Eval("PrecioDescuento") != DBNull.Value && Eval("PrecioDescuento") != null
@@ -125,8 +123,7 @@
             </ItemTemplate>
         </asp:TemplateField>
 
-        <!-- Botón acción -->
-        <asp:CommandField HeaderText="Acción" ShowSelectButton="true" SelectText="✍️" />
+         <asp:CommandField HeaderText="Acción" ShowSelectButton="true" SelectText="✍️" />
     </Columns>
 </asp:GridView>
 
