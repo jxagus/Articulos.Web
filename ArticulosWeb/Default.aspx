@@ -109,7 +109,7 @@
                     <span class='line-through text-gray-400 text-sm'>
                         $<%: item.Precio.ToString("N2", new System.Globalization.CultureInfo("es-AR")) %>
                     </span><br/>
-                    <span class='text-black font-bold text-lg'>
+                    <span class='text-gray-600 text-lg'>
                         $<%: item.PrecioDescuento.Value.ToString("N2", new System.Globalization.CultureInfo("es-AR")) %>
                     </span>
                 <%
@@ -117,7 +117,7 @@
                     else
                     {
                 %>
-                    <span class='text-black font-bold text-lg'>
+                    <span class='text-gray-600 text-lg'>
                         $<%: item.Precio.ToString("N2", new System.Globalization.CultureInfo("es-AR")) %>
                     </span>
                 <% 
