@@ -98,31 +98,9 @@
                 class="w-full h-48 object-contain bg-gray-100" />
             <div class="p-4">
                 <h5 class="text-lg font-semibold text-gray-900 mb-2"><%: item.Nombre %></h5>
-
-                <% 
-                    if (item.PrecioDescuento.HasValue && item.PrecioDescuento.Value < item.Precio)
-                    {
-                %>
-                    <span class='text-green-600 font-bold'>
-                        -<%: Math.Round((1 - (item.PrecioDescuento.Value / item.Precio)) * 100) %>%
-                    </span><br/>
-                    <span class='line-through text-gray-400 text-sm'>
-                        $<%: item.Precio.ToString("N2", new System.Globalization.CultureInfo("es-AR")) %>
-                    </span><br/>
-                    <span class='text-gray-600 text-lg'>
-                        $<%: item.PrecioDescuento.Value.ToString("N2", new System.Globalization.CultureInfo("es-AR")) %>
-                    </span>
-                <%
-                    }
-                    else
-                    {
-                %>
-                    <span class='text-gray-600 text-lg'>
-                        $<%: item.Precio.ToString("N2", new System.Globalization.CultureInfo("es-AR")) %>
-                    </span>
-                <% 
-                    }
-                %>
+                <p class="text-gray-500 text-sm">
+                    $<%: item.Precio.ToString("N2", new System.Globalization.CultureInfo("es-AR")) %>
+                </p>
             </div>
         </div>
     </a>
@@ -132,7 +110,7 @@
 
 
     <!-- Nuestros productos destacados -->
-<h2 class="text-2xl font-bold mb-4">Otros de nuestros productos</h2>
+    <h2 class="text-2xl font-bold mb-4">Otros de nuestros productos</h2>
 <div class="flex flex-wrap gap-6 justify-start">
     <asp:Repeater ID="RepExplorar" runat="server">
         <ItemTemplate>
@@ -147,13 +125,13 @@
                             Eval("PrecioDescuento") != DBNull.Value 
                             && Eval("PrecioDescuento") != null 
                             && Convert.ToDecimal(Eval("PrecioDescuento")) < Convert.ToDecimal(Eval("Precio")) 
-                            ? "<span class='text-green-600 font-bold'> -" 
+                            ? "<span class='text-green-600 font-semibold'> -" 
                                 + Math.Round((1 - (Convert.ToDecimal(Eval("PrecioDescuento")) / Convert.ToDecimal(Eval("Precio")))) * 100) + "%</span><br/>"
                                 + "<span class='line-through text-gray-400 text-sm'>$" 
                                 + Convert.ToDecimal(Eval("Precio")).ToString("N2", new System.Globalization.CultureInfo("es-AR")) + "</span><br/>"
-                                + "<span class='text-black font-bold text-lg'>$" 
+                                + "<span class='text-gray-500 text-sm'>$" 
                                 + Convert.ToDecimal(Eval("PrecioDescuento")).ToString("N2", new System.Globalization.CultureInfo("es-AR")) + "</span>"
-                            : "<span class='text-black font-bold text-lg'>$" 
+                            : "<span class='text-gray-500 text-sm'>$" 
                                 + Convert.ToDecimal(Eval("Precio")).ToString("N2", new System.Globalization.CultureInfo("es-AR")) + "</span>"
                         %>
                     </div>
@@ -162,6 +140,7 @@
         </ItemTemplate>
     </asp:Repeater>
 </div>
+
 
 </asp:Content>
 
