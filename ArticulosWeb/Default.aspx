@@ -80,7 +80,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
-    <!-- Ofertas únicas en Iphones -->
+<!-- Ofertas únicas en Iphones -->
 <h2 class="text-2xl font-bold mb-4">Nuestros celulares</h2>
 <div class="flex flex-wrap gap-6 justify-start">
     <% 
@@ -98,9 +98,31 @@
                 class="w-full h-48 object-contain bg-gray-100" />
             <div class="p-4">
                 <h5 class="text-lg font-semibold text-gray-900 mb-2"><%: item.Nombre %></h5>
-                <p class="text-gray-700 text-sm mb-4">
-                    <%: "$" + item.Precio.ToString("N2", new System.Globalization.CultureInfo("es-AR")) %>
-                </p>
+
+                <% 
+                    if (item.PrecioDescuento.HasValue && item.PrecioDescuento.Value < item.Precio)
+                    {
+                %>
+                    <span class='text-green-600 font-bold'>
+                        -<%: Math.Round((1 - (item.PrecioDescuento.Value / item.Precio)) * 100) %>%
+                    </span><br/>
+                    <span class='line-through text-gray-400 text-sm'>
+                        $<%: item.Precio.ToString("N2", new System.Globalization.CultureInfo("es-AR")) %>
+                    </span><br/>
+                    <span class='text-black font-bold text-lg'>
+                        $<%: item.PrecioDescuento.Value.ToString("N2", new System.Globalization.CultureInfo("es-AR")) %>
+                    </span>
+                <%
+                    }
+                    else
+                    {
+                %>
+                    <span class='text-black font-bold text-lg'>
+                        $<%: item.Precio.ToString("N2", new System.Globalization.CultureInfo("es-AR")) %>
+                    </span>
+                <% 
+                    }
+                %>
             </div>
         </div>
     </a>
