@@ -21,7 +21,7 @@ namespace ArticulosWeb
                 if(Validacion.ValidaTextoVacio(txtUser) ||Validacion.ValidaTextoVacio(txtPassword)) //completa ambos campos capo
                 {
                     Session.Add("error", "Completa los campos porfavor");
-                    Response.Redirect("Error.aspx", false);
+                    //Response.Redirect("Error.aspx", false);
                     return;
                 }
                 
@@ -35,13 +35,13 @@ namespace ArticulosWeb
                 else
                 {
                     Session.Add("error", "user o pass incorrectos");
-                    Response.Redirect("Error.aspx", false);
+                    //Response.Redirect("Error.aspx", false);
                 }
             }
             catch (Exception ex)
             {
                 Session.Add("error", ex.ToString());
-                Response.Redirect("Error.aspx");
+                //Response.Redirect("Error.aspx");
             }
         }
         private void Page_Error(object sender, EventArgs e)
