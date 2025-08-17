@@ -41,7 +41,7 @@ namespace ArticulosWeb
             catch (Exception ex)
             {
                 Session.Add("error", ex.ToString());
-                //Response.Redirect("Error.aspx");
+                Response.Redirect("Error.aspx");
             }
         }
         private void Page_Error(object sender, EventArgs e)
