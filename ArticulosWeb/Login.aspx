@@ -7,6 +7,7 @@
             <h2 class="text-center mb-4">Iniciar Sesión</h2>
 
             <div class="mb-3">
+
                 <label for="<%= txtUser.ClientID %>" class="form-label">Usuario</label>
                 <asp:TextBox runat="server" ID="txtUser" placeholder="Ingrese su usuario" CssClass="form-control" />
             </div>
