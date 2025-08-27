@@ -2,7 +2,21 @@
 
 
 <asp:Content ID="ContenidoFuera" ContentPlaceHolderID="OutsideContainer" runat="server">
+    <style>
+    /* Controla el alto del contenedor del slide */
+.swiper-container {
+    height: 60vh; /* ocupa el 60% de la altura de la pantalla */
+}
 
+/* Ajusta el alto de cada slide */
+.swiper-slide, 
+.slide-inner {
+    height: 100%;
+    background-size: cover;   /* que la imagen se recorte si es necesario */
+    background-position: center;
+}
+
+</style>
     <!-- ***** Main Banner Area Start ***** -->
     <div class="swiper-container" id="top">
         <div class="swiper-wrapper">
