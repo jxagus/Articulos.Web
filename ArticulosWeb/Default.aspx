@@ -3,20 +3,18 @@
 
 <asp:Content ID="ContenidoFuera" ContentPlaceHolderID="OutsideContainer" runat="server">
     <style>
-    /* Controla el alto del contenedor del slide */
-.swiper-container {
-    height: 60vh; /* ocupa el 60% de la altura de la pantalla */
-}
+        .swiper-container {
+            height: 60vh; /* ocupa el 60% de la altura de la pantalla */
+        }
 
-/* Ajusta el alto de cada slide */
-.swiper-slide, 
-.slide-inner {
-    height: 100%;
-    background-size: cover;   /* que la imagen se recorte si es necesario */
-    background-position: center;
-}
-
-</style>
+        /* Ajusta el alto de cada slide */
+        .swiper-slide,
+        .slide-inner {
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+        }
+    </style>
     <!-- ***** Main Banner Area Start ***** -->
     <div class="swiper-container" id="top">
         <div class="swiper-wrapper">
@@ -94,48 +92,48 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
-<!-- Ofertas únicas en Iphones -->
-<h2 class="text-2xl font-bold mb-4">Nuestros celulares</h2>
-<div class="flex flex-wrap gap-6 justify-start">
-    <% 
-        foreach (Dominio.Articulo item in ListaCelulares)
-        {
-            string imagenUrl = string.IsNullOrEmpty(item.ImagenUrl) ? "Img/NoDisponible.jpg" : item.ImagenUrl;
-            if (!imagenUrl.StartsWith("https"))
+    <!-- Ofertas únicas en Iphones -->
+    <h2 class="text-2xl font-bold mb-4">Nuestros celulares</h2>
+    <div class="flex flex-wrap gap-6 justify-start">
+        <% 
+            foreach (Dominio.Articulo item in ListaCelulares)
             {
-                imagenUrl = "Img/NoDisponible.jpg";
-            }
-    %>
-    <a href='DetalleArticulo.aspx?id=<%: item.Id %>' class="no-underline text-black">
-        <div class="w-72 bg-white rounded-2xl shadow-md hover:shadow-lg transition transform hover:-translate-y-1 overflow-hidden cursor-pointer">
-            <img src="<%: imagenUrl %>" alt="Imagen del artículo"
-                class="w-full h-48 object-contain bg-gray-100" />
-            <div class="p-4">
-                <h5 class="text-lg font-semibold text-gray-900 mb-2"><%: item.Nombre %></h5>
-                <p class="text-gray-500 text-sm">
-                    $<%: item.Precio.ToString("N2", new System.Globalization.CultureInfo("es-AR")) %>
-                </p>
+                string imagenUrl = string.IsNullOrEmpty(item.ImagenUrl) ? "Img/NoDisponible.jpg" : item.ImagenUrl;
+                if (!imagenUrl.StartsWith("https"))
+                {
+                    imagenUrl = "Img/NoDisponible.jpg";
+                }
+        %>
+        <a href='DetalleArticulo.aspx?id=<%: item.Id %>' class="no-underline text-black">
+            <div class="w-72 bg-white rounded-2xl shadow-md hover:shadow-lg transition transform hover:-translate-y-1 overflow-hidden cursor-pointer">
+                <img src="<%: imagenUrl %>" alt="Imagen del artículo"
+                    class="w-full h-48 object-contain bg-gray-100" />
+                <div class="p-4">
+                    <h5 class="text-lg font-semibold text-gray-900 mb-2"><%: item.Nombre %></h5>
+                    <p class="text-gray-500 text-sm">
+                        $<%: item.Precio.ToString("N2", new System.Globalization.CultureInfo("es-AR")) %>
+                    </p>
+                </div>
             </div>
-        </div>
-    </a>
-    <% } %>
-</div>
-<br />
+        </a>
+        <% } %>
+    </div>
+    <br />
 
 
     <!-- Nuestros productos destacados -->
     <h2 class="text-2xl font-bold mb-4">Otros de nuestros productos</h2>
-<div class="flex flex-wrap gap-6 justify-start">
-    <asp:Repeater ID="RepExplorar" runat="server">
-        <ItemTemplate>
-            <a href='DetalleArticulo.aspx?id=<%# Eval("Id") %>' class="no-underline text-black">
-                <div class="w-72 bg-white rounded-2xl shadow-md hover:shadow-lg transition transform hover:-translate-y-1 overflow-hidden cursor-pointer">
-                    <img src='<%# ObtenerUrlImagen(Eval("ImagenUrl")) %>' alt="Imagen del artículo"
-                        class="w-full h-48 object-contain bg-gray-100" />
-                    <div class="p-4">
-                        <h5 class="text-lg font-semibold text-gray-900 mb-2"><%# Eval("Nombre") %></h5>
+    <div class="flex flex-wrap gap-6 justify-start">
+        <asp:Repeater ID="RepExplorar" runat="server">
+            <ItemTemplate>
+                <a href='DetalleArticulo.aspx?id=<%# Eval("Id") %>' class="no-underline text-black">
+                    <div class="w-72 bg-white rounded-2xl shadow-md hover:shadow-lg transition transform hover:-translate-y-1 overflow-hidden cursor-pointer">
+                        <img src='<%# ObtenerUrlImagen(Eval("ImagenUrl")) %>' alt="Imagen del artículo"
+                            class="w-full h-48 object-contain bg-gray-100" />
+                        <div class="p-4">
+                            <h5 class="text-lg font-semibold text-gray-900 mb-2"><%# Eval("Nombre") %></h5>
 
-                        <%# 
+                            <%# 
                             Eval("PrecioDescuento") != DBNull.Value 
                             && Eval("PrecioDescuento") != null 
                             && Convert.ToDecimal(Eval("PrecioDescuento")) < Convert.ToDecimal(Eval("Precio")) 
@@ -147,13 +145,13 @@
                                 + Convert.ToDecimal(Eval("PrecioDescuento")).ToString("N2", new System.Globalization.CultureInfo("es-AR")) + "</span>"
                             : "<span class='text-gray-500 text-sm'>$" 
                                 + Convert.ToDecimal(Eval("Precio")).ToString("N2", new System.Globalization.CultureInfo("es-AR")) + "</span>"
-                        %>
+                            %>
+                        </div>
                     </div>
-                </div>
-            </a>
-        </ItemTemplate>
-    </asp:Repeater>
-</div>
+                </a>
+            </ItemTemplate>
+        </asp:Repeater>
+    </div>
 
 
 </asp:Content>
