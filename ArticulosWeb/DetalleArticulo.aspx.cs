@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Dominio;
-using NegocioArticulo; // <- tu capa de negocio
+using NegocioArticulo;
 
 namespace ArticulosWeb
 {
@@ -14,7 +14,7 @@ namespace ArticulosWeb
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            // 1) Siempre obtener el id y el artículo (postback y no postback)
+            //Siempre obtener el id y el artículo (postback y no postback)
             if (!int.TryParse(Request.QueryString["id"], out int id))
             {
                 Response.Redirect("Default.aspx");
@@ -31,7 +31,7 @@ namespace ArticulosWeb
 
             ArticuloDetalle = articulo; // disponible para el .aspx y para el btnComprar_Click
 
-            // 2) Solo inicializaciones de UI en el primer load
+            //Solo inicializaciones de UI en el primer load
             if (!IsPostBack)
             {
                 lblStockDisponible.Text = $"Stock disponible: {articulo.Stock}";
