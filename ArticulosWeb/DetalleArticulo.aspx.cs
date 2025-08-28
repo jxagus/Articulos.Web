@@ -66,7 +66,6 @@ namespace ArticulosWeb
             }
         }
 
-
         public string ObtenerUrlImagen(object imagen)
         {
             string url = imagen?.ToString();
