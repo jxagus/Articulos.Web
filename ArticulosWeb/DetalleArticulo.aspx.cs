@@ -11,14 +11,9 @@ namespace ArticulosWeb
 {
     public partial class DetalleArticulo : System.Web.UI.Page
     {
-        public Articulo ArticuloDetalle
-        {
-            get { return ViewState["ArticuloDetalle"] as Articulo; }
-            set { ViewState["ArticuloDetalle"] = value; }
-        }
+        public Articulo ArticuloDetalle { get; set; }
 
         public List<Articulo> articulosRelacionados;
-
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -30,7 +25,7 @@ namespace ArticulosWeb
 
                     if (articulo != null)
                     {
-                        ArticuloDetalle = articulo;  // ✅ guardo en ViewState
+                        ArticuloDetalle = articulo;  // Asigno el artículo para la vista
 
                         // Mostrar stock disponible
                         lblStockDisponible.Text = $"Stock disponible: {articulo.Stock}";
@@ -69,7 +64,6 @@ namespace ArticulosWeb
                 }
             }
         }
-
         public string ObtenerUrlImagen(object imagen)
         {
             string url = imagen?.ToString();
@@ -77,19 +71,16 @@ namespace ArticulosWeb
                 return "Img/NoDisponible.jpg";
             return url;
         }
-
         protected void btnComprar_Click(object sender, EventArgs e)
         {
             int cantidad = int.Parse(txtCantidad.Text);
 
-            // ✅ Usar directamente ArticuloDetalle del ViewState
-            var articulo = ArticuloDetalle;
-            if (articulo == null)
-            {
-                lblStockDisponible.Text = "Error: no se encontró el artículo.";
-                lblStockDisponible.CssClass = "text-red-600";
-                return;
-            }
+            // Obtener id del QueryString
+            int id = int.Parse(Request.QueryString["id"]);
+
+            // Usar la clase Negocio que ya tenés
+            Negocio negocio = new Negocio();
+            var articulo = negocio.ObtenerPorId(id);
 
             // Recuperar carrito
             List<CarritoItem> carrito = Session["Carrito"] as List<CarritoItem> ?? new List<CarritoItem>();
@@ -118,6 +109,6 @@ namespace ArticulosWeb
             lblStockDisponible.Text = "Producto agregado al carrito ✔️";
             lblStockDisponible.CssClass = "text-green-600";
         }
+
     }
 }
-
