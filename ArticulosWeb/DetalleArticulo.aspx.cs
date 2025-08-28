@@ -78,35 +78,37 @@ namespace ArticulosWeb
         {
             int cantidad = int.Parse(txtCantidad.Text);
 
-            // Recuperar carrito actual o crearlo
-            List<CarritoItem> carrito = Session["Carrito"] as List<CarritoItem>;
-            if (carrito == null)
-            {
-                carrito = new List<CarritoItem>();
-            }
+            // Obtener id del QueryString
+            int id = int.Parse(Request.QueryString["id"]);
 
-            // Ver si el producto ya está en el carrito
-            CarritoItem existente = carrito.Find(x => x.Id == ArticuloDetalle.Id);
+            // Usar la clase Negocio que ya tenés
+            Negocio negocio = new Negocio();
+            var articulo = negocio.ObtenerPorId(id);
+
+            // Recuperar carrito
+            List<CarritoItem> carrito = Session["Carrito"] as List<CarritoItem> ?? new List<CarritoItem>();
+
+            // Ver si ya existe en carrito
+            CarritoItem existente = carrito.Find(x => x.Id == articulo.Id);
             if (existente != null)
             {
-                existente.Cantidad += cantidad; // sumo cantidad
+                existente.Cantidad += cantidad;
             }
             else
             {
                 carrito.Add(new CarritoItem
                 {
-                    Id = ArticuloDetalle.Id,
-                    Nombre = ArticuloDetalle.Nombre,
-                    ImagenUrl = ObtenerUrlImagen(ArticuloDetalle.ImagenUrl),
-                    Precio = ArticuloDetalle.Precio,
+                    Id = articulo.Id,
+                    Nombre = articulo.Nombre,
+                    ImagenUrl = ObtenerUrlImagen(articulo.ImagenUrl),
+                    Precio = articulo.Precio,
                     Cantidad = cantidad
                 });
             }
 
-            // Guardar carrito en session
+            // Guardar carrito en Session
             Session["Carrito"] = carrito;
 
-            // Opcional: mensaje en pantalla (sin redirigir)
             lblStockDisponible.Text = "Producto agregado al carrito ✔️";
             lblStockDisponible.CssClass = "text-green-600";
         }
