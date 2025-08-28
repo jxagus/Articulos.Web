@@ -11,7 +11,11 @@ namespace ArticulosWeb
 {
     public partial class DetalleArticulo : System.Web.UI.Page
     {
-        public Articulo ArticuloDetalle { get; set; }
+        public Articulo ArticuloDetalle
+        {
+            get { return ViewState["ArticuloDetalle"] as Articulo; }
+            set { ViewState["ArticuloDetalle"] = value; }
+        }
 
         public List<Articulo> articulosRelacionados;
 
@@ -26,7 +30,7 @@ namespace ArticulosWeb
 
                     if (articulo != null)
                     {
-                        ArticuloDetalle = articulo;  // Asigno el artículo para la vista
+                        ArticuloDetalle = articulo;  // ✅ guardo en ViewState
 
                         // Mostrar stock disponible
                         lblStockDisponible.Text = $"Stock disponible: {articulo.Stock}";
@@ -73,16 +77,19 @@ namespace ArticulosWeb
                 return "Img/NoDisponible.jpg";
             return url;
         }
+
         protected void btnComprar_Click(object sender, EventArgs e)
         {
             int cantidad = int.Parse(txtCantidad.Text);
 
-            // Obtener id del QueryString
-            int id = int.Parse(Request.QueryString["id"]);
-
-            // Usar la clase Negocio que ya tenés
-            Negocio negocio = new Negocio();
-            var articulo = negocio.ObtenerPorId(id);
+            // ✅ Usar directamente ArticuloDetalle del ViewState
+            var articulo = ArticuloDetalle;
+            if (articulo == null)
+            {
+                lblStockDisponible.Text = "Error: no se encontró el artículo.";
+                lblStockDisponible.CssClass = "text-red-600";
+                return;
+            }
 
             // Recuperar carrito
             List<CarritoItem> carrito = Session["Carrito"] as List<CarritoItem> ?? new List<CarritoItem>();
@@ -111,8 +118,6 @@ namespace ArticulosWeb
             lblStockDisponible.Text = "Producto agregado al carrito ✔️";
             lblStockDisponible.CssClass = "text-green-600";
         }
-
-
-
     }
 }
+
