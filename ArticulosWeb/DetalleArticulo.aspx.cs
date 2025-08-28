@@ -76,25 +76,39 @@ namespace ArticulosWeb
         }
         protected void btnComprar_Click(object sender, EventArgs e)
         {
-            int id = Convert.ToInt32(Request.QueryString["id"]);
-            int cantidad;
+            int cantidad = int.Parse(txtCantidad.Text);
 
-            if (!int.TryParse(txtCantidad.Text, out cantidad) || cantidad < 1)
-                cantidad = 1;
-
-            Negocio negocio = new Negocio();
-            Articulo articulo = negocio.BuscarPorId(id);
-
-            if (articulo.Stock < cantidad)
+            // Recuperar carrito actual o crearlo
+            List<CarritoItem> carrito = Session["Carrito"] as List<CarritoItem>;
+            if (carrito == null)
             {
-                // Mostrar error o ajustar
-                cantidad = articulo.Stock;
+                carrito = new List<CarritoItem>();
             }
 
-            if (cantidad > 0)
+            // Ver si el producto ya está en el carrito
+            CarritoItem existente = carrito.Find(x => x.Id == ArticuloDetalle.Id);
+            if (existente != null)
             {
-                Response.Redirect($"micarrito.aspx?id={id}&cantidad={cantidad}");
+                existente.Cantidad += cantidad; // sumo cantidad
             }
+            else
+            {
+                carrito.Add(new CarritoItem
+                {
+                    Id = ArticuloDetalle.Id,
+                    Nombre = ArticuloDetalle.Nombre,
+                    ImagenUrl = ObtenerUrlImagen(ArticuloDetalle.ImagenUrl),
+                    Precio = ArticuloDetalle.Precio,
+                    Cantidad = cantidad
+                });
+            }
+
+            // Guardar carrito en session
+            Session["Carrito"] = carrito;
+
+            // Opcional: mensaje en pantalla (sin redirigir)
+            lblStockDisponible.Text = "Producto agregado al carrito ✔️";
+            lblStockDisponible.CssClass = "text-green-600";
         }
 
 
