@@ -1,9 +1,7 @@
-﻿using System;
+﻿using Dominio;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 
 namespace ArticulosWeb
 {
@@ -11,8 +9,27 @@ namespace ArticulosWeb
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (!IsPostBack)
+            {
+                CargarCarrito();
+            }
         }
 
+        private void CargarCarrito()
+        {
+            List<CarritoItem> carrito = Session["Carrito"] as List<CarritoItem>;
+            if (carrito != null && carrito.Count > 0)
+            {
+                rptCarrito.DataSource = carrito;
+                rptCarrito.DataBind();
+
+                decimal total = carrito.Sum(x => x.Subtotal);
+                lblTotal.Text = "Total: $" + total.ToString("N2");
+            }
+            else
+            {
+                lblTotal.Text = "El carrito está vacío.";
+            }
+        }
     }
 }
