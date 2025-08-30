@@ -99,6 +99,63 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Carrito.aspx" />
+    <Content Include="Content\assets\css\animate.css" />
+    <Content Include="Content\assets\css\flex-slider.css" />
+    <Content Include="Content\assets\css\fontawesome.css" />
+    <Content Include="Content\assets\css\owl.css" />
+    <Content Include="Content\assets\css\templatemo-574-mexant.css" />
+    <Content Include="Content\assets\images\about-left-image.jpg" />
+    <Content Include="Content\assets\images\calculator-bg.jpg" />
+    <Content Include="Content\assets\images\calculator-image.png" />
+    <Content Include="Content\assets\images\client-01.png" />
+    <Content Include="Content\assets\images\close.png" />
+    <Content Include="Content\assets\images\cta-bg.jpg" />
+    <Content Include="Content\assets\images\heading-bg.jpg" />
+    <Content Include="Content\assets\images\loading.gif" />
+    <Content Include="Content\assets\images\logo.png" />
+    <Content Include="Content\assets\images\next.png" />
+    <Content Include="Content\assets\images\prev.png" />
+    <Content Include="Content\assets\images\service-details-01.jpg" />
+    <Content Include="Content\assets\images\service-details-02.jpg" />
+    <Content Include="Content\assets\images\service-details-03.jpg" />
+    <Content Include="Content\assets\images\service-image-01.jpg" />
+    <Content Include="Content\assets\images\service-image-02.jpg" />
+    <Content Include="Content\assets\images\service-image-03.jpg" />
+    <Content Include="Content\assets\images\slide-01.jpg" />
+    <Content Include="Content\assets\images\slide-02.jpg" />
+    <Content Include="Content\assets\images\slide-03.jpg" />
+    <Content Include="Content\assets\images\testimonials-01.jpg" />
+    <Content Include="Content\assets\js\custom.js" />
+    <Content Include="Content\assets\js\isotope.js" />
+    <Content Include="Content\assets\js\isotope.min.js" />
+    <Content Include="Content\assets\js\owl-carousel.js" />
+    <Content Include="Content\assets\js\swiper.js" />
+    <Content Include="Content\assets\js\tabs.js" />
+    <Content Include="Content\assets\js\video.js" />
+    <Content Include="Content\custom-style.css" />
+    <Content Include="Content\vendor\bootstrap\css\bootstrap.min.css" />
+    <Content Include="Content\vendor\bootstrap\js\bootstrap.min.js" />
+    <Content Include="DetalleArticulo.aspx" />
+    <Content Include="Error.aspx" />
+    <Content Include="FormularioArticulo.aspx" />
+    <Content Include="FormularioUsuario.aspx" />
+    <Content Include="Gestion.aspx" />
+    <Content Include="Img\BackGround.png" />
+    <Content Include="Img\Capturas\ScreamAgregar.png" />
+    <Content Include="Img\Capturas\ScreamFiltro.png" />
+    <Content Include="Img\Capturas\ScreamInicio.png" />
+    <Content Include="Img\Capturas\ScreamLista.png" />
+    <Content Include="Img\Capturas\ScreamPreguntas.png" />
+    <Content Include="Img\Capturas\ScreamUser.png" />
+    <Content Include="Img\Fondo.jpg" />
+    <Content Include="Img\FondoDePantalla.png" />
+    <Content Include="Img\index.png" />
+    <Content Include="Img\NoDisponible.jpg" />
+    <Content Include="Img\Foto.png" />
+    <Content Include="Img\test.jpg" />
+    <Content Include="Img\usuarioDefault.jpg" />
+    <Content Include="Lista.aspx" />
     <Content Include="Preguntas.aspx" />
     <Content Include="Explorar.aspx" />
     <Content Include="Content\bootstrap-grid.css" />
@@ -117,12 +174,12 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
-    <Content Include="Content\Site.css" />
     <Content Include="Default.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Img\Caja.png" />
     <Content Include="Mis Favoritos.aspx" />
+    <Content Include="Registro.aspx" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.esm.js" />
@@ -152,6 +209,14 @@
     <Content Include="Content\bootstrap-grid.min.css.map" />
     <Content Include="Content\bootstrap-grid.css.map" />
     <Content Include="Mi Cuenta.aspx" />
+    <Content Include="App.config" />
+    <Content Include="Landing.master" />
+    <None Include="Properties\PublishProfiles\TPFinalNivel3Acosta_RamonAgustin.pubxml" />
+    <Content Include="ScriptDB\scriptdbArticulosWeb.ipynb" />
+    <Content Include="ScriptDB\CATALOGO_WEB_DB_v1.ipynb" />
+    <Content Include="ScriptDB\CATALOGO_WEB_DB_v2.ipynb" />
+    <Content Include="ScriptDB\CATALOGO_WEB_DB_v3.ipynb" />
+    <Content Include="ScriptDB\CATALOGO_WEB_DB_v4.ipynb" />
     <None Include="Scripts\jquery-3.7.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.7.0.js" />
     <Content Include="Scripts\jquery-3.7.0.min.js" />
@@ -180,7 +245,7 @@
     <Content Include="Scripts\WebForms\WebParts.js" />
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
     <Content Include="Site.Master" />
-    <Content Include="Usuario.aspx" />
+    <Content Include="Login.aspx" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Web.config" />
     <Content Include="Bundle.config" />
@@ -188,6 +253,62 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="Carrito.aspx.cs">
+      <DependentUpon>Carrito.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Carrito.aspx.designer.cs">
+      <DependentUpon>Carrito.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DetalleArticulo.aspx.cs">
+      <DependentUpon>DetalleArticulo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DetalleArticulo.aspx.designer.cs">
+      <DependentUpon>DetalleArticulo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Error.aspx.cs">
+      <DependentUpon>Error.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Error.aspx.designer.cs">
+      <DependentUpon>Error.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="FormularioArticulo.aspx.cs">
+      <DependentUpon>FormularioArticulo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="FormularioArticulo.aspx.designer.cs">
+      <DependentUpon>FormularioArticulo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="FormularioUsuario.aspx.cs">
+      <DependentUpon>FormularioUsuario.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="FormularioUsuario.aspx.designer.cs">
+      <DependentUpon>FormularioUsuario.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Gestion.aspx.cs">
+      <DependentUpon>Gestion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Gestion.aspx.designer.cs">
+      <DependentUpon>Gestion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Landing.master.cs">
+      <DependentUpon>Landing.master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Landing.master.designer.cs">
+      <DependentUpon>Landing.master</DependentUpon>
+    </Compile>
+    <Compile Include="Lista.aspx.cs">
+      <DependentUpon>Lista.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Lista.aspx.designer.cs">
+      <DependentUpon>Lista.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Preguntas.aspx.cs">
       <DependentUpon>Preguntas.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -221,6 +342,13 @@
       <DependentUpon>Mis Favoritos.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Registro.aspx.cs">
+      <DependentUpon>Registro.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Registro.aspx.designer.cs">
+      <DependentUpon>Registro.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -235,12 +363,15 @@
     <Compile Include="Site.Mobile.Master.designer.cs">
       <DependentUpon>Site.Mobile.Master</DependentUpon>
     </Compile>
-    <Compile Include="Usuario.aspx.cs">
-      <DependentUpon>Usuario.aspx</DependentUpon>
+    <Compile Include="Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Usuario.aspx.designer.cs">
-      <DependentUpon>Usuario.aspx</DependentUpon>
+    <Compile Include="Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SubirImagen.ashx.cs">
+      <DependentUpon>SubirImagen.ashx</DependentUpon>
     </Compile>
     <Compile Include="ViewSwitcher.ascx.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
@@ -259,11 +390,14 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="ImagenesUploads\" />
+    <Folder Include="Img\Perfil\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.7.0.slim.min.map" />
     <Content Include="Scripts\jquery-3.7.0.min.map" />
+    <Content Include="SubirImagen.ashx" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

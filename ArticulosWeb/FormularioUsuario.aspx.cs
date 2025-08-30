@@ -7,11 +7,11 @@ using System.Web.UI.WebControls;
 
 namespace ArticulosWeb
 {
-	public partial class Usuario : System.Web.UI.Page
-	{
-		protected void Page_Load(object sender, EventArgs e)
-		{
+    public partial class FormularioUsuario : System.Web.UI.Page
+    {
+        protected void Page_Load(object sender, EventArgs e)
+        {
 
-		}
-	}
+        }
+    }
 }

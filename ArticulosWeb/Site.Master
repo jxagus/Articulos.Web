@@ -1,29 +1,46 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="ArticulosWeb.SiteMaster" %>
+﻿﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="ArticulosWeb.SiteMaster" %>
 
 <!DOCTYPE html>
 
 <html lang="es">
 <head runat="server">
+    <asp:ContentPlaceHolder ID="head" runat="server" />
+
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <!--Estilos personalizados-->
+    <link href="Content/custom-style.css" rel="stylesheet" />
+
+    <!-- Bootstrap core CSS -->
+    <link href="Content/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" href="Content/assets/css/fontawesome.css" />
+    <link rel="stylesheet" href="Content/assets/css/templatemo-574-mexant.css" />
+    <link rel="stylesheet" href="Content/assets/css/owl.css" />
+    <link rel="stylesheet" href="Content/assets/css/animate.css" />
+
+    <!-- tailwind CSS -->
+     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+
+
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title><%: Page.Title %> - Articles </title>
-    
+    <title><%: Page.Title %> - Articles</title>
 
     <asp:PlaceHolder runat="server">
         <%: Scripts.Render("~/bundles/modernizr") %>
     </asp:PlaceHolder>
-
     <webopt:BundleReference runat="server" Path="~/Content/css" />
     <link href="Img/Caja.png" rel="shortcut icon" />
-
 </head>
-<body>
-    <form runat="server">
+
+<body runat="server" class='<%: Page.AppRelativeVirtualPath.Equals("~/Default.aspx", StringComparison.OrdinalIgnoreCase) ? "home" : "" %>' style="display: flex; flex-direction: column; min-height: 100vh; margin: 0;">
+    <form runat="server" style="flex: 1; display: flex; flex-direction: column;">
+
+        <!-- ScriptManager para WebForms -->
         <asp:ScriptManager runat="server">
             <Scripts>
-                <%--To learn more about bundling scripts in ScriptManager see https://go.microsoft.com/fwlink/?LinkID=301884 --%>
-                <%--Framework Scripts--%>
                 <asp:ScriptReference Name="MsAjaxBundle" />
                 <asp:ScriptReference Name="jquery" />
                 <asp:ScriptReference Name="WebForms.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebForms.js" />
@@ -35,42 +52,116 @@
                 <asp:ScriptReference Name="WebParts.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebParts.js" />
                 <asp:ScriptReference Name="Focus.js" Assembly="System.Web" Path="~/Scripts/WebForms/Focus.js" />
                 <asp:ScriptReference Name="WebFormsBundle" />
-                <%--Site Scripts--%>
             </Scripts>
         </asp:ScriptManager>
 
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark">
-            <div class="container">
-                <a class="navbar-brand" runat="server" href="~/">Articles Shop</a>
-                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="Alternar navegación" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item"><a class="nav-link" runat="server" href="~/">Inicio</a></li>
-                        <li class="nav-item"><a class="nav-link" runat="server" href="~/Explorar">Explorar</a></li>
-                        <li class="nav-item"><a class="nav-link" runat="server" href="~/Mi cuenta">Mi Cuenta</a></li>
-                        <li class="nav-item"><a class="nav-link" runat="server" href="~/Mis Favoritos">Mis Favoritos</a></li>
-                        <li class="nav-item"><a class="nav-link" runat="server" href="~/Preguntas">Preguntas</a></li>
-                        <li class="nav-item"><a class="nav-link" runat="server" href="~/Usuario">Usuario</a></li>
+        <!-- Contenido principal -->
+
+        <div class="main-content" style="flex: 1;">
+            <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark">
+                <div class="container">
+                    <a class="navbar-brand" runat="server" href="~/">Articles Shop</a>
+                    <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse"
+                        title="Alternar navegación" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
+                        <!-- test del buscadorcito -->
+                        <div class="d-flex align-items-center" style="gap: 10px;">
+                            <asp:TextBox ID="txtBuscarNav" runat="server" CssClass="form-control" placeholder="Buscar..." />
+
+                            <asp:Button ID="btnBuscarNav" runat="server" Text="Buscar" CssClass="btn btn-outline-light" OnClick="btnBuscarNav_Click"
+                                CausesValidation="false"
+                                UseSubmitBehavior="false" /><!-- causesvalidation y usesubmitbehavior para que no interfiera con Ingresar ;) -->
+                        </div>
+                        <ul class="navbar-nav flex-grow-1">
+                            <!-- Navegación -->
+                            <li class="nav-item"><a class="nav-link" runat="server" href="~/">Inicio</a></li>
+                            <li class="nav-item"><a class="nav-link" runat="server" href="~/Explorar">Explorar</a></li>
+                            <li class="nav-item"><a class="nav-link" runat="server" href="~/Preguntas">Preguntas</a></li>
+                            <!-- Seciones agregadas -->
+                            <% if (NegocioArticulo.Seguridad.sesionActiva(Session["usuario"]))
+                                { %>
+                            <% if (NegocioArticulo.Seguridad.esAdmin(Session["usuario"]))
+                                { %>
+                            <li class="nav-item"><a class="nav-link" runat="server" href="~/Lista">Lista</a></li>
+                            <% } %>
+                            <!-- <li class="nav-item"><a class="nav-link" runat="server" href="~/Carrito">Carrito</a></li> -->
+                            <li class="nav-item"><a class="nav-link" runat="server" href="~/Gestion">Gestion</a></li>
+
+                            <% } %>
+                        </ul>
+                    </div>
+
+                    <div class="d-flex">
+                        <% if (!NegocioArticulo.Seguridad.sesionActiva(Session["usuario"]))
+                            { %>
+                        <a href="Login.aspx" class="btn btn-success me-2">Ingresar</a>
+                        <!-- desaparece-->
+                        <% }
+                            else
+                            {
+                        %>
+                        <asp:Button Text="Salir" ID="btnSalir" CssClass="btn btn-outline-primary me-2" OnClick="btnSalir_Click" runat="server" CausesValidation="false" />
+                        <!-- CausesValidation evita que se disparen validadores-->
+                        <!-- Nombre del usuario -->
+                        <a href="Mi Cuenta.aspx" class="text-light me-2 text-decoration-none d-flex align-items-center">
+                            <asp:Label ID="lblUser" CssClass="fw-normal text-decoration-underline" runat="server" />
+                        </a>
 
 
-                    </ul>
+                        <%} %>
+                        <!-- Imagen de perfil -->
+                        <asp:Image ID="imgAvatar" Style="height: 40px; width: 40px; border-radius: 50%;" runat="server" />
+                    </div>
                 </div>
+            </nav>
+            <!--  Nuevo bloque fuera del container -->
+            <asp:ContentPlaceHolder ID="OutsideContainer" runat="server" />
+
+            <!-- Placeholders -->
+            <asp:ContentPlaceHolder ID="FullWidthContent" runat="server" />
+            <div class="container body-content">
+                <asp:ContentPlaceHolder ID="MainContent" runat="server" />
             </div>
-        </nav>
-        <div class="container body-content">
-            <asp:ContentPlaceHolder ID="MainContent" runat="server">
-            </asp:ContentPlaceHolder>
-            <hr />
-            <footer>
-                <p>&copy; <%: DateTime.Now.Year %> - Mi aplicación ASP.NET</p>
-            </footer>
         </div>
+
+        <!-- Footer SIEMPRE abajo -->
+        <footer style="width: 100%; background-color: #2a2a2a; color: white; text-align: center; padding: 10px 0;">
+            <p>&copy; 2025 - Mi aplicación ASP.NET</p>
+        </footer>
+
+        <!-- Scripts Bootstrap -->
+        <asp:PlaceHolder runat="server">
+            <%: Scripts.Render("~/Scripts/bootstrap.js") %>
+        </asp:PlaceHolder>
     </form>
-    <asp:PlaceHolder runat="server">
-        <%: Scripts.Render("~/Scripts/bootstrap.js") %>
-    </asp:PlaceHolder>
+    <!-- Scripts para el default.aspx -->
+    <script src="Content/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="Content/assets/js/owl-carousel.js"></script>
+    <script src="Content/assets/js/animation.js"></script>
+    <script src="Content/assets/js/imagesloaded.js"></script>
+    <script src="Content/assets/js/custom.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            new Swiper('.swiper-container', {
+                loop: true,
+                autoplay: {
+                    delay: 5000,
+                    disableOnInteraction: false
+                },
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev'
+                },
+                effect: 'slide',
+            });
+        });
+    </script>
+
+
 </body>
 </html>
