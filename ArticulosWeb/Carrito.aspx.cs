@@ -17,18 +17,28 @@ namespace ArticulosWeb
 
         private void CargarCarrito()
         {
-            List<CarritoItem> carrito = Session["Carrito"] as List<CarritoItem>;
+            // Ejemplo: obtener carrito desde sesión
+            var carrito = Session["Carrito"] as List<ItemCarrito>;
+
             if (carrito != null && carrito.Count > 0)
             {
+                // Mostrar lista de productos
                 rptCarrito.DataSource = carrito;
                 rptCarrito.DataBind();
 
+                rptCarrito.Visible = true;
+                pnlCarritoVacio.Visible = false;
+
+                // Calcular total
                 decimal total = carrito.Sum(x => x.Subtotal);
                 lblTotal.Text = "Total: $" + total.ToString("N2");
             }
             else
             {
-                lblTotal.Text = "El carrito está vacío.";
+                // Si está vacío
+                rptCarrito.Visible = false;
+                pnlCarritoVacio.Visible = true;
+                lblTotal.Text = "";
             }
         }
     }
