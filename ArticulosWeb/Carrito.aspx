@@ -11,7 +11,7 @@
         <div class="flex-1 bg-white rounded-lg shadow p-6">
             <!-- Si no hay productos -->
             <asp:Panel ID="pnlCarritoVacio" runat="server" CssClass="flex flex-col items-center justify-center">
-                <img src="Img/CarritoVacio.png" alt="Carrito vacío" class="w-16 h-16 mb-4" />
+                <img src="Img/CarritoVacio1.png" alt="Carrito vacío" class="w-16 h-16 mb-4" />
                 <p class="text-gray-700 mb-4">Agregá productos para armar tu carrito</p>
                 <a href="Default.aspx" class="px-6 py-2 border border-black rounded hover:bg-gray-50 font-medium">
                     Continuar comprando
