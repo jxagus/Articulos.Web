@@ -17,29 +17,36 @@ namespace ArticulosWeb
 
         private void CargarCarrito()
         {
-            // Ejemplo: obtener carrito desde sesión
-            var carrito = Session["Carrito"] as List<ItemCarrito>;
+            // Supongamos que ya obtuviste la lista de productos del carrito
+            // desde la BD o desde tu lógica con el id que pasaste
+            var carrito = ObtenerCarrito(); // este es tu método actual
 
             if (carrito != null && carrito.Count > 0)
             {
-                // Mostrar lista de productos
                 rptCarrito.DataSource = carrito;
                 rptCarrito.DataBind();
 
                 rptCarrito.Visible = true;
                 pnlCarritoVacio.Visible = false;
 
-                // Calcular total
+                // calcular total sumando el campo Subtotal o Precio * Cantidad
                 decimal total = carrito.Sum(x => x.Subtotal);
                 lblTotal.Text = "Total: $" + total.ToString("N2");
             }
             else
             {
-                // Si está vacío
                 rptCarrito.Visible = false;
                 pnlCarritoVacio.Visible = true;
                 lblTotal.Text = "";
             }
+        }
+
+        private List<Articulo> ObtenerCarrito()
+        {
+            // ⚠️ Este método es solo un placeholder.
+            // Acá deberías traer el carrito real de tu lógica
+            // por ejemplo desde la BD, Session, o lo que ya usás.
+            return new List<Articulo>();
         }
     }
 }
