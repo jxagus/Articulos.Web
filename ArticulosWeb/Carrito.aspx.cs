@@ -28,7 +28,7 @@ namespace ArticulosWeb
             }
             else
             {
-                pnlCarritoVacio.Visible = true;
+                //pnlCarritoVacio.Visible = false;
                 lblTotal.Text = "El carrito está vacío.";
             }
         }
