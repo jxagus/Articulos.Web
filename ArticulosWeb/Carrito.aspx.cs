@@ -17,9 +17,7 @@ namespace ArticulosWeb
 
         private void CargarCarrito()
         {
-            // Supongamos que ya obtuviste la lista de productos del carrito
-            // desde la BD o desde tu lógica con el id que pasaste
-            var carrito = ObtenerCarrito(); // este es tu método actual
+            var carrito = Session["Carrito"] as List<Articulo>; // tu lista de artículos
 
             if (carrito != null && carrito.Count > 0)
             {
@@ -29,8 +27,8 @@ namespace ArticulosWeb
                 rptCarrito.Visible = true;
                 pnlCarritoVacio.Visible = false;
 
-                // calcular total sumando el campo Subtotal o Precio * Cantidad
-                decimal total = carrito.Sum(x => x.Subtotal);
+                // Total: si usás precio con descuento lo prioriza
+                decimal total = carrito.Sum(x => x.PrecioConDescuento > 0 ? x.PrecioConDescuento : x.Precio);
                 lblTotal.Text = "Total: $" + total.ToString("N2");
             }
             else
@@ -40,6 +38,7 @@ namespace ArticulosWeb
                 lblTotal.Text = "";
             }
         }
+
 
         private List<Articulo> ObtenerCarrito()
         {
