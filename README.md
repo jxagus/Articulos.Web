@@ -1,4 +1,4 @@
-# TP Final Nivel 3 – Gestión de Artículos
+# Gestión de Artículos
 
 Este proyecto es una aplicación web desarrollada en **C#**, con la función principal de permitir que un negocio publique su catálogo de artículos. Los artículos están almacenados en una base de datos **SQL Server**.
 
