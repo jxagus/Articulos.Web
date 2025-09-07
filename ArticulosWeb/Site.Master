@@ -81,6 +81,8 @@
                             <li class="nav-item"><a class="nav-link" runat="server" href="~/">Inicio</a></li>
                             <li class="nav-item"><a class="nav-link" runat="server" href="~/Explorar">Explorar</a></li>
                             <li class="nav-item"><a class="nav-link" runat="server" href="~/Preguntas">Preguntas</a></li>
+                            <li class="nav-item"><a class="nav-link" runat="server" href="~/Carrito">Carrito</a></li> 
+
                             <!-- Seciones agregadas -->
                             <% if (NegocioArticulo.Seguridad.sesionActiva(Session["usuario"]))
                                 { %>
@@ -88,7 +90,6 @@
                                 { %>
                             <li class="nav-item"><a class="nav-link" runat="server" href="~/Lista">Lista</a></li>
                             <% } %>
-                            <!-- <li class="nav-item"><a class="nav-link" runat="server" href="~/Carrito">Carrito</a></li> -->
                             <li class="nav-item"><a class="nav-link" runat="server" href="~/Gestion">Gestion</a></li>
 
                             <% } %>
