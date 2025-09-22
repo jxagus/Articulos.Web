@@ -21,28 +21,6 @@
             }
         }
     </script>
-
-    <!-- TinyMCE para el mensaje -->
-    <script src="https://cdn.tiny.cloud/1/3haqc06nbbet87r9z4vz1onrrkfg1kdemtsqhr2r33dxo9zc/tinymce/8/tinymce.min.js" referrerpolicy="origin" crossorigin="anonymous"></script>
-    <script>
-        tinymce.init({
-            selector: 'textarea',
-            plugins: [
-                'anchor', 'autolink', 'charmap', 'codesample', 'emoticons',
-                'image', 'link', 'lists', 'media', 'searchreplace', 'table',
-                'visualblocks', 'wordcount', 'checklist', 'mediaembed',
-                'casechange', 'formatpainter', 'pageembed', 'a11ychecker',
-                'tinymcespellchecker', 'permanentpen', 'powerpaste',
-                'advtable', 'advcode', 'editimage', 'advtemplate',
-                'mentions', 'tinycomments', 'tableofcontents',
-                'footnotes', 'mergetags', 'autocorrect', 'typography',
-                'markdown', 'importword', 'exportword', 'exportpdf'
-            ],
-            toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline | link image media table | align lineheight | checklist numlist bullist indent outdent | removeformat',
-            tinycomments_mode: 'embedded',
-            fixed_toolbar_container: 'body'
-        });
-    </script>
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="MainContent" runat="server">
@@ -100,7 +78,7 @@
         OnSelectedIndexChanged="DgvLista_SelectedIndexChanged"
         OnPageIndexChanging="DgvLista_PageIndexChanging">
         <Columns>
-            <asp:TemplateField HeaderText="Seleccionar">
+            <asp:TemplateField>
                 <ItemTemplate>
                     <asp:CheckBox ID="chkSeleccionado" runat="server" />
                 </ItemTemplate>
