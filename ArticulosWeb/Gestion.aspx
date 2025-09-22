@@ -78,11 +78,7 @@
         OnSelectedIndexChanged="DgvLista_SelectedIndexChanged"
         OnPageIndexChanging="DgvLista_PageIndexChanging">
         <Columns>
-            <asp:TemplateField>
-                <ItemTemplate>
-                    <asp:CheckBox ID="chkSeleccionado" runat="server" />
-                </ItemTemplate>
-            </asp:TemplateField>
+
 
             <asp:BoundField HeaderText="Email" DataField="Email" />
             <asp:BoundField HeaderText="Nombre" DataField="Nombre" />
