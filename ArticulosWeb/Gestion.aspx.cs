@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Dominio;
@@ -9,42 +7,50 @@ using NegocioArticulo;
 
 namespace ArticulosWeb
 {
-    using NegocioArticulo; // Asegurate de tener este using arriba
-
     public partial class Gestion : System.Web.UI.Page
     {
-
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                UsuarioNegocio negocio = new UsuarioNegocio(); 
-                List<Usuario> lista = negocio.ListarConSP();   
-                Session["ListaUsuario"] = lista;
-                dgvLista.DataSource = lista;
-                dgvLista.DataBind();
-
-                //para conteo
-                UsuarioNegocio negocioUsuarios = new UsuarioNegocio();
-                List<Usuario> listaUsuarios = negocioUsuarios.ListarConSP();
-                lblUsuarios.Text = listaUsuarios.Count.ToString();
-
-                Negocio negocioArticulos = new Negocio();
-                List<Articulo> listaArticulos = negocioArticulos.listarConSP();
-                lblArticulos.Text = listaArticulos.Count.ToString();
+                CargarUsuarios();
+                CargarEstadisticas();
             }
         }
+
+        private void CargarUsuarios()
+        {
+            UsuarioNegocio negocio = new UsuarioNegocio();
+            List<Usuario> lista = negocio.ListarConSP();
+            Session["ListaUsuario"] = lista;
+            dgvLista.DataSource = lista;
+            dgvLista.DataBind();
+        }
+
+        private void CargarEstadisticas()
+        {
+            UsuarioNegocio negocioUsuarios = new UsuarioNegocio();
+            List<Usuario> listaUsuarios = negocioUsuarios.ListarConSP();
+            lblUsuarios.Text = listaUsuarios.Count.ToString();
+
+            Negocio negocioArticulos = new Negocio();
+            List<Articulo> listaArticulos = negocioArticulos.listarConSP();
+            lblArticulos.Text = listaArticulos.Count.ToString();
+        }
+
         protected void DgvLista_SelectedIndexChanged(object sender, EventArgs e)
         {
             string id = dgvLista.SelectedDataKey.Value.ToString();
             Response.Redirect("FormularioArticulo.aspx?id=" + id);
         }
+
         protected void DgvLista_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             dgvLista.PageIndex = e.NewPageIndex;
- 
+            dgvLista.DataSource = Session["ListaUsuario"]; // recuperar lista de sesión
             dgvLista.DataBind();
         }
+
         protected void btnEnviar_Click(object sender, EventArgs e)
         {
             List<string> emails = new List<string>();
@@ -54,7 +60,7 @@ namespace ArticulosWeb
                 CheckBox chk = (CheckBox)row.FindControl("chkSeleccionado");
                 if (chk != null && chk.Checked)
                 {
-                    string email = row.Cells[1].Text.Trim(); // Email está en la 2da columna (índice 1)
+                    string email = row.Cells[1].Text.Trim();
                     emails.Add(email);
                 }
             }
@@ -77,7 +83,7 @@ namespace ArticulosWeb
                     }
 
                     ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Mensaje enviado correctamente.');", true);
-                    txtMensaje.Text = ""; // Limpiar mensaje
+                    txtMensaje.Text = "";
                 }
                 catch (Exception ex)
                 {
@@ -89,6 +95,5 @@ namespace ArticulosWeb
                 ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Seleccioná al menos un usuario y escribí un mensaje.');", true);
             }
         }
-
     }
 }
