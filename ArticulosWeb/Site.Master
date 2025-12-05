@@ -119,8 +119,11 @@
                     </div>
                 </div>
             </nav>
-            <!--  Nuevo bloque fuera del container -->
+            <!--  Bloque fuera de container -->
             <asp:ContentPlaceHolder ID="OutsideContainer" runat="server" />
+
+            <!--  Bloque fuera de container -->
+            <asp:ContentPlaceHolder ID="OutsideContainer2" runat="server" />
 
             <!-- Placeholders -->
             <asp:ContentPlaceHolder ID="FullWidthContent" runat="server" />
