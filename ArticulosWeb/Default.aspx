@@ -19,7 +19,7 @@
     <div class="swiper-container" id="top">
         <div class="swiper-wrapper">
             <div class="swiper-slide">
-                <div class="slide-inner" style="background-image: url(Content/assets/images/slide-01.jpg)">
+                <div class="slide-inner" style="background-image: url(Content/assets/images/slide1.png)">
                     <div class="container">
                         <div class="row">
                             <div class="col-lg-8">
@@ -61,7 +61,7 @@
                 </div>
             </div>
             <div class="swiper-slide">
-                <div class="slide-inner" style="background-image: url(Content/assets/images/slide-03.jpg)">
+                <div class="slide-inner" style="background-image: url(Content/assets/images/slide2.png)">
                     <div class="container">
                         <div class="row">
                             <div class="col-lg-8">

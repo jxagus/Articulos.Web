@@ -125,6 +125,10 @@
     <Content Include="Content\assets\images\slide-01.jpg" />
     <Content Include="Content\assets\images\slide-02.jpg" />
     <Content Include="Content\assets\images\slide-03.jpg" />
+    <Content Include="Content\assets\images\slide-04.jpg" />
+    <Content Include="Content\assets\images\slide-05.png" />
+    <Content Include="Content\assets\images\slide1.png" />
+    <Content Include="Content\assets\images\slide2.png" />
     <Content Include="Content\assets\images\testimonials-01.jpg" />
     <Content Include="Content\assets\js\custom.js" />
     <Content Include="Content\assets\js\isotope.js" />
