@@ -7,7 +7,7 @@
             height: 60vh; /* ocupa el 60% de la altura de la pantalla */
         }
 
-        /* Ajusta el alto de cada slide */
+ 
         .swiper-slide,
         .slide-inner {
             height: 100%;
