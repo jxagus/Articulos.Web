@@ -1,0 +1,119 @@
+﻿body {
+    background-color: #fcfbfa !important;
+    color: #2c1d12 !important;
+}
+ 
+.navbar {
+
+    background-color: #5a3e2b !important;
+}
+
+.navbar .nav-link {
+    color: #f4e7d4 !important;
+}
+
+.navbar .nav-link:hover {
+    color: #ffc9a0 !important;
+}
+
+.hero-section {
+    padding-top: 80px; /* espacio para que no lo tape el navbar */
+}
+
+/* Botones principales */
+.btn-danger {
+    background-color: #b3472c;
+    border-color: #b3472c;
+}
+
+.btn-danger:hover {
+    background-color: #a23d24;
+    border-color: #a23d24;
+}
+
+/* Footer */
+footer {
+    background-color: #a5a098;
+    color: #a5a098;
+    padding: 1rem;
+    text-align: center;
+    margin-top: 2rem;
+    flex-shrink: 0;
+    width: 100%;
+}
+
+/* Para forzar footer al fondo */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+}
+body > form > .d-flex {
+    min-height: 100vh;
+}
+
+/* Opcional, si querés darle un fondo marrón clarito */
+body {
+    background-color: #f4e7d4;
+}
+
+.body-content {
+    flex: 1 0 auto;
+}
+
+/* Sección de inicio con imagen */
+.hero-section {
+    position: relative;
+    width: 100%;
+    height: 80vh;
+    background-image: url('/Img/FondoDePantalla.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: white;
+    margin-bottom: 5rem;
+    image-rendering: auto;
+    background-attachment: scroll;
+    background-position: center center;
+}
+
+.hero-overlay {
+    background-color: rgba(0, 0, 0, 0.5);
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding-left: 5%;
+}
+
+.hero-content {
+    max-width: 600px;
+}
+
+/* Estilo de fondo para la home */
+body.home {
+    background-image: url('/Img/FondoDePantalla.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+
+body.home .body-content {
+    background-color: transparent;
+    padding: 0;
+    margin: 0;
+}
+
+body.home footer {
+    width: 100%;
+    margin: 0;
+    padding: 10px 0;
+}
+
