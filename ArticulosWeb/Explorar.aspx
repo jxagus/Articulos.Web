@@ -1,65 +1,162 @@
 ﻿<%@ Page Title="Explorar" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Explorar.aspx.cs" Inherits="ArticulosWeb.Explorar" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
-    <div class="flex justify-between items-center mb-6">
-        <h1 class="text-2xl font-bold">Todos los productos</h1>
 
-        <div class="flex items-center gap-2">
-            <label for="ddlOrdenar" class="font-medium">Ordenar por:</label>
-            <asp:DropDownList ID="ddlOrdenar" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlOrdenar_SelectedIndexChanged" CssClass="border px-2 py-1 rounded">
+<div class="container py-5">
+
+    <div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-center mb-5">
+
+        <div>
+            <h1 class="fw-bold mb-1">Todos los productos</h1>
+            <p class="text-muted mb-0">Encontrá el producto ideal para vos.</p>
+        </div>
+
+        <div class="d-flex align-items-center mt-3 mt-lg-0">
+
+            <label class="me-2 fw-semibold">Ordenar:</label>
+
+            <asp:DropDownList
+                ID="ddlOrdenar"
+                runat="server"
+                AutoPostBack="true"
+                OnSelectedIndexChanged="ddlOrdenar_SelectedIndexChanged"
+                CssClass="form-select">
+
                 <asp:ListItem Text="Más relevantes" Value="relevante" />
                 <asp:ListItem Text="Mayor precio" Value="mayor" />
                 <asp:ListItem Text="Menor precio" Value="menor" />
+
             </asp:DropDownList>
+
         </div>
+
     </div>
 
-    <div class="flex">
-        <!-- Sidebar filtros -->
-        <div class="w-1/4 pr-6">
-            <h2 class="text-lg font-bold mb-4">Categorías</h2>
-            <asp:Repeater ID="RepCategorias" runat="server">
-                <ItemTemplate>
-                    <div class="flex justify-between text-gray-700 mb-2">
-                        <span><%# Eval("Descripcion") %></span>
-                        <span>(<%# Eval("Cantidad") %>)</span>
-                    </div>
-                </ItemTemplate>
-            </asp:Repeater>
+    <div class="row">
+
+        <!-- Sidebar -->
+
+        <aside class="col-lg-3 mb-4">
+
+            <div class="bg-white rounded-4 shadow-sm p-4">
+
+                <h5 class="fw-bold mb-4">
+                    Categorías
+                </h5>
+
+                <asp:Repeater ID="RepCategorias" runat="server">
+
+                    <ItemTemplate>
+
+                        <div class="d-flex justify-content-between border-bottom py-2">
+
+                            <span>
+                                <%# Eval("Descripcion") %>
+                            </span>
+
+                            <span class="text-muted">
+                                (<%# Eval("Cantidad") %>)
+                            </span>
+
+                        </div>
+
+                    </ItemTemplate>
+
+                </asp:Repeater>
+
+            </div>
+
+        </aside>
+
+        <!-- Productos -->
+
+        <div class="col-lg-9">
+
+            <div class="row g-4">
+
+                <asp:Repeater ID="RepExplorar" runat="server">
+
+                    <ItemTemplate>
+
+                        <div class="col-sm-6 col-xl-4">
+
+                            <a href='DetalleArticulo.aspx?id=<%# Eval("Id") %>' class="product-link">
+
+                                <div class="product-card">
+
+                                    <div class="product-image">
+
+                                        <img src='<%# ObtenerUrlImagen(Eval("ImagenUrl")) %>' />
+
+                                    </div>
+
+                                    <div class="product-body">
+
+                                        <h5 class="product-title">
+                                            <%# Eval("Nombre") %>
+                                        </h5>
+
+                                        <p class="product-description">
+                                            <%# Eval("Descripcion") %>
+                                        </p>
+
+                                        <%#
+                                        Eval("PrecioDescuento") != DBNull.Value
+                                        && Eval("PrecioDescuento") != null
+                                        && Convert.ToDecimal(Eval("PrecioDescuento")) < Convert.ToDecimal(Eval("Precio"))
+
+                                        ?
+
+                                        "<div class='discount-badge'>"
+
+                                        + Math.Round((1-(Convert.ToDecimal(Eval("PrecioDescuento"))/Convert.ToDecimal(Eval("Precio"))))*100)
+
+                                        + "% OFF</div>"
+
+                                        +
+
+                                        "<div class='product-old-price'>$"
+
+                                        + Convert.ToDecimal(Eval("Precio")).ToString("N2", new System.Globalization.CultureInfo("es-AR"))
+
+                                        + "</div>"
+
+                                        +
+
+                                        "<div class='product-price'>$"
+
+                                        + Convert.ToDecimal(Eval("PrecioDescuento")).ToString("N2", new System.Globalization.CultureInfo("es-AR"))
+
+                                        + "</div>"
+
+                                        :
+
+                                        "<div class='product-price'>$"
+
+                                        + Convert.ToDecimal(Eval("Precio")).ToString("N2", new System.Globalization.CultureInfo("es-AR"))
+
+                                        + "</div>"
+
+                                        %>
+
+                                    </div>
+
+                                </div>
+
+                            </a>
+
+                        </div>
+
+                    </ItemTemplate>
+
+                </asp:Repeater>
+
+            </div>
+
         </div>
 
-        <!-- Cards productos -->
-<div class="w-3/4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-    <asp:Repeater ID="RepExplorar" runat="server">
-        <ItemTemplate>
-            <a href='DetalleArticulo.aspx?id=<%# Eval("Id") %>' class="no-underline text-black">
-                <div class="bg-white rounded-2xl shadow-md hover:shadow-lg transition transform hover:-translate-y-1 overflow-hidden cursor-pointer h-full flex flex-col">
-                    <img src='<%# ObtenerUrlImagen(Eval("ImagenUrl")) %>' alt="Imagen del artículo" 
-                         class="w-full h-48 object-contain bg-gray-100" />
-                    <div class="p-4 flex-grow flex flex-col justify-between">
-                        <h5 class="text-lg font-semibold text-gray-900 mb-1"><%# Eval("Nombre") %></h5>
-                        <p class="text-gray-500 text-sm mb-2"><%# Eval("Descripcion") %></p>
+    </div>
 
-                        <%# 
-                            Eval("PrecioDescuento") != DBNull.Value 
-                            && Eval("PrecioDescuento") != null 
-                            && Convert.ToDecimal(Eval("PrecioDescuento")) < Convert.ToDecimal(Eval("Precio")) 
-                            ? "<span class='text-green-600 font-semibold'> -" 
-                                + Math.Round((1 - (Convert.ToDecimal(Eval("PrecioDescuento")) / Convert.ToDecimal(Eval("Precio")))) * 100) + "%</span><br/>"
-                                + "<span class='line-through text-gray-400 text-sm'>$" 
-                                + Convert.ToDecimal(Eval("Precio")).ToString("N2", new System.Globalization.CultureInfo("es-AR")) + "</span><br/>"
-                                + "<span class='text-gray-500 text-sm'>$" 
-                                + Convert.ToDecimal(Eval("PrecioDescuento")).ToString("N2", new System.Globalization.CultureInfo("es-AR")) + "</span>"
-                            : "<span class='text-gray-500 text-sm'>$" 
-                                + Convert.ToDecimal(Eval("Precio")).ToString("N2", new System.Globalization.CultureInfo("es-AR")) + "</span>"
-                        %>
-                    </div>
-                </div>
-            </a>
-        </ItemTemplate>
-    </asp:Repeater>
 </div>
 
-
-    </div>
 </asp:Content>
