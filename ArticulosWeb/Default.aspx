@@ -7,7 +7,7 @@
             height: 60vh; /* ocupa el 60% de la altura de la pantalla */
         }
 
- 
+
         .swiper-slide,
         .slide-inner {
             height: 100%;
@@ -93,8 +93,9 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
     <!-- Ofertas únicas en Iphones -->
-    <h2 class="text-2xl font-bold mb-4">Nuestros celulares</h2>
-    <div class="flex flex-wrap gap-6 justify-start">
+    <h2 class="display-6 fw-bold mb-4 border-bottom pb-2">Nuestros celulares
+    </h2>
+    <div class="row g-4 justify-content-center">
         <% 
             foreach (Dominio.Articulo item in ListaCelulares)
             {
@@ -121,19 +122,20 @@
     <br />
 
 
-<!-- Nuestros productos destacados -->
-<h2 class="text-2xl font-bold mb-4">Otros de nuestros productos</h2>
-<div class="flex flex-wrap gap-6 justify-start">
-    <asp:Repeater ID="RepExplorar" runat="server">
-        <ItemTemplate>
-            <a href='DetalleArticulo.aspx?id=<%# Eval("Id") %>' class="no-underline text-black">
-                <div class="w-72 bg-white rounded-2xl shadow-md hover:shadow-lg transition transform hover:-translate-y-1 overflow-hidden cursor-pointer">
-                    <img src='<%# ObtenerUrlImagen(Eval("ImagenUrl")) %>' alt="Imagen del artículo"
-                        class="w-full h-48 object-contain bg-gray-100" />
-                    <div class="p-4">
-                        <h5 class="text-lg font-semibold text-gray-900 mb-2"><%# Eval("Nombre") %></h5>
+    <!-- Nuestros productos destacados -->
+    <h2 class="display-6 fw-bold mb-4 mt-5 border-bottom pb-2">Otros de nuestros productos
+    </h2>
+    <div class="row g-4 justify-content-center">
+        <asp:Repeater ID="RepExplorar" runat="server">
+            <ItemTemplate>
+                <a href='DetalleArticulo.aspx?id=<%# Eval("Id") %>' class="no-underline text-black">
+                    <div class="w-72 bg-white rounded-2xl shadow-md hover:shadow-lg transition transform hover:-translate-y-1 overflow-hidden cursor-pointer">
+                        <img src='<%# ObtenerUrlImagen(Eval("ImagenUrl")) %>' alt="Imagen del artículo"
+                            class="w-full h-48 object-contain bg-gray-100" />
+                        <div class="p-4">
+                            <h5 class="text-lg font-semibold text-gray-900 mb-2"><%# Eval("Nombre") %></h5>
 
-                        <%# 
+                            <%# 
                         Eval("PrecioDescuento") != DBNull.Value 
                         && Eval("PrecioDescuento") != null 
                         && Convert.ToDecimal(Eval("PrecioDescuento")) < Convert.ToDecimal(Eval("Precio")) 
@@ -145,13 +147,13 @@
                             + Convert.ToDecimal(Eval("PrecioDescuento")).ToString("N2", new System.Globalization.CultureInfo("es-AR")) + "</span>"
                         : "<span class='text-gray-500 text-sm'>$" 
                             + Convert.ToDecimal(Eval("Precio")).ToString("N2", new System.Globalization.CultureInfo("es-AR")) + "</span>"
-                        %>
+                            %>
+                        </div>
                     </div>
-                </div>
-            </a>
-        </ItemTemplate>
-    </asp:Repeater>
-</div>
+                </a>
+            </ItemTemplate>
+        </asp:Repeater>
+    </div>
 
 </asp:Content>
 
