@@ -18,7 +18,6 @@ namespace ArticulosWeb
             {
                 CargarArticulos();
 
-                // Ordenamiento inicial o por búsqueda
                 if (Session["txtBuscar"] != null)
                 {
                     TextBox txtBuscarNav = (TextBox)Master.FindControl("txtBuscarNav");
@@ -77,7 +76,6 @@ namespace ArticulosWeb
             RepCategorias.DataBind();
         }
 
-        // Manejador del clic en las categorías
         protected void RepCategorias_ItemCommand(object source, RepeaterCommandEventArgs e)
         {
             if (e.CommandName == "FiltrarCategoria")
@@ -94,8 +92,23 @@ namespace ArticulosWeb
 
                     RepExplorar.DataSource = filtrada;
                     RepExplorar.DataBind();
+
+                    btnQuitarFiltro.Visible = true;
+                    btnQuitarFiltro.Text = $"{categoriaSeleccionada} <span class='fw-bold' style='font-size:11px;'>✕</span>";
                 }
             }
+        }
+
+        protected void btnQuitarFiltro_Click(object sender, EventArgs e)
+        {
+            List<Articulo> lista = (List<Articulo>)Session["ListaArticulos"];
+            if (lista != null)
+            {
+                RepExplorar.DataSource = lista;
+                RepExplorar.DataBind();
+            }
+
+            btnQuitarFiltro.Visible = false;
         }
 
         protected void ddlOrdenar_SelectedIndexChanged(object sender, EventArgs e)

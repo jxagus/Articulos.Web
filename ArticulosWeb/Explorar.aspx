@@ -35,36 +35,44 @@
         <div class="row">
 
             <!-- Sidebar -->
-
             <aside class="col-lg-3 mb-4">
-
                 <div class="bg-white rounded-4 shadow-sm p-4">
 
-                    <h5 class="fw-bold mb-4">Categorías
-                    </h5>
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <h5 class="fw-bold mb-0">Categorías</h5>
+
+                        <!-- Botón de quitar filtro (solo visible al filtrar) -->
+                        <asp:LinkButton
+                            ID="btnQuitarFiltro"
+                            runat="server"
+                            OnClick="btnQuitarFiltro_Click"
+                            Visible="false"
+                            CssClass="badge rounded-pill bg-danger text-white text-decoration-none d-flex align-items-center gap-1 px-2 py-1"
+                            ToolTip="Quitar filtro">
+                <span>Filtro activo</span>
+                <span class="fw-bold" style="font-size: 11px;">✕</span>
+                        </asp:LinkButton>
+                    </div>
 
                     <asp:Repeater ID="RepCategorias" runat="server" OnItemCommand="RepCategorias_ItemCommand">
                         <ItemTemplate>
                             <div class="d-flex justify-content-between border-bottom py-2 align-items-center">
-
                                 <asp:LinkButton
                                     ID="btnFiltrarCat"
                                     runat="server"
                                     CommandName="FiltrarCategoria"
                                     CommandArgument='<%# Eval("Descripcion") %>'
                                     CssClass="text-decoration-none text-dark fw-semibold hover:text-primary">
-                <%# Eval("Descripcion") %>
+                        <%# Eval("Descripcion") %>
                                 </asp:LinkButton>
 
                                 <span class="text-muted small">(<%# Eval("Cantidad") %>)
                                 </span>
-
                             </div>
                         </ItemTemplate>
                     </asp:Repeater>
 
                 </div>
-
             </aside>
 
             <!-- Productos -->
