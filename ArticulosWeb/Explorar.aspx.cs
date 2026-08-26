@@ -45,12 +45,14 @@ namespace ArticulosWeb
         private void AplicarFiltro(string filtro)
         {
             List<Articulo> lista = (List<Articulo>)Session["ListaArticulos"];
+            if (lista == null) return;
+
             filtro = filtro.ToLower();
 
             List<Articulo> filtrada = lista.FindAll(a =>
-                a.Nombre.ToLower().Contains(filtro) ||
-                a.Marca.Descripcion.ToLower().Contains(filtro) ||
-                a.Categoria.Descripcion.ToLower().Contains(filtro)
+                (a.Nombre != null && a.Nombre.ToLower().Contains(filtro)) ||
+                (a.Marca != null && a.Marca.Descripcion != null && a.Marca.Descripcion.ToLower().Contains(filtro)) ||
+                (a.Categoria != null && a.Categoria.Descripcion != null && a.Categoria.Descripcion.ToLower().Contains(filtro))
             );
 
             RepExplorar.DataSource = filtrada;
@@ -60,8 +62,10 @@ namespace ArticulosWeb
         private void CargarCategorias()
         {
             List<Articulo> lista = (List<Articulo>)Session["ListaArticulos"];
+            if (lista == null) return;
 
             var categorias = lista
+                .Where(a => a.Categoria != null)
                 .GroupBy(a => a.Categoria.Descripcion)
                 .Select(g => new CategoriaContada
                 {
@@ -73,10 +77,32 @@ namespace ArticulosWeb
             RepCategorias.DataBind();
         }
 
+        // Manejador del clic en las categorías
+        protected void RepCategorias_ItemCommand(object source, RepeaterCommandEventArgs e)
+        {
+            if (e.CommandName == "FiltrarCategoria")
+            {
+                string categoriaSeleccionada = e.CommandArgument.ToString();
+                List<Articulo> lista = (List<Articulo>)Session["ListaArticulos"];
+
+                if (lista != null)
+                {
+                    List<Articulo> filtrada = lista.FindAll(a =>
+                        a.Categoria != null &&
+                        a.Categoria.Descripcion.Equals(categoriaSeleccionada, StringComparison.OrdinalIgnoreCase)
+                    );
+
+                    RepExplorar.DataSource = filtrada;
+                    RepExplorar.DataBind();
+                }
+            }
+        }
+
         protected void ddlOrdenar_SelectedIndexChanged(object sender, EventArgs e)
         {
             string criterio = ddlOrdenar.SelectedValue;
             List<Articulo> articulos = (List<Articulo>)Session["ListaArticulos"];
+            if (articulos == null) return;
 
             switch (criterio)
             {
