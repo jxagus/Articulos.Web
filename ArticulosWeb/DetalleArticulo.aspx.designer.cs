@@ -15,13 +15,13 @@ namespace ArticulosWeb
     {
 
         /// <summary>
-        /// Control txtPrecioDescuento.
+        /// Control txtCantidad.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtPrecioDescuento;
+        protected global::System.Web.UI.WebControls.TextBox txtCantidad;
 
         /// <summary>
         /// Control lblStockDisponible.
@@ -33,15 +33,6 @@ namespace ArticulosWeb
         protected global::System.Web.UI.WebControls.Label lblStockDisponible;
 
         /// <summary>
-        /// Control txtCantidad.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtCantidad;
-
-        /// <summary>
         /// Control btnComprar.
         /// </summary>
         /// <remarks>
@@ -51,6 +42,15 @@ namespace ArticulosWeb
         protected global::System.Web.UI.WebControls.Button btnComprar;
 
         /// <summary>
+        /// Control Repeater1.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater Repeater1;
+
+        /// <summary>
         /// Control rptRelacionados.
         /// </summary>
         /// <remarks>
@@ -58,5 +58,14 @@ namespace ArticulosWeb
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Repeater rptRelacionados;
+
+        /// <summary>
+        /// Control pnlSinRelacionados.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlSinRelacionados;
     }
 }

@@ -8,13 +8,12 @@ namespace ArticulosWeb
 {
     public partial class DetalleArticulo : System.Web.UI.Page
     {
-        // Solo propiedad en memoria para el ciclo actual de la página (NO ViewState)
+        //Propiedad en memoria para el ciclo actual de la pg
         public Articulo ArticuloDetalle { get; private set; }
         public List<Articulo> articulosRelacionados;
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            //Siempre obtener el id y el artículo (postback y no postback)
             if (!int.TryParse(Request.QueryString["id"], out int id))
             {
                 Response.Redirect("Default.aspx");
@@ -29,9 +28,13 @@ namespace ArticulosWeb
                 return;
             }
 
-            ArticuloDetalle = articulo; // disponible para el .aspx y para el btnComprar_Click
+            if (Request.QueryString["descuento"] != null && decimal.TryParse(Request.QueryString["descuento"], out decimal desc))
+            {
+                articulo.PrecioDescuento = desc;
+            }
 
-            //Solo inicializaciones de UI en el primer load
+            ArticuloDetalle = articulo; 
+
             if (!IsPostBack)
             {
                 lblStockDisponible.Text = $"Stock disponible: {articulo.Stock}";
@@ -50,14 +53,26 @@ namespace ArticulosWeb
                     txtCantidad.Attributes["min"] = "1";
                 }
 
-                // Relacionados (máx 4)
+                // Relacionados
                 var relacionados = negocio.listar()
-                    .Where(a => a.Categoria.Id == articulo.Categoria.Id && a.Id != articulo.Id)
+                    .Where(a => a.Categoria != null && articulo.Categoria != null &&
+                                a.Categoria.Id == articulo.Categoria.Id &&
+                                a.Id != articulo.Id)
                     .Take(4)
                     .ToList();
 
-                rptRelacionados.DataSource = relacionados;
-                rptRelacionados.DataBind();
+                if (relacionados != null && relacionados.Count > 0)
+                {
+                    rptRelacionados.DataSource = relacionados;
+                    rptRelacionados.DataBind();
+                    rptRelacionados.Visible = true;
+                    pnlSinRelacionados.Visible = false;
+                }
+                else
+                {
+                    rptRelacionados.Visible = false;
+                    pnlSinRelacionados.Visible = true;
+                }
             }
         }
 
@@ -71,21 +86,29 @@ namespace ArticulosWeb
 
         protected void btnComprar_Click(object sender, EventArgs e)
         {
-            // ArticuloDetalle ya está seteado en Page_Load (también en postback)
             if (ArticuloDetalle == null)
             {
-                // Fallback por las dudas
                 if (!int.TryParse(Request.QueryString["id"], out int id)) return;
                 var negocio = new Negocio();
                 ArticuloDetalle = negocio.BuscarPorId(id);
                 if (ArticuloDetalle == null) return;
+
+                if (Request.QueryString["descuento"] != null && decimal.TryParse(Request.QueryString["descuento"], out decimal desc))
+                {
+                    ArticuloDetalle.PrecioDescuento = desc;
+                }
             }
 
             int cantidad = 1;
             int.TryParse(txtCantidad.Text, out cantidad);
             if (cantidad < 1) cantidad = 1;
 
-            // Carrito en Session
+            decimal precioFinal = ArticuloDetalle.Precio;
+            if (ArticuloDetalle.PrecioDescuento.HasValue && ArticuloDetalle.PrecioDescuento.Value > 0 && ArticuloDetalle.PrecioDescuento.Value < ArticuloDetalle.Precio)
+            {
+                precioFinal = ArticuloDetalle.PrecioDescuento.Value;
+            }
+
             List<CarritoItem> carrito = Session["Carrito"] as List<CarritoItem> ?? new List<CarritoItem>();
 
             var existente = carrito.FirstOrDefault(x => x.Id == ArticuloDetalle.Id);
@@ -100,7 +123,7 @@ namespace ArticulosWeb
                     Id = ArticuloDetalle.Id,
                     Nombre = ArticuloDetalle.Nombre,
                     ImagenUrl = ObtenerUrlImagen(ArticuloDetalle.ImagenUrl),
-                    Precio = ArticuloDetalle.Precio,
+                    Precio = precioFinal,
                     Cantidad = cantidad
                 });
             }
@@ -108,7 +131,7 @@ namespace ArticulosWeb
             Session["Carrito"] = carrito;
 
             lblStockDisponible.Text = "Producto agregado al carrito ✔️";
-            lblStockDisponible.CssClass = "text-green-600";
+            lblStockDisponible.CssClass = "text-green-600 font-bold";
         }
     }
 }
