@@ -1,6 +1,70 @@
 ﻿<%@ Page Title="Home Page" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="ArticulosWeb.Default" %>
 
 <asp:Content ID="ContenidoFuera" ContentPlaceHolderID="OutsideContainer" runat="server">
+    <style>
+        /* Gradientes bitonales de texto con fallback garantizado */
+        .gradient-text-blue {
+            background: linear-gradient(135deg, #38bdf8 0%, #c084fc 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: inline-block;
+        }
+        .gradient-text-green {
+            background: linear-gradient(135deg, #34d399 0%, #38bdf8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: inline-block;
+        }
+        .gradient-text-purple {
+            background: linear-gradient(135deg, #c084fc 0%, #f472b6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: inline-block;
+        }
+
+        /* Botones estilo píldora con resplandor neón */
+        .btn-glow-cyan {
+            background: linear-gradient(90deg, #0284c7 0%, #06b6d4 100%);
+            box-shadow: 0 0 15px rgba(6, 182, 212, 0.6);
+            border-radius: 9999px;
+        }
+        .btn-glow-cyan:hover {
+            box-shadow: 0 0 25px rgba(6, 182, 212, 0.9);
+            transform: translateY(-2px);
+        }
+
+        .btn-glow-emerald {
+            background: linear-gradient(90deg, #059669 0%, #10b981 100%);
+            box-shadow: 0 0 15px rgba(16, 185, 129, 0.6);
+            border-radius: 9999px;
+        }
+        .btn-glow-emerald:hover {
+            box-shadow: 0 0 25px rgba(16, 185, 129, 0.9);
+            transform: translateY(-2px);
+        }
+
+        .btn-glow-pink {
+            background: linear-gradient(90deg, #c026d3 0%, #db2777 100%);
+            box-shadow: 0 0 15px rgba(219, 39, 119, 0.6);
+            border-radius: 9999px;
+        }
+        .btn-glow-pink:hover {
+            box-shadow: 0 0 25px rgba(219, 39, 119, 0.9);
+            transform: translateY(-2px);
+        }
+
+        /* Badge de descuento siempre activo */
+        .badge-discount {
+            background-color: #10b981;
+            color: #ffffff;
+            font-weight: 900;
+            padding: 2px 8px;
+            border-radius: 6px;
+            display: inline-block;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+    </style>
+
     <!-- ***** Main Banner Area Start ***** -->
     <div class="swiper-container h-[60vh] w-full overflow-hidden relative" id="top">
         <div class="swiper-wrapper h-full">
@@ -11,17 +75,15 @@
                     <div class="row w-full">
                         <div class="col-12 col-lg-8">
                             <div class="header-text p-6 max-w-2xl">
-                                <!-- Título con degradado de dos colores (Azul a Neón/Magenta) -->
-                                <h2 class="text-4xl md:text-6xl font-extrabold tracking-tight mb-4 text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-sky-400 to-fuchsia-500 drop-shadow-md">
+                                <h2 class="text-4xl md:text-6xl font-black tracking-tight mb-4 gradient-text-blue">
                                     Descubrí el nuevo iPhone 16 <br />
                                     &amp; potencia sin límites
                                 </h2>
-                                <p class="text-gray-200 text-base md:text-lg mb-8 font-medium drop-shadow">
+                                <p class="text-gray-100 text-base md:text-lg mb-8 font-medium drop-shadow">
                                     Innovación, diseño y rendimiento al alcance de tu mano. Disponible ahora.
                                 </p>
                                 <div class="buttons">
-                                    <!-- Botón estilo píldora con glow/resplandor -->
-                                    <a href="Explorar.aspx" class="inline-block px-8 py-3 rounded-full text-white font-bold bg-gradient-to-r from-blue-600 to-cyan-500 hover:from-blue-500 hover:to-cyan-400 transition-all duration-300 shadow-[0_0_20px_rgba(6,182,212,0.5)] hover:shadow-[0_0_28px_rgba(6,182,212,0.8)] transform hover:-translate-y-0.5">
+                                    <a href="Explorar.aspx" class="inline-block px-8 py-3 text-white font-bold transition-all duration-300 btn-glow-cyan">
                                         Explorar
                                     </a>
                                 </div>
@@ -37,15 +99,15 @@
                     <div class="row w-full">
                         <div class="col-12 col-lg-8">
                             <div class="header-text p-6 max-w-2xl">
-                                <h2 class="text-4xl md:text-6xl font-extrabold tracking-tight mb-4 text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-300 to-cyan-400 drop-shadow-md">
+                                <h2 class="text-4xl md:text-6xl font-black tracking-tight mb-4 gradient-text-green">
                                     Registrate ahora gratis <br />
                                     &amp; recibí ofertas imperdibles
                                 </h2>
-                                <p class="text-gray-200 text-base md:text-lg mb-8 font-medium drop-shadow">
-                                    No te pierdas los mejores precios antes que nadie. ¡Solo para clientes!
+                                <p class="text-gray-100 text-base md:text-lg mb-8 font-medium drop-shadow">
+                                    No te pierdas los mejores precios antes que nadie. ¡Exclusivo para clientes!
                                 </p>
                                 <div class="buttons">
-                                    <a href="Login.aspx" class="inline-block px-8 py-3 rounded-full text-white font-bold bg-gradient-to-r from-emerald-500 to-teal-400 hover:from-emerald-400 hover:to-teal-300 transition-all duration-300 shadow-[0_0_20px_rgba(16,185,129,0.5)] hover:shadow-[0_0_28px_rgba(16,185,129,0.8)] transform hover:-translate-y-0.5">
+                                    <a href="Login.aspx" class="inline-block px-8 py-3 text-white font-bold transition-all duration-300 btn-glow-emerald">
                                         Ingresar
                                     </a>
                                 </div>
@@ -61,16 +123,16 @@
                     <div class="row w-full">
                         <div class="col-12 col-lg-8">
                             <div class="header-text p-6 max-w-2xl">
-                                <h2 class="text-4xl md:text-6xl font-extrabold tracking-tight mb-4 text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-fuchsia-400 to-pink-500 drop-shadow-md">
+                                <h2 class="text-4xl md:text-6xl font-black tracking-tight mb-4 gradient-text-purple">
                                     Comprá con garantía oficial <br />
                                     &amp; cuotas sin interés
                                 </h2>
-                                <p class="text-gray-200 text-base md:text-lg mb-8 font-medium drop-shadow">
+                                <p class="text-gray-100 text-base md:text-lg mb-8 font-medium drop-shadow">
                                     Elegí con confianza: todos nuestros productos están garantizados y en 6 cuotas sin recargo.
                                 </p>
                                 <div class="buttons flex gap-4">
-                                    <a href="Explorar.aspx" class="inline-block px-8 py-3 rounded-full text-white font-bold bg-gradient-to-r from-fuchsia-600 to-pink-500 hover:from-fuchsia-500 hover:to-pink-400 transition-all duration-300 shadow-[0_0_20px_rgba(217,70,239,0.5)] hover:shadow-[0_0_28px_rgba(217,70,239,0.8)] transform hover:-translate-y-0.5">
-                                        Descubrir Más
+                                    <a href="Explorar.aspx" class="inline-block px-8 py-3 text-white font-bold transition-all duration-300 btn-glow-pink">
+                                        Ver Productos
                                     </a>
                                 </div>
                             </div>
@@ -142,7 +204,7 @@
                                 && Eval("PrecioDescuento") != null 
                                 && Convert.ToDecimal(Eval("PrecioDescuento")) < Convert.ToDecimal(Eval("Precio")) 
                                 ? "<div class='flex items-center gap-2 mb-1.5'>"
-                                    + "<span class='bg-emerald-100 text-emerald-700 text-xs font-black px-2 py-1 rounded-md border border-emerald-200'>-" 
+                                    + "<span class='badge-discount text-xs'>-" 
                                     + Math.Round((1 - (Convert.ToDecimal(Eval("PrecioDescuento")) / Convert.ToDecimal(Eval("Precio")))) * 100) + "%</span>"
                                     + "<span class='line-through text-gray-400 text-sm font-medium'>$" 
                                     + Convert.ToDecimal(Eval("Precio")).ToString("N2", new System.Globalization.CultureInfo("es-AR")) + "</span>"
